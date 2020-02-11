@@ -1,5 +1,5 @@
 package controllers
 
-type ClassController struct {
+type CourseController struct {
 	BaseController
 }

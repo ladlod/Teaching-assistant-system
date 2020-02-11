@@ -7,6 +7,6 @@ import (
 )
 
 func init() {
-	beego.Include(&controllers.ClassController{})
+	beego.Include(&controllers.CourseController{})
 	beego.Include(&controllers.UsersController{})
 }
