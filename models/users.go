@@ -2,47 +2,45 @@ package models
 
 import "github.com/astaxie/beego/orm"
 
-// User 所有用户
+// User 用户
 type User struct {
 	Id       int
 	Name     string
 	Password string
+	Identity int
+	Courses  []*Course
 }
 
 // Signup 用户注册
-func (user *User) Signup() (bool, error) {
+func (user *User) Signup() bool {
 	orm := orm.NewOrm()
-	orm.Using("users")
+	if user.Identity == 0 {
+		orm.Using("teachers")
+	} else {
+		orm.Using("students")
+	}
 
 	if err := orm.Read(user, "Name"); err == nil {
-		return false, nil
+		return false
 	}
 	if _, err := orm.Insert(user); err == nil {
-		return true, nil
+		return true
 	} else {
-		return false, nil
+		return false
 	}
 }
 
 // Signin 用户登录
 func (user *User) Signin() bool {
 	orm := orm.NewOrm()
-	orm.Using("users")
+	if user.Identity == 0 {
+		orm.Using("teachers")
+	} else {
+		orm.Using("users")
+	}
 
 	if err := orm.Read(user, "Name", "Password"); err == nil {
 		return true
 	}
 	return false
-}
-
-// Student 学生，继承自用户
-type Student struct {
-	User,
-	Courses []Course
-}
-
-// Teacher 老师，继承自用户
-type Teacher struct {
-	User,
-	Courses []Course
 }

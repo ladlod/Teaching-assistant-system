@@ -10,5 +10,5 @@ import (
 func Init() {
 	orm.RegisterDriver("mysql", orm.DRMySQL)
 	orm.RegisterDataBase("users", "mysql", "root:112358@/teching_assistant?charset=utf8")
-	orm.RegisterModel(new(Student), new(Teacher), new(Course))
+	orm.RegisterModel(new(User), new(Course))
 }

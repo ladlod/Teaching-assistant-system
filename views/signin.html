@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>编译原理教辅系统</title>
+        <script src="../static/js/main.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/bulma.css">
+    </head>
+    <body>
+        <header class="header">
+            <h1>华中科技大学编译原理教辅系统</h1>
+        </header>
+        <hr />
+
+        <section class="section">
+            <div class="container" style="width: 800px ">
+                <form id="signin_form" action="" onsubmit="return judgeForm('signin_form', 'usertype', 'username', 'password')" method="POST">
+                    <div class="filed">
+                        <label class="label" for="usertype">Choose your identity:</label>
+                        <input class="radio" type="radio" name="usertype">Teacher&nbsp;
+                        <input class="radio" type="radio" name="usertype">Student
+                    </div>
+
+                    <br />
+
+                    <div class="filed">
+                        <label class="label" for="username">Enter your username:</label>
+                        <input class="input"  type="text" name="username" minlength="3" maxlength="20">
+                    </div>
+                    
+                    <div class="filed">
+                        <label class="label" for="password">Enter your password:</label>
+                        <input class="input" name="password" type="password" id="password" minlength="8" maxlength="20">
+                    </div>
+
+                    <br />
+
+                    <div class="filed">
+                        <p class="control">
+                            <button type="submit" class="button is-success" value="singin"> 登录 </button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button type="reset" class="button is-success" value="signup" onclick="location.href='signup.html'"> 注册 </button>
+                        </p>
+                    </div>
+                </form>
+            </div>
+            <br /><br /><br /><br /><br />
+        </section>
+
+        <footer class="footer">
+            <hr />
+            <a href="help.html">帮助</a>
+            <label class="label">Ladlod 2020.2</label>
+        </footer>
+    </body>
+</html>
