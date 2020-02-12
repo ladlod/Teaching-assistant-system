@@ -18,7 +18,7 @@ func init() {
 
     beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"],
         beego.ControllerComments{
-            Method: "Get",
+            Method: "GetSignin",
             Router: `/signin`,
             AllowHTTPMethods: []string{"get"},
             MethodParams: param.Make(),
@@ -27,8 +27,26 @@ func init() {
 
     beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"],
         beego.ControllerComments{
-            Method: "Login",
+            Method: "PostSignin",
             Router: `/signin`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"],
+        beego.ControllerComments{
+            Method: "GetSignup",
+            Router: `/signup`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"],
+        beego.ControllerComments{
+            Method: "PostSignup",
+            Router: `/signup`,
             AllowHTTPMethods: []string{"post"},
             MethodParams: param.Make(),
             Filters: nil,

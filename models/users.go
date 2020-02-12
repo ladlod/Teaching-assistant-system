@@ -14,11 +14,7 @@ type User struct {
 // Signup 用户注册
 func (user *User) Signup() bool {
 	orm := orm.NewOrm()
-	if user.Identity == 0 {
-		orm.Using("teachers")
-	} else {
-		orm.Using("students")
-	}
+	orm.Using("default")
 
 	if err := orm.Read(user, "Name"); err == nil {
 		return false
@@ -33,11 +29,7 @@ func (user *User) Signup() bool {
 // Signin 用户登录
 func (user *User) Signin() bool {
 	orm := orm.NewOrm()
-	if user.Identity == 0 {
-		orm.Using("teachers")
-	} else {
-		orm.Using("users")
-	}
+	orm.Using("default")
 
 	if err := orm.Read(user, "Name", "Password"); err == nil {
 		return true

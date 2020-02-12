@@ -13,7 +13,7 @@ function judgeForm(p, p1 ,p2, p3) {
     if(z == ""){
         alert("请输入密码！");
         return false;
-    }
+    }    
 }
 
 function judgePassword(f, p1, p2) {
@@ -23,5 +23,11 @@ function judgePassword(f, p1, p2) {
     if(x != y){
         alert("两次密码输入不同");
         return false;
+    }
+}
+
+function notice(notice){
+    if(notice != ""){
+        alert(notice);
     }
 }

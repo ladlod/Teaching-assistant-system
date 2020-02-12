@@ -9,6 +9,6 @@ import (
 // Init 初始化
 func Init() {
 	orm.RegisterDriver("mysql", orm.DRMySQL)
-	orm.RegisterDataBase("users", "mysql", "root:112358@/teching_assistant?charset=utf8")
+	orm.RegisterDataBase("default", "mysql", "root:112358@/teching_assistant?charset=utf8")
 	orm.RegisterModel(new(User), new(Course))
 }

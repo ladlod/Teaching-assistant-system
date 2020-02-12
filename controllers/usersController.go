@@ -18,11 +18,11 @@ func (this *UsersController) GetSignin() {
 	} else if not, ok := flash.Data["notice"]; ok {
 		this.Data["notice"] = not
 	}
-	this.TplName = "login.tpl"
+	this.TplName = "signin.html"
 }
 
 // @router /signin [post]
-func (this *UsersController) POstSignin() {
+func (this *UsersController) PostSignin() {
 	user := models.User{}
 	flash := beego.NewFlash()
 	user.Name = this.GetString("username")
@@ -34,12 +34,12 @@ func (this *UsersController) POstSignin() {
 	}
 
 	if user.Signin() {
-		this.Redirect("/singin", 302)
+		this.Redirect("/signin", 302)
 		return
 	} else {
 		flash.Error("用户不存在或密码错误")
 		flash.Store(&this.Controller)
-		this.Redirect("/singin", 302)
+		this.Redirect("/signin", 302)
 		return
 	}
 }

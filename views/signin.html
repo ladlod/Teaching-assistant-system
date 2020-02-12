@@ -9,15 +9,21 @@
         <link rel="stylesheet" type="text/css" href="../static/css/main.css">
         <link rel="stylesheet" type="text/css" href="../static/css/bulma.css">
     </head>
-    <body>
+    <body onload="return notice('{{.notice}}')">
         <header class="header">
-            <h1>华中科技大学编译原理教辅系统</h1>
+            <h1>
+                <img src="../static/img/9b79c664eb24cca8a9930dd3c0076781.jpg" style="width: 100px;">
+                华中科技大学编译原理教辅系统
+            </h1>
         </header>
         <hr />
 
         <section class="section">
             <div class="container" style="width: 800px ">
                 <form id="signin_form" action="" onsubmit="return judgeForm('signin_form', 'usertype', 'username', 'password')" method="POST">
+                    <div>
+                        <label id="notice"><label>
+                    </div>
                     <div class="filed">
                         <label class="label" for="usertype">Choose your identity:</label>
                         <input class="radio" type="radio" name="usertype">Teacher&nbsp;
@@ -47,7 +53,7 @@
                     </div>
                 </form>
             </div>
-            <br /><br /><br /><br /><br />
+            <br /><br /><br />
         </section>
 
         <footer class="footer">
