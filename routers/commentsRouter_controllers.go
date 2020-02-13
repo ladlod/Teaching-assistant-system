@@ -16,6 +16,15 @@ func init() {
             Filters: nil,
             Params: nil})
 
+    beego.GlobalControllerRouter["Teching-assistant-system/controllers:MainController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:MainController"],
+        beego.ControllerComments{
+            Method: "InTheRow",
+            Router: `/intherow`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"],
         beego.ControllerComments{
             Method: "GetSignin",

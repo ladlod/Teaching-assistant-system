@@ -24,7 +24,7 @@ func (this *UsersController) GetSignin() {
 // @router /signin [post]
 func (this *UsersController) PostSignin() {
 	flash := beego.NewFlash()
-	if this.GetString("usertype") == "on" {
+	if this.GetString("usertype") == "teacher" {
 		var teacher models.Teacher
 		teacher.Account = this.GetString("account")
 		teacher.Password = this.GetString("password")
@@ -38,8 +38,8 @@ func (this *UsersController) PostSignin() {
 			this.Redirect("/signin", 302)
 			return
 		}
-	} else {
-		var student models.Teacher
+	} else if this.GetString("usertype") == "student" {
+		var student models.Student
 		student.Account = this.GetString("account")
 		student.Password = this.GetString("password")
 
@@ -53,6 +53,7 @@ func (this *UsersController) PostSignin() {
 			return
 		}
 	}
+	return
 }
 
 // @router /signup [get]
@@ -69,7 +70,7 @@ func (this *UsersController) GetSignup() {
 // @router /signup [post]
 func (this *UsersController) PostSignup() {
 	flash := beego.NewFlash()
-	if this.GetString("usertype") == "on" {
+	if this.GetString("usertype") == "teacher" {
 		var teacher models.Teacher
 		teacher.Account = this.GetString("account")
 		teacher.Name = this.GetString("username")
@@ -84,7 +85,7 @@ func (this *UsersController) PostSignup() {
 			flash.Store(&this.Controller)
 			this.Redirect("/signup", 302)
 		}
-	} else {
+	} else if this.GetString("usertype") == "student" {
 		var student models.Student
 		student.Account = this.GetString("account")
 		student.Name = this.GetString("username")
