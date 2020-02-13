@@ -2118,7 +2118,7 @@ a.box:active {
 .button.is-success {
 	background-color: #23d160;
 	border-color: transparent;
-	color: #ff
+	color: #fff
 }
 
 .button.is-success.is-hovered,.button.is-success:hover {
