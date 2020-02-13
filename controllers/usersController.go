@@ -30,7 +30,7 @@ func (this *UsersController) PostSignin() {
 		teacher.Password = this.GetString("password")
 
 		if teacher.Signin() {
-			this.Redirect("/signin", 302)
+			this.Redirect("/intherow", 302)
 			return
 		} else {
 			flash.Error("用户不存在或密码错误")
@@ -44,7 +44,7 @@ func (this *UsersController) PostSignin() {
 		student.Password = this.GetString("password")
 
 		if student.Signin() {
-			this.Redirect("/signin", 302)
+			this.Redirect("/intherow", 302)
 			return
 		} else {
 			flash.Error("用户不存在或密码错误")
