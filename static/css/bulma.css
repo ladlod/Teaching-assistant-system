@@ -1348,6 +1348,12 @@ a.box:active {
 	cursor: not-allowed
 }
 
+.button.mybutton {
+	background-color:mediumorchid;
+	border-color: transparent;
+	color: #fff
+}
+
 .button strong {
 	color: inherit
 }
@@ -2112,7 +2118,7 @@ a.box:active {
 .button.is-success {
 	background-color: #23d160;
 	border-color: transparent;
-	color: #fff
+	color: #ff
 }
 
 .button.is-success.is-hovered,.button.is-success:hover {
