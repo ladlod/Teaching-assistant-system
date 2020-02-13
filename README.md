@@ -9,3 +9,5 @@
 - 试卷生成模块
 - 在线考试模块
 - 其它
+## 流程图
+![](static/img/flow_chart.png)
