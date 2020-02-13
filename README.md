@@ -10,4 +10,4 @@
 - 在线考试模块
 - 其它
 ## 流程图
-![](static/img/flow_chart.png)
+![](https://user.qzone.qq.com/3093242703/photo/V11W6Yxv03HQuT/batchid/1581579644343000)
