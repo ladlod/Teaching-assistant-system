@@ -7,10 +7,33 @@ function judgeForm(p, p1 ,p2, p3) {
         return false;
     }
     if(y == ""){
-        alert("请输入姓名！");
+        alert("请输入账号！");
         return false;
     }
     if(z == ""){
+        alert("请输入密码！");
+        return false;
+    }    
+}
+
+function judgeForm2(p, p1 ,p2, p3, p4) {
+    var x = document.forms[p][p1].value;
+    var y = document.forms[p][p2].value;
+    var z = document.forms[p][p3].value;
+    var a = document.forms[p][p4].value;
+    if(x == ""){
+        alert("请选择身份信息！");
+        return false;
+    }
+    if(y == ""){
+        alert("请输入账号！");
+        return false;
+    }
+    if(z == ""){
+        alert("请输入姓名！");
+        return false;
+    }
+    if(a == ""){
         alert("请输入密码！");
         return false;
     }    

@@ -17,7 +17,7 @@
 
         <section class="section">
             <div class="container" style="width: 800px ">
-                <form id="signup_form" action="" onsubmit="return judgeForm('signup_form', 'usertype', 'username', 'password')" method="POST">
+                <form id="signup_form" action="" onsubmit="return judgeForm2('signup_form', 'usertype', 'account', 'username', 'password')" method="POST">
                     <div>
                         <label id="notice"><label>
                     </div>
@@ -28,6 +28,11 @@
                     </div>
 
                     <br />
+
+                    <div class="filed">
+                        <label class="label" for="account">Enter your account number:</label>
+                        <input class="input"  type="text" name="account" minlength="3" maxlength="20">
+                    </div>
 
                     <div class="filed">
                         <label class="label" for="username">Enter your username:</label>

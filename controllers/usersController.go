@@ -23,24 +23,35 @@ func (this *UsersController) GetSignin() {
 
 // @router /signin [post]
 func (this *UsersController) PostSignin() {
-	user := models.User{}
 	flash := beego.NewFlash()
-	user.Name = this.GetString("username")
-	user.Password = this.GetString("password")
-	if this.GetString("usertype") == "Teacher" {
-		user.Identity = 0
-	} else {
-		user.Identity = 1
-	}
+	if this.GetString("usertype") == "on" {
+		var teacher models.Teacher
+		teacher.Account = this.GetString("account")
+		teacher.Password = this.GetString("password")
 
-	if user.Signin() {
-		this.Redirect("/signin", 302)
-		return
+		if teacher.Signin() {
+			this.Redirect("/signin", 302)
+			return
+		} else {
+			flash.Error("用户不存在或密码错误")
+			flash.Store(&this.Controller)
+			this.Redirect("/signin", 302)
+			return
+		}
 	} else {
-		flash.Error("用户不存在或密码错误")
-		flash.Store(&this.Controller)
-		this.Redirect("/signin", 302)
-		return
+		var student models.Teacher
+		student.Account = this.GetString("account")
+		student.Password = this.GetString("password")
+
+		if student.Signin() {
+			this.Redirect("/signin", 302)
+			return
+		} else {
+			flash.Error("用户不存在或密码错误")
+			flash.Store(&this.Controller)
+			this.Redirect("/signin", 302)
+			return
+		}
 	}
 }
 
@@ -52,28 +63,41 @@ func (this *UsersController) GetSignup() {
 	} else if not, ok := flash.Data["notice"]; ok {
 		this.Data["notice"] = not
 	}
-	this.TplName = "signup.tpl"
+	this.TplName = "signup.html"
 }
 
 // @router /signup [post]
 func (this *UsersController) PostSignup() {
-	user := models.User{}
 	flash := beego.NewFlash()
-	user.Name = this.GetString("username")
-	user.Password = this.GetString("password")
-	if this.GetString("usertype") == "Teacher" {
-		user.Identity = 0
-	} else {
-		user.Identity = 1
-	}
+	if this.GetString("usertype") == "on" {
+		var teacher models.Teacher
+		teacher.Account = this.GetString("account")
+		teacher.Name = this.GetString("username")
+		teacher.Password = this.GetString("password")
 
-	if user.Signup() {
-		flash.Notice("注册成功")
-		flash.Store(&this.Controller)
-		this.Redirect("/signin", 302)
+		if teacher.Signup() {
+			flash.Notice("注册成功")
+			flash.Store(&this.Controller)
+			this.Redirect("/signin", 302)
+		} else {
+			flash.Error("账户已存在")
+			flash.Store(&this.Controller)
+			this.Redirect("/signup", 302)
+		}
 	} else {
-		flash.Error("用户名已存在")
-		flash.Store(&this.Controller)
-		this.Redirect("/signup", 302)
+		var student models.Student
+		student.Account = this.GetString("account")
+		student.Name = this.GetString("username")
+		student.Password = this.GetString("password")
+
+		if student.Signup() {
+			flash.Notice("注册成功")
+			flash.Store(&this.Controller)
+			this.Redirect("/signin", 302)
+		} else {
+			flash.Error("账户已存在")
+			flash.Store(&this.Controller)
+			this.Redirect("/signup", 302)
+		}
 	}
 }

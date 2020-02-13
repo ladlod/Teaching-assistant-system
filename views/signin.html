@@ -20,21 +20,21 @@
 
         <section class="section">
             <div class="container" style="width: 800px ">
-                <form id="signin_form" action="" onsubmit="return judgeForm('signin_form', 'usertype', 'username', 'password')" method="POST">
+                <form id="signin_form" action="" onsubmit="return judgeForm('signin_form', 'usertype', 'account', 'password')" method="POST">
                     <div>
                         <label id="notice"><label>
                     </div>
                     <div class="filed">
                         <label class="label" for="usertype">Choose your identity:</label>
-                        <input class="radio" type="radio" name="usertype">Teacher&nbsp;
-                        <input class="radio" type="radio" name="usertype">Student
+                        <input class="radio" type="radio" name="usertype" value="1">Teacher&nbsp;
+                        <input class="radio" type="radio" name="usertype" value="2">Student
                     </div>
 
                     <br />
 
                     <div class="filed">
-                        <label class="label" for="username">Enter your username:</label>
-                        <input class="input"  type="text" name="username" minlength="3" maxlength="20">
+                        <label class="label" for="account">Enter your account number:</label>
+                        <input class="input"  type="text" name="account" minlength="3" maxlength="20">
                     </div>
                     
                     <div class="filed">
@@ -48,7 +48,7 @@
                         <p class="control">
                             <button type="submit" class="button is-success" value="singin"> 登录 </button>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button type="reset" class="button is-success" value="signup" onclick="location.href='signup.html'"> 注册 </button>
+                            <button type="reset" class="button is-success" value="signup" onclick="location.href='/signup'"> 注册 </button>
                         </p>
                     </div>
                 </form>
