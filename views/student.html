@@ -4,13 +4,88 @@
         <head>
             <meta charset="utf-8">
             <title>{{.username}}</title>
-            <script src="../static/js/main.js"></script>
+            <script src="../static/js/user.js"></script>
+            <script src="../static/js/outlook.js"></script>
             
             <link rel="stylesheet" type="text/css" href="../static/css/main.css">
             <link rel="stylesheet" type="text/css" href="../static/css/bulma.css">
         </head>
     </head>
-    <body>
-        <h1>{{.username}}</h1>
+    <body style="background-color: rgb(247, 241, 250);">
+        <header class="header2">
+            <div>
+                <h1>{{.username}}</h1>
+            </div>
+        </header>
+        <hr />
+        <nav class="mynav">
+            <div>
+                <ul>
+                    <li><a id="class" href="/intherow" class="myselect li" style="background-color: rgb(239, 206, 247);">主页</a></li>
+                    <li><a id="discuss" href="/intherow" class="myselect li" onmouseover="select('discuss')" onmouseout="disselect('discuss', 'rgb(245, 232, 248)')">讨论</a></li>
+                    <li><a id="setting" href="/student/setting" class="myselect li" onmouseover="select('setting')" onmouseout="disselect('setting', 'rgb(245, 232, 248)')">设置</a></li>
+                </ul>
+            </div>
+        </nav>
+        <section class="mysection">
+            <div>
+                <div>
+                    <h2 style="text-align: left; font-size: large; padding: 10px;">&nbsp;&nbsp;&nbsp;我的课堂</h2>
+                </div>
+                <div class="pagepiece" style="width: 816px; height: 300px; ">
+                    <table class="classtable">
+                        <tr>
+                                <th class="tabletd">课堂编号</th><th class="tabletd">课堂名称</th><th class="tabletd">教师</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a id="course1" href="/intherow" class="myselect td" onmouseover="select('course1')" onmouseout="disselect('course1', 'rgb(245, 214, 252)')">test1</a>
+                            </td>
+                            <td class="tabletd">test1</td>
+                            <td class="tabletd">test1</td>
+                            <td class="tabletd"><button class="button mybutton" style="height: 30px; font-size: small;" onclick="location.href='/intherow'">退出课堂</button></td>
+                        </tr>
+                    </table>
+                </div>
+                <br />
+                <div>
+                    <h2 style="text-align: left; font-size: large; padding: 10px; width: 200px;">&nbsp;&nbsp;&nbsp;搜索课堂</h2>
+                </div>
+                <div class="pagepiece" style="width: 816px; height: 200px;">
+                    <div style="text-align: right; font-size: medium; padding: 10px;">
+                        <form id="search_form" action="" onsubmit="return judgeEmpty('search_form', 'search_class')" method="POST">
+                            <input name="search_class" id="class" type="text"></input>
+                            <button type="submit">按教师搜索</button>
+                            <button type="submit">按课堂编号搜索</button>
+                        </form>
+                    </div>
+                    <table class="classtable">
+                        <tr>
+                                <th class="tabletd">课堂编号</th><th class="tabletd">课堂名称</th><th class="tabletd">教师</th>
+                        </tr>
+                        <tr>
+                            <td class="tabletd">test1</td>
+                            <td class="tabletd">test1</td>
+                            <td class="tabletd">test1</td>
+                            <td class="tabletd"><button class="button mybutton" style="height: 30px; font-size: small;" onclick="location.href='/intherow'">加入课堂</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div style="padding: 15px;">
+                <div>
+                    <h2 style="text-align: left; font-size: large; padding: 10px; width: 200px;">&nbsp;&nbsp;&nbsp;通知</h2>
+                </div>
+                <div class="pagepiece" style="float:right; width: 300px; height: 550px;">
+                    <a id="notice" href="/intherow" class="myselect notice" onmouseover="select('notice')" onmouseout="disselect('notice', 'rgb(245, 214, 252)')">test</a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <hr />
+            <a href="/help">帮助</a>
+            <label class="label">Ladlod 2020.2</label>
+        </footer>
     </body>
 </html>

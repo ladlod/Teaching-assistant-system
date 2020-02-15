@@ -44,11 +44,14 @@ func (teacher *Teacher) Signin() bool {
 	orm.Using("default")
 
 	if err := orm.Read(teacher, "Account", "Password"); err == nil {
-		identity = 1
-		T = teacher
 		return true
 	}
 	return false
+}
+
+// Change 修改账户信息
+func (teacher *Teacher) Change() bool {
+	return true
 }
 
 // QueryCourse 查询我创建的课堂

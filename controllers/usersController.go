@@ -120,3 +120,69 @@ func (this *UsersController) GetTeacher() {
 	this.Data["username"] = teacher.Name
 	this.TplName = "teacher.html"
 }
+
+// @router /student/setting [get]
+func (this *UsersController) GetSetStudent() {
+	flash := beego.ReadFromRequest(&this.Controller)
+	if not, ok := flash.Data["error"]; ok {
+		this.Data["notice"] = not
+	} else if not, ok := flash.Data["notice"]; ok {
+		this.Data["notice"] = not
+	}
+	var identity = this.GetSession("identity").(string)
+	this.Data["identity"] = identity
+	this.TplName = "setuser.html"
+}
+
+// @router /student/setting [post]
+func (this *UsersController) PostSetStudent() {
+	flash := beego.NewFlash()
+	var student = this.GetSession("account").(models.Student)
+	student.Name = this.GetString("username")
+	student.Password = this.GetString("password")
+
+	if student.Change() {
+		this.SetSession("account", student)
+		this.SetSession("identity", "student")
+		flash.Notice("修改成功")
+		flash.Store(&this.Controller)
+		this.Redirect("/student/setting", 302)
+	} else {
+		flash.Error("修改失败")
+		flash.Store(&this.Controller)
+		this.Redirect("/student/setting", 302)
+	}
+}
+
+// @router /teacher/setting [get]
+func (this *UsersController) GetSetTeacher() {
+	flash := beego.ReadFromRequest(&this.Controller)
+	if not, ok := flash.Data["error"]; ok {
+		this.Data["notice"] = not
+	} else if not, ok := flash.Data["notice"]; ok {
+		this.Data["notice"] = not
+	}
+	var identity = this.GetSession("identity").(string)
+	this.Data["identity"] = identity
+	this.TplName = "setuser.html"
+}
+
+// @router /teacher/setting [post]
+func (this *UsersController) PostSetTeacher() {
+	flash := beego.NewFlash()
+	var teacher = this.GetSession("account").(models.Teacher)
+	teacher.Name = this.GetString("username")
+	teacher.Password = this.GetString("password")
+
+	if teacher.Change() {
+		this.SetSession("account", teacher)
+		this.SetSession("identity", "teacher")
+		flash.Notice("修改成功")
+		flash.Store(&this.Controller)
+		this.Redirect("/student/setting", 302)
+	} else {
+		flash.Error("修改失败")
+		flash.Store(&this.Controller)
+		this.Redirect("/student/setting", 302)
+	}
+}

@@ -1,3 +1,54 @@
+.mynav{
+    text-align: center;
+    width: 200px;
+    height: 650px;
+    display: flex;
+    float: left;
+    padding: 10px;
+    background-color: rgb(245, 232, 248);
+    border-radius:25px;
+    -moz-border-radius:25px;
+    box-shadow: 5px 5px 5px #888888;
+}
+
+.mysection{
+    height: 650px;
+    text-align: center;
+    display: flex;
+    padding: 25px;
+    writing-mode: sideways-lr;
+}
+
+.myselect{
+    display: block;
+    color: darkslateblue;
+    font-size: medium;
+    border-radius:5px;
+    -moz-border-radius:5px;
+}
+
+.myselect.li{
+    font-weight: 500;
+    width: 180px;
+    padding: 10px;
+}
+
+.myselect.td{
+    font-weight: 500;
+    padding: 10px;
+}
+
+.myselect.notice{
+    font-weight: 500;
+    padding: 10px;
+    width:284px;
+    height:100px;
+    background-color:rgb(245, 214, 252);
+    border-radius:25px; 
+    -moz-border-radius:25px;
+    box-shadow: 5px 5px 5px #888888;
+}
+
 .header{
     color:black;
     font-size: 45px;
@@ -10,4 +61,27 @@
     font-size: x-large;
     text-align: left;
     padding:30px 25px 5px 25px;
+}
+
+.classtable{
+    width: 800px;
+    text-align: center;
+    min-height: 100px;
+    background-color: rgb(245, 214, 252);
+    border-radius:25px;
+    -moz-border-radius:25px;
+    box-shadow: 5px 5px 5px #888888;
+}
+
+.tabletd{
+    font-size: medium;
+    padding: 10px;
+}
+
+.pagepiece{
+    overflow-y:scroll; 
+    overflow-x:none; 
+    background-color: rgb(225, 215, 228);
+    border-radius:25px; 
+    -moz-border-radius:25px;
 }

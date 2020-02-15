@@ -11,6 +11,7 @@ import "github.com/astaxie/beego/orm"
 方法说明：
 	Signup 注册
 	Signin 登录
+	Change 修改用户信息
 	QueryCourse 查询我选择的课堂
 	JoinCourse 加入课堂
 */
@@ -42,8 +43,17 @@ func (student *Student) Signin() bool {
 	orm.Using("default")
 
 	if err := orm.Read(student, "Account", "Password"); err == nil {
-		identity = 2
-		S = student
+		return true
+	}
+	return false
+}
+
+// Change 修改用户信息
+func (student *Student) Change() bool {
+	orm := orm.NewOrm()
+	orm.Using("default")
+
+	if _, err := orm.Update(student, "Name", "Password"); err == nil {
 		return true
 	}
 	return false
