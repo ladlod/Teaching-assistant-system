@@ -1,5 +1,7 @@
 package models
 
+import "github.com/astaxie/beego/orm"
+
 // SearchCourse 查找课堂
 func SearchCourse(coursename string) Course {
 	res := Course{}
@@ -19,11 +21,18 @@ func SearchCourse(coursename string) Course {
 type Course struct {
 	Id   int
 	Name string
+	Tid  int
 }
 
 // MakeCourse 创建课堂
-func (course *Course) MakeCourse() bool {
-	return true
+func (course *Course) MakeCourse() (int, bool) {
+	orm := orm.NewOrm()
+	orm.Using("default")
+
+	if _, err := orm.Insert(course); err == nil {
+		return course.Id, true
+	}
+	return 0, false
 }
 
 // DeleteCourse 删除课堂

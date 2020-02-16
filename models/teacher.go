@@ -51,15 +51,23 @@ func (teacher *Teacher) Signin() bool {
 
 // Change 修改账户信息
 func (teacher *Teacher) Change() bool {
-	return true
+	orm := orm.NewOrm()
+	orm.Using("default")
+
+	if _, err := orm.Update(teacher, "Name", "Password"); err == nil {
+		return true
+	}
+	return false
 }
 
 // QueryCourse 查询我创建的课堂
 func (teacher *Teacher) QueryCourse() {
+
 }
 
 // MakeCourse 创建课堂
-func (teacher *Teacher) MakeCourse(course *Course) bool {
+func (teacher *Teacher) MakeCourse(course *Course) (int, bool) {
+	course.Tid = teacher.Id
 	return course.MakeCourse()
 }
 

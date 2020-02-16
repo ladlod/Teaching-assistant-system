@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"Teching-assistant-system/models"
+	"strconv"
 
 	"github.com/astaxie/beego"
 )
@@ -114,11 +115,37 @@ func (this *UsersController) GetStudent() {
 	this.TplName = "student.html"
 }
 
+// @router /student [post]
+func (this *UsersController) PostSearchCourse() {
+
+}
+
 // @router /teacher [get]
 func (this *UsersController) GetTeacher() {
+	flash := beego.ReadFromRequest(&this.Controller)
+	if not, ok := flash.Data["notice"]; ok {
+		this.Data["notice"] = not
+	}
 	var teacher = this.GetSession("account").(models.Teacher)
 	this.Data["username"] = teacher.Name
 	this.TplName = "teacher.html"
+}
+
+// @router /teacher [post]
+func (this *UsersController) PostCreateCourse() {
+	flash := beego.NewFlash()
+	var course models.Course
+	course.Name = this.GetString("course")
+	teacher := this.GetSession("account").(models.Teacher)
+	if id, b := teacher.MakeCourse(&course); b {
+		flash.Notice("创建成功, 课堂ID为" + strconv.Itoa(id))
+		flash.Store(&this.Controller)
+		this.Redirect("/teacher", 302)
+	} else {
+		flash.Notice("创建失败，请稍后再试")
+		flash.Store(&this.Controller)
+		this.Redirect("/teacher", 302)
+	}
 }
 
 // @router /student/setting [get]

@@ -81,6 +81,15 @@ func init() {
 
     beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"],
         beego.ControllerComments{
+            Method: "PostSearchCourse",
+            Router: `/student`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"],
+        beego.ControllerComments{
             Method: "GetSetStudent",
             Router: `/student/setting`,
             AllowHTTPMethods: []string{"get"},
@@ -102,6 +111,15 @@ func init() {
             Method: "GetTeacher",
             Router: `/teacher`,
             AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"],
+        beego.ControllerComments{
+            Method: "PostCreateCourse",
+            Router: `/teacher`,
+            AllowHTTPMethods: []string{"post"},
             MethodParams: param.Make(),
             Filters: nil,
             Params: nil})

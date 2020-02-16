@@ -1,7 +1,7 @@
-function judgeEmpty(f, p){
+function judgeEmpty(f, p, q){
     var x = document.forms[f][p].value;
     if(x == ""){
-        alert("请输入搜索内容");
+        alert("请输入" + q);
         return false;
     }
 }

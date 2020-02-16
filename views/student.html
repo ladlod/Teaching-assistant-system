@@ -11,7 +11,7 @@
             <link rel="stylesheet" type="text/css" href="../static/css/bulma.css">
         </head>
     </head>
-    <body style="background-color: rgb(247, 241, 250);">
+    <body>
         <header class="header2">
             <div>
                 <h1>{{.username}}</h1>
@@ -22,8 +22,8 @@
             <div>
                 <ul>
                     <li><a id="class" href="/intherow" class="myselect li" style="background-color: rgb(239, 206, 247);">主页</a></li>
-                    <li><a id="discuss" href="/intherow" class="myselect li" onmouseover="select('discuss')" onmouseout="disselect('discuss', 'rgb(245, 232, 248)')">讨论</a></li>
-                    <li><a id="setting" href="/student/setting" class="myselect li" onmouseover="select('setting')" onmouseout="disselect('setting', 'rgb(245, 232, 248)')">设置</a></li>
+                    <li><a id="discuss" href="/intherow" class="myselect li" onmouseover="setBgColor('discuss', 'rgb(239, 206, 247)')" onmouseout="setBgColor('discuss', 'rgb(245, 232, 248)')">讨论</a></li>
+                    <li><a id="setting" href="/student/setting" class="myselect li" onmouseover="setBgColor('setting', 'rgb(239, 206, 247)')" onmouseout="setBgColor('setting', 'rgb(245, 232, 248)')">设置</a></li>
                 </ul>
             </div>
         </nav>
@@ -39,7 +39,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <a id="course1" href="/intherow" class="myselect td" onmouseover="select('course1')" onmouseout="disselect('course1', 'rgb(245, 214, 252)')">test1</a>
+                                <a id="course1" href="/intherow" class="myselect td" onmouseover="setBgColor('course1', 'rgb(239, 206, 247)')" onmouseout="setBgColor('course1', 'rgb(245, 214, 252)')">test1</a>
                             </td>
                             <td class="tabletd">test1</td>
                             <td class="tabletd">test1</td>
@@ -53,7 +53,7 @@
                 </div>
                 <div class="pagepiece" style="width: 816px; height: 200px;">
                     <div style="text-align: right; font-size: medium; padding: 10px;">
-                        <form id="search_form" action="" onsubmit="return judgeEmpty('search_form', 'search_class')" method="POST">
+                        <form id="search_form" action="" onsubmit="return judgeEmpty('search_form', 'search_class', '搜索内容')" method="POST">
                             <input name="search_class" id="class" type="text"></input>
                             <button type="submit">按教师搜索</button>
                             <button type="submit">按课堂编号搜索</button>
@@ -77,14 +77,14 @@
                     <h2 style="text-align: left; font-size: large; padding: 10px; width: 200px;">&nbsp;&nbsp;&nbsp;通知</h2>
                 </div>
                 <div class="pagepiece" style="float:right; width: 300px; height: 550px;">
-                    <a id="notice" href="/intherow" class="myselect notice" onmouseover="select('notice')" onmouseout="disselect('notice', 'rgb(245, 214, 252)')">test</a>
+                    <a id="message" href="/intherow" class="myselect notice" onmouseover="setBgColor('message', 'rgb(239, 206, 247)')" onmouseout="setBgColor('message', 'rgb(245, 214, 252)')">test</a>
                 </div>
             </div>
         </section>
 
         <footer class="footer">
             <hr />
-            <a href="/help">帮助</a>
+            <a href="https://github.com/ladlod/Teaching-assistant-system">帮助</a>
             <label class="label">Ladlod 2020.2</label>
         </footer>
     </body>
