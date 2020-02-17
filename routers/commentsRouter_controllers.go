@@ -7,6 +7,42 @@ import (
 
 func init() {
 
+    beego.GlobalControllerRouter["Teching-assistant-system/controllers:CourseController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:CourseController"],
+        beego.ControllerComments{
+            Method: "GetStudentCourse",
+            Router: `/student/course`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teching-assistant-system/controllers:CourseController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:CourseController"],
+        beego.ControllerComments{
+            Method: "JionCourse",
+            Router: `/student/joincourse/:cid`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teching-assistant-system/controllers:CourseController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:CourseController"],
+        beego.ControllerComments{
+            Method: "GetTeacherCourse",
+            Router: `/teacher/course`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teching-assistant-system/controllers:CourseController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:CourseController"],
+        beego.ControllerComments{
+            Method: "DeleteCourse",
+            Router: `/teacher/dropcourse/:cid`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["Teching-assistant-system/controllers:MainController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:MainController"],
         beego.ControllerComments{
             Method: "Get",

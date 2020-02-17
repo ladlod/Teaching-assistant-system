@@ -110,14 +110,41 @@ func (this *UsersController) PostSignup() {
 
 // @router /student [get]
 func (this *UsersController) GetStudent() {
+	flash := beego.ReadFromRequest(&this.Controller)
+	if err, ok := flash.Data["error"]; ok {
+		this.Data["notice"] = err
+	}
+	if courseid, ok := flash.Data["notice"]; ok {
+		cid, _ := strconv.Atoi(courseid)
+		search_courses := models.SearchCourse(cid)
+		if len(search_courses) == 0 {
+			this.Data["notice"] = "课堂不存在"
+		}
+		this.Data["search_courses"] = search_courses
+	}
 	var student = this.GetSession("account").(models.Student)
+
+	courses := student.QueryCourse()
+
+	this.Data["courses"] = courses
 	this.Data["username"] = student.Name
 	this.TplName = "student.html"
 }
 
 // @router /student [post]
 func (this *UsersController) PostSearchCourse() {
+	flash := beego.NewFlash()
 
+	cid := this.GetString("course")
+	if _, err := strconv.Atoi(cid); err == nil {
+		flash.Notice(cid)
+		flash.Store(&this.Controller)
+		this.Redirect("/student", 302)
+	} else {
+		flash.Error("请输入课堂编号，格式为4位以内数字")
+		flash.Store(&this.Controller)
+		this.Redirect("/student", 302)
+	}
 }
 
 // @router /teacher [get]
@@ -127,6 +154,10 @@ func (this *UsersController) GetTeacher() {
 		this.Data["notice"] = not
 	}
 	var teacher = this.GetSession("account").(models.Teacher)
+
+	courses := teacher.QueryCourse()
+
+	this.Data["courses"] = courses
 	this.Data["username"] = teacher.Name
 	this.TplName = "teacher.html"
 }

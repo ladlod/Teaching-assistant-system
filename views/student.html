@@ -11,7 +11,7 @@
             <link rel="stylesheet" type="text/css" href="../static/css/bulma.css">
         </head>
     </head>
-    <body>
+    <body onload="return notice('{{.notice}}')">
         <header class="header2">
             <div>
                 <h1>{{.username}}</h1>
@@ -37,14 +37,24 @@
                         <tr>
                                 <th class="tabletd">课堂编号</th><th class="tabletd">课堂名称</th><th class="tabletd">教师</th>
                         </tr>
+                        {{range .courses}}
                         <tr>
                             <td>
-                                <a id="course1" href="/intherow" class="myselect td" onmouseover="setBgColor('course1', 'rgb(239, 206, 247)')" onmouseout="setBgColor('course1', 'rgb(245, 214, 252)')">test1</a>
+                                <a id="course{{.Id}}" href="/intherow" class="myselect td" onmouseover="setBgColor('course{{.Id}}', 'rgb(239, 206, 247)')" onmouseout="setBgColor('course{{.Id}}', 'rgb(245, 214, 252)')"></a>
+                                <script>
+                                    var res = '{{.Id}}' + "";
+                                    var n = res.length;
+                                    while(n < 4){
+                                        res = '0' + res;
+                                        n++;
+                                        }
+                                    document.getElementById("course{{.Id}}").innerHTML = res;
+                                </script>
                             </td>
-                            <td class="tabletd">test1</td>
-                            <td class="tabletd">test1</td>
-                            <td class="tabletd"><button class="button mybutton" style="height: 30px; font-size: small;" onclick="location.href='/intherow'">退出课堂</button></td>
+                            <td class="tabletd">{{.Name}}</td>
+                            <td class="tabletd">{{.Teacher.Name}}</td>
                         </tr>
+                        {{end}}
                     </table>
                 </div>
                 <br />
@@ -54,21 +64,32 @@
                 <div class="pagepiece" style="width: 816px; height: 200px;">
                     <div style="text-align: right; font-size: medium; padding: 10px;">
                         <form id="search_form" action="" onsubmit="return judgeEmpty('search_form', 'search_class', '搜索内容')" method="POST">
-                            <input name="search_class" id="class" type="text"></input>
-                            <button type="submit">按教师搜索</button>
-                            <button type="submit">按课堂编号搜索</button>
+                            <label>请输入课堂编号：</label>
+                            <input name="course" id="course" type="text"></input>
+                            <button type="submit">搜索</button>
                         </form>
                     </div>
                     <table class="classtable">
                         <tr>
-                                <th class="tabletd">课堂编号</th><th class="tabletd">课堂名称</th><th class="tabletd">教师</th>
+                                <th class="tabletd">课堂编号</th><th class="tabletd">课堂名称</th><th class="tabletd">教师</th><th class="tabletd"></th>
                         </tr>
+                        {{range .search_courses}}
                         <tr>
-                            <td class="tabletd">test1</td>
-                            <td class="tabletd">test1</td>
-                            <td class="tabletd">test1</td>
-                            <td class="tabletd"><button class="button mybutton" style="height: 30px; font-size: small;" onclick="location.href='/intherow'">加入课堂</button></td>
+                            <td class="tabletd" id="search_course{{.Id}}"></td>
+                            <td class="tabletd">{{.Name}}</td>
+                            <td class="tabletd">{{.Teacher.Name}}</td>
+                            <td class="tabletd"><button class="button mybutton" style="height: 30px; font-size: small;" onclick="location.href='/student/joincourse/{{.Id}}'">加入课堂</button></td>
                         </tr>
+                        <script>
+                            var res = '{{.Id}}' + "";
+                            var n = res.length;
+                            while(n < 4){
+                                res = '0' + res;
+                                n++;
+                                }
+                            document.getElementById("search_course{{.Id}}").innerHTML = res;
+                        </script>
+                        {{end}}
                     </table>
                 </div>
             </div>

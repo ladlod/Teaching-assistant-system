@@ -1,7 +1,5 @@
 package models
 
-import "github.com/astaxie/beego/orm"
-
 /*Teacher 老师
 属性说明：
 	Id 顺序产生的编号
@@ -16,22 +14,19 @@ import "github.com/astaxie/beego/orm"
 	DeleteCourse 删除课堂
 */
 type Teacher struct {
-	Id       int
+	Id       int `orm:"column(id);auto"`
 	Account  string
 	Name     string
 	Password string
-	//Courses  []*Course `orm:"reverse(many)"`
+	Courses  []*Course `orm:"reverse(many)"`
 }
 
 // Signup 用户注册
 func (teacher *Teacher) Signup() bool {
-	orm := orm.NewOrm()
-	orm.Using("default")
-
-	if err := orm.Read(teacher, "Name"); err == nil {
+	if err := O.Read(teacher, "Name"); err == nil {
 		return false
 	}
-	if _, err := orm.Insert(teacher); err == nil {
+	if _, err := O.Insert(teacher); err == nil {
 		return true
 	} else {
 		return false
@@ -40,10 +35,7 @@ func (teacher *Teacher) Signup() bool {
 
 // Signin 用户登录
 func (teacher *Teacher) Signin() bool {
-	orm := orm.NewOrm()
-	orm.Using("default")
-
-	if err := orm.Read(teacher, "Account", "Password"); err == nil {
+	if err := O.Read(teacher, "Account", "Password"); err == nil {
 		return true
 	}
 	return false
@@ -51,27 +43,30 @@ func (teacher *Teacher) Signin() bool {
 
 // Change 修改账户信息
 func (teacher *Teacher) Change() bool {
-	orm := orm.NewOrm()
-	orm.Using("default")
-
-	if _, err := orm.Update(teacher, "Name", "Password"); err == nil {
+	if _, err := O.Update(teacher, "Name", "Password"); err == nil {
 		return true
 	}
 	return false
 }
 
 // QueryCourse 查询我创建的课堂
-func (teacher *Teacher) QueryCourse() {
-
+func (teacher *Teacher) QueryCourse() []*Course {
+	var courses []*Course
+	_, err := O.QueryTable("course").Filter("teacher_id", teacher.Id).All(&courses)
+	if err == nil {
+		return courses
+	}
+	return nil
 }
 
 // MakeCourse 创建课堂
 func (teacher *Teacher) MakeCourse(course *Course) (int, bool) {
-	course.Tid = teacher.Id
+	course.Teacher = teacher
 	return course.MakeCourse()
 }
 
 // DeleteCourse 删除课堂
-func (teacher *Teacher) DeleteCourse(course *Course) bool {
+func (teacher *Teacher) DeleteCourse(cid int) bool {
+	course := Course{Id: cid}
 	return course.DeleteCourse()
 }
