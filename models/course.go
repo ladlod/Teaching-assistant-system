@@ -1,14 +1,12 @@
 package models
 
 // SearchCourse 查找课堂
-func SearchCourse(cid int) []*Course {
-	var courses []*Course
-	err := O.QueryTable("course").Filter("id", cid).One(&courses)
+func SearchCourse(cid int) *Course {
+	var course Course
+	err := O.QueryTable("course").Filter("id", cid).One(&course)
 	if err == nil {
-		for i, _ := range courses {
-			O.Read(courses[i].Teacher)
-		}
-		return courses
+		O.Read(course.Teacher)
+		return &course
 	}
 	return nil
 }
@@ -20,8 +18,9 @@ func SearchCourse(cid int) []*Course {
 方法说明：
 	MakeCourse 创建课堂
 	DeleteCourse 删除课堂
+	QueryStudents 查询选择这门课的学生
 	Addstudent 添加学生
-	QueryFiles 查询课件
+	QueryFiles 查询课件 //未完成
 */
 type Course struct {
 	Id      int `orm:"column(id);auto"`
@@ -44,6 +43,13 @@ func (course *Course) DeleteCourse() bool {
 		return true
 	}
 	return false
+}
+
+// QueryStudents 查询选择这门课的学生
+func (course *Course) QueryStudents() []*Student {
+	var students []*Student
+	O.QueryTable("student").Filter("Course__Course__id", course.Id).All(&students)
+	return students
 }
 
 //Addstudent 添加学生

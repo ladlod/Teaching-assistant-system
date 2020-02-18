@@ -11,14 +11,46 @@ type CourseController struct {
 	BaseController
 }
 
+// @router /student/:cid [get]
+func (this *CourseController) StudentSelectCourse() {
+	cid, _ := strconv.Atoi(this.Ctx.Input.Param(":cid"))
+	course := models.SearchCourse(cid)
+	this.SetSession("course", course)
+	this.Redirect("/student/course", 302)
+}
+
 // @router /student/course [get]
 func (this *CourseController) GetStudentCourse() {
-	this.Redirect("/intherow", 302)
+	flash := beego.ReadFromRequest(&this.Controller)
+	if not, ok := flash.Data["notice"]; ok {
+		this.Data["notice"] = not
+	}
+	course := this.GetSession("course").(*models.Course)
+	students := course.QueryStudents()
+	this.Data["course"] = course
+	this.Data["students"] = students
+	this.TplName = "studentcourse.html"
+}
+
+// @router /teacher/:cid [get]
+func (this *CourseController) TeacherSelectCourse() {
+	cid, _ := strconv.Atoi(this.Ctx.Input.Param(":cid"))
+	course := models.SearchCourse(cid)
+	this.SetSession("course", course)
+	this.Redirect("/teacher/course", 302)
 }
 
 // @router /teacher/course [get]
 func (this *CourseController) GetTeacherCourse() {
-	this.Redirect("/intherow", 302)
+	flash := beego.ReadFromRequest(&this.Controller)
+	if not, ok := flash.Data["notice"]; ok {
+		this.Data["notice"] = not
+	}
+	course := this.GetSession("course").(*models.Course)
+	students := course.QueryStudents()
+	this.Data["course"] = course
+	this.Data["students"] = students
+	this.TplName = "studentcourse.html"
 }
 
 // @router /teacher/dropcourse/:cid [get]

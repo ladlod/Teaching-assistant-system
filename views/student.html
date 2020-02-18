@@ -40,7 +40,7 @@
                         {{range .courses}}
                         <tr>
                             <td>
-                                <a id="course{{.Id}}" href="/intherow" class="myselect td" onmouseover="setBgColor('course{{.Id}}', 'rgb(239, 206, 247)')" onmouseout="setBgColor('course{{.Id}}', 'rgb(245, 214, 252)')"></a>
+                                <a id="course{{.Id}}" href="/student/{{.Id}}" class="myselect td" onmouseover="setBgColor('course{{.Id}}', 'rgb(239, 206, 247)')" onmouseout="setBgColor('course{{.Id}}', 'rgb(245, 214, 252)')"></a>
                                 <script>
                                     var res = '{{.Id}}' + "";
                                     var n = res.length;
@@ -73,22 +73,22 @@
                         <tr>
                                 <th class="tabletd">课堂编号</th><th class="tabletd">课堂名称</th><th class="tabletd">教师</th><th class="tabletd"></th>
                         </tr>
-                        {{range .search_courses}}
+                        {{if .search_course}}
                         <tr>
-                            <td class="tabletd" id="search_course{{.Id}}"></td>
-                            <td class="tabletd">{{.Name}}</td>
-                            <td class="tabletd">{{.Teacher.Name}}</td>
+                            <td class="tabletd" id="search_course{{.search_course.Id}}"></td>
+                            <td class="tabletd">{{.search_course.Name}}</td>
+                            <td class="tabletd">{{.search_course.Teacher.Name}}</td>
                             <td class="tabletd"><button class="button mybutton" style="height: 30px; font-size: small;" onclick="location.href='/student/joincourse/{{.Id}}'">加入课堂</button></td>
+                            <script>
+                                var res = '{{.search_course.Id}}' + "";
+                                var n = res.length;
+                                while(n < 4){
+                                    res = '0' + res;
+                                    n++;
+                                    }
+                                document.getElementById("search_course{{.search_course.Id}}").innerHTML = res;
+                            </script>
                         </tr>
-                        <script>
-                            var res = '{{.Id}}' + "";
-                            var n = res.length;
-                            while(n < 4){
-                                res = '0' + res;
-                                n++;
-                                }
-                            document.getElementById("search_course{{.Id}}").innerHTML = res;
-                        </script>
                         {{end}}
                     </table>
                 </div>

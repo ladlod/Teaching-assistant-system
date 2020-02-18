@@ -14,9 +14,7 @@ type UsersController struct {
 // @router /signin [get]
 func (this *UsersController) GetSignin() {
 	flash := beego.ReadFromRequest(&this.Controller)
-	if not, ok := flash.Data["error"]; ok {
-		this.Data["notice"] = not
-	} else if not, ok := flash.Data["notice"]; ok {
+	if not, ok := flash.Data["notice"]; ok {
 		this.Data["notice"] = not
 	}
 	this.TplName = "signin.html"
@@ -36,7 +34,7 @@ func (this *UsersController) PostSignin() {
 			this.Redirect("/teacher", 302)
 			return
 		} else {
-			flash.Error("用户不存在或密码错误")
+			flash.Notice("用户不存在或密码错误")
 			flash.Store(&this.Controller)
 			this.Redirect("/signin", 302)
 			return
@@ -52,7 +50,7 @@ func (this *UsersController) PostSignin() {
 			this.Redirect("/student", 302)
 			return
 		} else {
-			flash.Error("用户不存在或密码错误")
+			flash.Notice("用户不存在或密码错误")
 			flash.Store(&this.Controller)
 			this.Redirect("/signin", 302)
 			return
@@ -64,10 +62,8 @@ func (this *UsersController) PostSignin() {
 // @router /signup [get]
 func (this *UsersController) GetSignup() {
 	flash := beego.ReadFromRequest(&this.Controller)
-	if err, ok := flash.Data["error"]; ok {
+	if err, ok := flash.Data["notice"]; ok {
 		this.Data["notice"] = err
-	} else if not, ok := flash.Data["notice"]; ok {
-		this.Data["notice"] = not
 	}
 	this.TplName = "signup.html"
 }
@@ -86,7 +82,7 @@ func (this *UsersController) PostSignup() {
 			flash.Store(&this.Controller)
 			this.Redirect("/signin", 302)
 		} else {
-			flash.Error("账户已存在")
+			flash.Notice("账户已存在")
 			flash.Store(&this.Controller)
 			this.Redirect("/signup", 302)
 		}
@@ -101,7 +97,7 @@ func (this *UsersController) PostSignup() {
 			flash.Store(&this.Controller)
 			this.Redirect("/signin", 302)
 		} else {
-			flash.Error("账户已存在")
+			flash.Notice("账户已存在")
 			flash.Store(&this.Controller)
 			this.Redirect("/signup", 302)
 		}
@@ -116,11 +112,12 @@ func (this *UsersController) GetStudent() {
 	}
 	if courseid, ok := flash.Data["notice"]; ok {
 		cid, _ := strconv.Atoi(courseid)
-		search_courses := models.SearchCourse(cid)
-		if len(search_courses) == 0 {
+		search_course := models.SearchCourse(cid)
+		if search_course == nil {
 			this.Data["notice"] = "课堂不存在"
+		} else {
+			this.Data["search_course"] = search_course
 		}
-		this.Data["search_courses"] = search_courses
 	}
 	var student = this.GetSession("account").(models.Student)
 
