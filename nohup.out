@@ -1,0 +1,17 @@
+2020/02/19 14:39:13.107 [1;34m[I][0m [router.go:270]  /Users/ladlod/Home/code/go/src/Teching-assistant-system/controllers no changed
+2020/02/19 14:39:13.107 [1;34m[I][0m [router.go:270]  /Users/ladlod/Home/code/go/src/Teching-assistant-system/controllers no changed
+2020/02/19 14:39:13.108 [1;34m[I][0m [router.go:270]  /Users/ladlod/Home/code/go/src/Teching-assistant-system/controllers no changed
+table `teacher` already exists, skip
+table `student` already exists, skip
+table `course` already exists, skip
+table `student_courses` already exists, skip
+2020/02/19 14:39:13.119 [1;34m[I][0m [asm_amd64.s:1357]  http server Running on http://127.0.0.1:10001
+2020/02/19 14:39:15.852 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.143177ms|   match|[97;44m GET     [0m /signin   r:/signin
+2020/02/19 14:39:15.898 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|    123.311µs| nomatch|[97;44m GET     [0m /favicon.ico
+2020/02/19 14:39:15.917 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    765.618µs|   match|[97;44m GET     [0m /signin   r:/signin
+2020/02/19 14:39:16.498 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    680.498µs|   match|[97;44m GET     [0m /signin   r:/signin
+2020/02/19 14:39:16.556 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|      40.91µs| nomatch|[97;44m GET     [0m /favicon.ico
+2020/02/19 14:39:16.572 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    416.084µs|   match|[97;44m GET     [0m /signin   r:/signin
+2020/02/19 14:41:36.191 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    487.864µs|   match|[97;44m GET     [0m /signin   r:/signin
+2020/02/19 14:41:36.261 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|    162.727µs| nomatch|[97;44m GET     [0m /favicon.ico
+2020/02/19 14:41:36.265 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|      599.6µs|   match|[97;44m GET     [0m /signin   r:/signin

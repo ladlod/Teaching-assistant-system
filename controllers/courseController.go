@@ -15,7 +15,7 @@ type CourseController struct {
 func (this *CourseController) StudentSelectCourse() {
 	cid, _ := strconv.Atoi(this.Ctx.Input.Param(":cid"))
 	course := models.SearchCourse(cid)
-	this.SetSession("course", course)
+	this.SetSession("course", *course)
 	this.Redirect("/student/course", 302)
 }
 
@@ -25,7 +25,11 @@ func (this *CourseController) GetStudentCourse() {
 	if not, ok := flash.Data["notice"]; ok {
 		this.Data["notice"] = not
 	}
-	course := this.GetSession("course").(*models.Course)
+
+	student := this.GetSession("account").(models.Student)
+	this.Data["student"] = student
+
+	course := this.GetSession("course").(models.Course)
 	students := course.QueryStudents()
 	this.Data["course"] = course
 	this.Data["students"] = students

@@ -4,17 +4,17 @@
         <head>
             <meta charset="utf-8">
             <title>{{.username}}</title>
-            <script src="../static/js/user.js"></script>
-            <script src="../static/js/outlook.js"></script>
+            <script src="js/user.js"></script>
+            <script src="js/outlook.js"></script>
             
-            <link rel="stylesheet" type="text/css" href="../static/css/main.css">
-            <link rel="stylesheet" type="text/css" href="../static/css/bulma.css">
+            <link rel="stylesheet" type="text/css" href="css/main.css">
         </head>
     </head>
     <body onload="return notice('{{.notice}}')">
         <header class="header2">
             <div>
                 <h1>{{.username}}</h1>
+                <a style="font-size: medium;" href="/signin">重新登录</a>
             </div>
         </header>
         <hr />
@@ -78,7 +78,7 @@
                             <td class="tabletd" id="search_course{{.search_course.Id}}"></td>
                             <td class="tabletd">{{.search_course.Name}}</td>
                             <td class="tabletd">{{.search_course.Teacher.Name}}</td>
-                            <td class="tabletd"><button class="button mybutton" style="height: 30px; font-size: small;" onclick="location.href='/student/joincourse/{{.Id}}'">加入课堂</button></td>
+                            <td class="tabletd"><button class="button mybutton" style="height: 30px; font-size: small;" onclick="location.href='/student/joincourse/{{.serch_course.Id}}'">加入课堂</button></td>
                             <script>
                                 var res = '{{.search_course.Id}}' + "";
                                 var n = res.length;

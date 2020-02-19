@@ -4,13 +4,32 @@
         <meta charset="utf-8">
         <title>{{.course.Name}}</title>
 
-        <script src="../static/js/user.js"></script>
+        <script src="js/user.js"></script>
+        <script src="js/outlook.js"></script>
         
-        <link rel="stylesheet" type="text/css" href="../static/css/main.css">
-        <link rel="stylesheet" type="text/css" href="../static/css/bulma.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
     <body>
-        <h1>{{.course.Name}}</h1>
-        <label>{{.course.Teacher.Name}}</label>
+        <header class="header2">
+            <div>
+                <h1>{{.course.Name}}</h1>
+                <h2>{{.student.Name}}</h2>
+                <a style="font-size: medium;" href="/signin">重新登录</a>
+            </div>
+        </header>
+
+        <hr />
+
+        <nav>
+
+        </nav>
+
+        <section>
+
+        </section>
+        
+        <footer>
+
+        </footer>
     </body>
 </html>

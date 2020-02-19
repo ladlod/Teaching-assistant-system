@@ -1,3 +1,436 @@
+blockquote,body,dd,dl,dt,fieldset,figure,h1,h2,h3,h4,h5,h6,hr,html,iframe,legend,li,ol,p,pre,textarea,ul {
+	margin: 0;
+	padding: 0
+}
+
+h1,h3,h4,h5,h6 {
+	font-size: 100%;
+	font-weight: 500;
+}
+
+h2{
+	font-size: 80%;
+	font-weight: 400;
+}
+
+ul {
+	list-style: none
+}
+
+button,input,select,textarea {
+	margin: 0
+}
+
+html {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box
+}
+
+audio,embed,img,object,video {
+	max-width: 100%
+}
+
+iframe {
+	border: 0
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+
+td,th {
+	padding: 0;
+	text-align: left
+}
+
+html {
+	background-color: white;
+	font-size: 16px;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	min-width: 300px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	text-rendering: optimizeLegibility;
+	-webkit-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	text-size-adjust: 100%
+}
+
+article,aside,figure,footer,header,hgroup,section {
+	display: block
+}
+
+body,button,input,select,textarea {
+	font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif
+}
+
+code,pre {
+	-moz-osx-font-smoothing: auto;
+	-webkit-font-smoothing: auto;
+	font-family: monospace
+}
+
+body {
+	color: #4a4a4a;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5
+}
+
+a {
+	color: #3273dc;
+	cursor: pointer;
+	text-decoration: none
+}
+
+code {
+	background-color: whitesmoke;
+	color: #ff3860;
+	font-size: 0.875em;
+	font-weight: normal;
+	padding: 0.25em 0.5em
+}
+
+hr {
+	background-color: #dbdbdb;
+	border: none;
+	display: block;
+	height: 1px;
+	margin: 1.5rem 0
+}
+
+img {
+	height: auto;
+	max-width: 100%
+}
+
+input[type="checkbox"],input[type="radio"] {
+	vertical-align: baseline
+}
+
+small {
+	font-size: 0.875em
+}
+
+span {
+	font-style: inherit;
+	font-weight: inherit
+}
+
+strong {
+	color: #363636;
+	font-weight: 700
+}
+
+pre {
+	-webkit-overflow-scrolling: touch;
+	background-color: whitesmoke;
+	color: #4a4a4a;
+	font-size: 0.875em;
+	overflow-x: auto;
+	padding: 1.25rem 1.5rem;
+	white-space: pre;
+	word-wrap: normal
+}
+
+pre code {
+	background-color: transparent;
+	color: currentColor;
+	font-size: 1em;
+	padding: 0
+}
+
+table td,table th {
+	text-align: left;
+	vertical-align: top
+}
+
+table th {
+	color: #363636
+}
+
+.box {
+	background-color: white;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+	box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+	color: #4a4a4a;
+	display: block;
+	padding: 1.25rem
+}
+
+.box:not(:last-child) {
+	margin-bottom: 1.5rem
+}
+
+a.box:focus,a.box:hover {
+	-webkit-box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px #3273dc;
+	box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px #3273dc
+}
+
+a.box:active {
+	-webkit-box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.2), 0 0 0 1px #3273dc;
+	box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.2), 0 0 0 1px #3273dc
+}
+
+.button {
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	border: 1px solid transparent;
+	border-radius: 3px;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	font-size: 1rem;
+	height: 2.25em;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: flex-start;
+	line-height: 1.5;
+	padding: calc(0.375em - 1px) calc(0.625em - 1px);
+	position: relative;
+	vertical-align: top;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-color: white;
+	border-color: #dbdbdb;
+	color: #363636;
+	cursor: pointer;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	padding-left: 0.75em;
+	padding-right: 0.75em;
+	text-align: center;
+	white-space: nowrap
+}
+
+.button[disabled] {
+	cursor: not-allowed
+}
+
+.button.is-success {
+	background-color: #23d160;
+	border-color: transparent;
+	color: #fff
+}
+
+.button.is-success.is-hovered,.button.is-success:hover {
+	background-color: #22c65b;
+	border-color: transparent;
+	color: #fff
+}
+
+.button.is-success.is-focused,.button.is-success:focus {
+	border-color: transparent;
+	color: #fff
+}
+
+.button.is-success.is-focused:not(:active),.button.is-success:focus:not(:active) {
+	-webkit-box-shadow: 0 0 0 0.125em rgba(35, 209, 96, 0.25);
+	box-shadow: 0 0 0 0.125em rgba(35, 209, 96, 0.25)
+}
+
+.button.is-success.is-active,.button.is-success:active {
+	background-color: #20bc56;
+	border-color: transparent;
+	color: #fff
+}
+
+.button.is-success[disabled] {
+	background-color: #23d160;
+	border-color: transparent;
+	-webkit-box-shadow: none;
+	box-shadow: none
+}
+
+.button.is-success.is-inverted {
+	background-color: #fff;
+	color: #23d160
+}
+
+.button.is-success.is-inverted:hover {
+	background-color: #f2f2f2
+}
+
+.button.is-success.is-inverted[disabled] {
+	background-color: #fff;
+	border-color: transparent;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	color: #23d160
+}
+
+.button.is-success.is-loading:after {
+	border-color: transparent transparent #fff #fff !important
+}
+
+.button.is-success.is-outlined {
+	background-color: transparent;
+	border-color: #23d160;
+	color: #23d160
+}
+
+.button.is-success.is-outlined:focus,.button.is-success.is-outlined:hover {
+	background-color: #23d160;
+	border-color: #23d160;
+	color: #fff
+}
+
+.button.is-success.is-outlined.is-loading:after {
+	border-color: transparent transparent #23d160 #23d160 !important
+}
+
+.button.is-success.is-outlined[disabled] {
+	background-color: transparent;
+	border-color: #23d160;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	color: #23d160
+}
+
+.button.is-success.is-inverted.is-outlined {
+	background-color: transparent;
+	border-color: #fff;
+	color: #fff
+}
+
+.button.is-success.is-inverted.is-outlined:focus,.button.is-success.is-inverted.is-outlined:hover {
+	background-color: #fff;
+	color: #23d160
+}
+
+.button.is-success.is-inverted.is-outlined[disabled] {
+	background-color: transparent;
+	border-color: #fff;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	color: #fff
+}
+
+.container {
+	margin: 0 auto;
+    position: relative;
+}
+
+.input,.textarea {
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	border: 1px solid transparent;
+	border-radius: 3px;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	font-size: 1rem;
+	height: 2.25em;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: flex-start;
+	line-height: 1.5;
+	padding: calc(0.375em - 1px) calc(0.625em - 1px);
+	position: relative;
+	vertical-align: top;
+	background-color: white;
+	border-color: #dbdbdb;
+	color: #363636;
+	-webkit-box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+	box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+	max-width: 100%;
+	width: 100%
+}
+
+.textarea {
+	display: block;
+	max-width: 100%;
+	min-width: 100%;
+	padding: 0.625em;
+	resize: vertical
+}
+
+.checkbox,.radio {
+	cursor: pointer;
+	display: inline-block;
+	line-height: 1.25;
+	position: relative
+}
+
+.select {
+	display: inline-block;
+	max-width: 100%;
+	position: relative;
+	vertical-align: top
+}
+
+.file {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-box-align: stretch;
+	-ms-flex-align: stretch;
+	align-items: stretch;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: flex-start;
+	position: relative
+}
+
+.label {
+	color: #363636;
+	display: block;
+	font-size: 1rem;
+	font-weight: 700
+}
+
+.label.is-small {
+	font-size: 0.75rem
+}
+
+.label.is-medium {
+	font-size: 1.25rem
+}
+
+.label.is-large {
+	font-size: 1.5rem
+}
+
+.control {
+	font-size: 1rem;
+	position: relative;
+	text-align: left
+}
+
+.section {
+	padding: 3rem 1.5rem
+}
+
+.footer {
+    display: block;
+    background-color: white;
+    text-align: end;
+	padding: 25px
+}
+
 .mynav{
     text-align: center;
     width: 200px;
@@ -85,4 +518,10 @@
     background-color: rgb(225, 215, 228);
     border-radius:25px; 
     -moz-border-radius:25px;
+}
+
+.button.mybutton {
+	background-color:mediumorchid;
+	border-color: transparent;
+	color: #fff
 }

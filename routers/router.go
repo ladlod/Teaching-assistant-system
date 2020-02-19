@@ -11,7 +11,7 @@ import (
 // 过滤器
 var FilterUser = func(ctx *context.Context) {
 	_, ok := ctx.Input.Session("identity").(string)
-	if !ok && ctx.Request.RequestURI != "/signin" && ctx.Request.RequestURI != "/signup" {
+	if !ok && ctx.Request.RequestURI != "/" && ctx.Request.RequestURI != "/signin" && ctx.Request.RequestURI != "/signup" {
 		ctx.Redirect(302, "/signin")
 	}
 }
