@@ -1,8 +1,8 @@
 package main
 
 import (
-	"Teching-assistant-system/models"
-	"Teching-assistant-system/routers"
+	"Teaching-assistant-system/models"
+	"Teaching-assistant-system/routers"
 
 	"github.com/astaxie/beego"
 )

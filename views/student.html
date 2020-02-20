@@ -3,11 +3,14 @@
     <head>
         <head>
             <meta charset="utf-8">
+            
+            <link rel="stylesheet" type="text/css" href="/css/main.css">
+
             <title>{{.username}}</title>
+
             <script src="js/user.js"></script>
             <script src="js/outlook.js"></script>
-            
-            <link rel="stylesheet" type="text/css" href="css/main.css">
+            <!--<link rel="stylesheet" type="text/css" href="../static/css/main.css">-->
         </head>
     </head>
     <body onload="return notice('{{.notice}}')">
@@ -97,7 +100,7 @@
                 <div>
                     <h2 style="text-align: left; font-size: large; padding: 10px; width: 200px;">&nbsp;&nbsp;&nbsp;通知</h2>
                 </div>
-                <div class="pagepiece" style="float:right; width: 300px; height: 550px;">
+                <div class="pagepiece" style="float:right; width: 316px; height: 550px;">
                     <a id="message" href="/intherow" class="myselect notice" onmouseover="setBgColor('message', 'rgb(239, 206, 247)')" onmouseout="setBgColor('message', 'rgb(245, 214, 252)')">test</a>
                 </div>
             </div>

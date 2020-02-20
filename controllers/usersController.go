@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"Teching-assistant-system/models"
+	"Teaching-assistant-system/models"
 	"strconv"
 
 	"github.com/astaxie/beego"

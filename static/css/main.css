@@ -3,7 +3,7 @@ blockquote,body,dd,dl,dt,fieldset,figure,h1,h2,h3,h4,h5,h6,hr,html,iframe,legend
 	padding: 0
 }
 
-h1,h3,h4,h5,h6 {
+h1,h4,h5,h6 {
 	font-size: 100%;
 	font-weight: 500;
 }
@@ -11,6 +11,11 @@ h1,h3,h4,h5,h6 {
 h2{
 	font-size: 80%;
 	font-weight: 400;
+}
+
+h3{
+	font-size: 60%;
+	font-weight: 300;
 }
 
 ul {
@@ -439,8 +444,8 @@ a.box:active {
     float: left;
     padding: 10px;
     background-color: rgb(245, 232, 248);
-    border-radius:25px;
-    -moz-border-radius:25px;
+    border-radius: 10px;
+    -moz-border-radius:10px;
     box-shadow: 5px 5px 5px #888888;
 }
 
@@ -449,7 +454,8 @@ a.box:active {
     text-align: center;
     display: flex;
     padding: 25px;
-    writing-mode: sideways-lr;
+	writing-mode: sideways-lr;
+	background-color: yellowgreen;
 }
 
 .myselect{
@@ -478,8 +484,8 @@ a.box:active {
     width:284px;
     height:100px;
     background-color:rgb(245, 214, 252);
-    border-radius:25px; 
-    -moz-border-radius:25px;
+    border-radius:20px; 
+    -moz-border-radius:20px;
     box-shadow: 5px 5px 5px #888888;
 }
 
@@ -494,7 +500,7 @@ a.box:active {
     color: black;
     font-size: x-large;
     text-align: left;
-    padding:30px 25px 5px 25px;
+    padding:25px 25px 5px 25px;
 }
 
 .classtable{
@@ -502,8 +508,8 @@ a.box:active {
     text-align: center;
     min-height: 100px;
     background-color: rgb(245, 214, 252);
-    border-radius:25px;
-    -moz-border-radius:25px;
+    border-radius:20px;
+    -moz-border-radius:20px;
     box-shadow: 5px 5px 5px #888888;
 }
 
@@ -513,11 +519,12 @@ a.box:active {
 }
 
 .pagepiece{
+	padding: 10px 0px 10px 0px;
     overflow-y:scroll; 
     overflow-x:none; 
-    background-color: rgb(225, 215, 228);
-    border-radius:25px; 
-    -moz-border-radius:25px;
+    background-color: rgb(245, 245, 245);
+    border-radius:10px; 
+    -moz-border-radius:10px;
 }
 
 .button.mybutton {

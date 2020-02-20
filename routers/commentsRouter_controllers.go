@@ -7,7 +7,7 @@ import (
 
 func init() {
 
-    beego.GlobalControllerRouter["Teching-assistant-system/controllers:CourseController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:CourseController"],
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CourseController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CourseController"],
         beego.ControllerComments{
             Method: "StudentSelectCourse",
             Router: `/student/:cid`,
@@ -16,7 +16,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["Teching-assistant-system/controllers:CourseController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:CourseController"],
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CourseController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CourseController"],
         beego.ControllerComments{
             Method: "GetStudentCourse",
             Router: `/student/course`,
@@ -25,7 +25,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["Teching-assistant-system/controllers:CourseController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:CourseController"],
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CourseController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CourseController"],
         beego.ControllerComments{
             Method: "JionCourse",
             Router: `/student/joincourse/:cid`,
@@ -34,7 +34,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["Teching-assistant-system/controllers:CourseController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:CourseController"],
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CourseController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CourseController"],
         beego.ControllerComments{
             Method: "TeacherSelectCourse",
             Router: `/teacher/:cid`,
@@ -43,7 +43,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["Teching-assistant-system/controllers:CourseController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:CourseController"],
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CourseController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CourseController"],
         beego.ControllerComments{
             Method: "GetTeacherCourse",
             Router: `/teacher/course`,
@@ -52,7 +52,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["Teching-assistant-system/controllers:CourseController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:CourseController"],
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CourseController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CourseController"],
         beego.ControllerComments{
             Method: "DeleteCourse",
             Router: `/teacher/dropcourse/:cid`,
@@ -61,7 +61,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["Teching-assistant-system/controllers:MainController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:MainController"],
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:MainController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:MainController"],
         beego.ControllerComments{
             Method: "Get",
             Router: `/`,
@@ -70,7 +70,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["Teching-assistant-system/controllers:MainController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:MainController"],
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:MainController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:MainController"],
         beego.ControllerComments{
             Method: "GetHelp",
             Router: `/help`,
@@ -79,7 +79,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["Teching-assistant-system/controllers:MainController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:MainController"],
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:MainController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:MainController"],
         beego.ControllerComments{
             Method: "InTheRow",
             Router: `/intherow`,
@@ -88,7 +88,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"],
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"],
         beego.ControllerComments{
             Method: "GetSignin",
             Router: `/signin`,
@@ -97,7 +97,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"],
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"],
         beego.ControllerComments{
             Method: "PostSignin",
             Router: `/signin`,
@@ -106,7 +106,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"],
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"],
         beego.ControllerComments{
             Method: "GetSignup",
             Router: `/signup`,
@@ -115,7 +115,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"],
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"],
         beego.ControllerComments{
             Method: "PostSignup",
             Router: `/signup`,
@@ -124,7 +124,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"],
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"],
         beego.ControllerComments{
             Method: "GetStudent",
             Router: `/student`,
@@ -133,7 +133,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"],
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"],
         beego.ControllerComments{
             Method: "PostSearchCourse",
             Router: `/student`,
@@ -142,7 +142,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"],
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"],
         beego.ControllerComments{
             Method: "GetSetStudent",
             Router: `/student/setting`,
@@ -151,7 +151,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"],
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"],
         beego.ControllerComments{
             Method: "PostSetStudent",
             Router: `/student/setting`,
@@ -160,7 +160,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"],
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"],
         beego.ControllerComments{
             Method: "GetTeacher",
             Router: `/teacher`,
@@ -169,7 +169,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"],
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"],
         beego.ControllerComments{
             Method: "PostCreateCourse",
             Router: `/teacher`,
@@ -178,7 +178,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"],
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"],
         beego.ControllerComments{
             Method: "GetSetTeacher",
             Router: `/teacher/setting`,
@@ -187,7 +187,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teching-assistant-system/controllers:UsersController"],
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"],
         beego.ControllerComments{
             Method: "PostSetTeacher",
             Router: `/teacher/setting`,

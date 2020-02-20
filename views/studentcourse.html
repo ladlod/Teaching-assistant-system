@@ -8,13 +8,13 @@
         <script src="js/outlook.js"></script>
         
         <link rel="stylesheet" type="text/css" href="css/main.css">
+        <!--<link rel="stylesheet" type="text/css" href="../static/css/main.css">-->
     </head>
     <body>
         <header class="header2">
             <div>
                 <h1>{{.course.Name}}</h1>
-                <h2>{{.student.Name}}</h2>
-                <a style="font-size: medium;" href="/signin">重新登录</a>
+                <a style="font-size: small;" href="/signin">重新登录</a>
             </div>
         </header>
 
@@ -28,8 +28,10 @@
 
         </section>
         
-        <footer>
-
+        <footer class="footer">
+            <hr />
+            <a href="https://github.com/ladlod/Teaching-assistant-system">帮助</a>
+            <label class="label">Ladlod 2020.2</label>
         </footer>
     </body>
 </html>

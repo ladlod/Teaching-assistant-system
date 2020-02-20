@@ -8,6 +8,7 @@
             <script src="js/outlook.js"></script>
             
             <link rel="stylesheet" type="text/css" href="css/main.css">
+            <!--<link rel="stylesheet" type="text/css" href="../static/css/main.css">-->
         </head>
     </head>
     <body onload="return notice('{{.notice}}')">
@@ -64,7 +65,7 @@
                 <div>
                     <h2 style="text-align: left; font-size: large; padding: 10px; width: 200px;">&nbsp;&nbsp;&nbsp;创建课堂</h2>
                 </div>
-                <div class="pagepiece" style="width: 816px; height: 200px; padding: 20px;">
+                <div class="pagepiece" style="width: 816px; height: 200px;">
                     <form id="course_form" action="" onsubmit="return judgeEmpty('course_form', 'course', '课堂名称')" method="POST">
                         <div>
                             <label id="notice"><label>
@@ -73,7 +74,7 @@
 
                         <div class="filed">
                             <label class="label" for="course_name">请输入课堂名称:</label>
-                            <input class="input"  type="text" name="course" minlength="3" maxlength="20">
+                            <input class="input" style="width: 750px;" type="text" name="course" minlength="3" maxlength="20">
                         </div>
                         <div style="padding: 25px;">
                             <button type="submit" class="button mybutton" style="float: right;" value="make"> 创建 </button>
@@ -86,7 +87,7 @@
                 <div>
                     <h2 style="text-align: left; font-size: large; padding: 10px; width: 200px;">&nbsp;&nbsp;&nbsp;通知</h2>
                 </div>
-                <div class="pagepiece" style="float:right; width: 300px; height: 550px;">
+                <div class="pagepiece" style="float:right; width: 316px; height: 550px;">
                     <a id="message" href="/intherow" class="myselect notice" onmouseover="setBgColor('message', 'rgb(239, 206, 247)')" onmouseout="setBgColor('message', 'rgb(245, 214, 252)')">test</a>
                 </div>
             </div>

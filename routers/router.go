@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"Teching-assistant-system/controllers"
+	"Teaching-assistant-system/controllers"
 
 	"github.com/astaxie/beego/context"
 
