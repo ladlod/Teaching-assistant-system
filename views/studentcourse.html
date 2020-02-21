@@ -4,11 +4,10 @@
         <meta charset="utf-8">
         <title>{{.course.Name}}</title>
 
-        <script src="js/user.js"></script>
-        <script src="js/outlook.js"></script>
+        <script src="/js/user.js"></script>
+        <script src="/js/outlook.js"></script>
         
-        <link rel="stylesheet" type="text/css" href="css/main.css">
-        <!--<link rel="stylesheet" type="text/css" href="../static/css/main.css">-->
+        <link rel="stylesheet" type="text/css" href="/css/main.css">
     </head>
     <body>
         <header class="header2">
@@ -20,11 +19,35 @@
 
         <hr />
 
-        <nav>
-
-        </nav>
-
-        <section>
+        <section class="mysection">
+            <div>
+                <div>
+                    <h6>&nbsp;&nbsp;&nbsp;学生列表</h6>
+                </div>
+                <div class="pagepiece" style="width: 416px; height: 600px;">
+                    <table class="table student">
+                        <tr>
+                            <th class="tabletd">学生编号</th><th class="tabletd">学生姓名</th><th class="tabletd">签到状态</th>
+                        </tr>
+                        {{range .students}}
+                        <tr>
+                            <td class="tabletd" id="student{{.Id}}"></td>
+                            <td class="tabletd">{{.Name}}</td>
+                            <td class="tabletd">签到模块待完成</td>
+                            <script>
+                                var res = '{{.Id}}' + "";
+                                var n = res.length;
+                                while(n < 4){
+                                    res = '0' + res;
+                                    n++;
+                                    }
+                                document.getElementById("student{{.Id}}").innerHTML = res;
+                            </script>
+                        </tr>
+                        {{end}}
+                    </table>
+                </div>
+            </div>
 
         </section>
         

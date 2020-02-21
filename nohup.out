@@ -232,3 +232,189 @@ table `student_courses` already exists, skip
 2020/02/20 17:26:31.815 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|   1.849212ms|   match|[97;46m POST    [0m /signin   r:/signin
 2020/02/20 17:26:31.840 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   2.919242ms|   match|[97;44m GET     [0m /student   r:/student
 2020/02/20 17:26:35.364 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    639.202µs|   match|[97;44m GET     [0m /signin   r:/signin
+table `teacher` already exists, skip
+table `student` already exists, skip
+table `course` already exists, skip
+table `student_courses` already exists, skip
+2020/02/20 19:05:05.107 [1;34m[I][0m [asm_amd64.s:1357]  http server Running on http://127.0.0.1:10001
+2020/02/20 19:05:08.421 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|      371.7µs|   match|[97;44m GET     [0m /     r:/
+2020/02/20 19:05:08.426 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   2.034694ms|   match|[97;44m GET     [0m /signin   r:/signin
+2020/02/20 19:05:08.458 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.514959ms|   match|[97;44m GET     [0m /js/user.js
+2020/02/20 19:05:08.461 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    200.652µs|   match|[97;44m GET     [0m /css/main.css
+2020/02/20 19:05:08.461 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    340.276µs|   match|[97;44m GET     [0m /static/img/9b79c664eb24cca8a9930dd3c0076781.jpg
+2020/02/20 19:05:08.696 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|     69.833µs| nomatch|[97;44m GET     [0m /favicon.ico
+2020/02/20 19:05:08.700 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.181145ms|   match|[97;44m GET     [0m /signin   r:/signin
+2020/02/20 19:05:16.756 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|   2.848204ms|   match|[97;46m POST    [0m /signin   r:/signin
+2020/02/20 19:05:16.812 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   9.371796ms|   match|[97;44m GET     [0m /student   r:/student
+2020/02/20 19:05:16.835 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    499.752µs|   match|[97;44m GET     [0m /js/outlook.js
+2020/02/20 19:05:16.919 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;43m 404 [0m|    658.423µs| nomatch|[97;44m GET     [0m /favicon.ico
+2020/02/20 19:05:37.058 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   3.602713ms|   match|[97;44m GET     [0m /student   r:/student
+2020/02/20 19:05:37.816 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   2.444123ms|   match|[97;44m GET     [0m /student   r:/student
+2020/02/20 19:06:06.071 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.985625ms|   match|[97;44m GET     [0m /student   r:/student
+2020/02/20 19:06:06.640 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   2.224144ms|   match|[97;44m GET     [0m /student   r:/student
+2020/02/20 19:06:07.206 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    2.28664ms|   match|[97;44m GET     [0m /student   r:/student
+2020/02/20 19:06:28.391 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   2.023526ms|   match|[97;44m GET     [0m /student   r:/student
+2020/02/20 19:06:29.453 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   2.072851ms|   match|[97;44m GET     [0m /student   r:/student
+2020/02/20 19:06:31.440 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.959557ms|   match|[97;44m GET     [0m /student   r:/student
+table `teacher` already exists, skip
+table `student` already exists, skip
+table `course` already exists, skip
+table `student_courses` already exists, skip
+2020/02/20 19:20:26.452 [1;34m[I][0m [asm_amd64.s:1357]  http server Running on http://127.0.0.1:10001
+2020/02/20 19:20:29.830 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|    243.381µs| nomatch|[97;44m GET     [0m /student
+2020/02/20 19:20:29.835 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    1.22256ms|   match|[97;44m GET     [0m /signin   r:/signin
+2020/02/20 19:20:29.864 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|    184.543µs|   match|[97;44m GET     [0m /js/user.js
+2020/02/20 19:20:29.868 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|     576.54µs|   match|[97;44m GET     [0m /css/main.css
+2020/02/20 19:20:29.869 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|   1.882214ms|   match|[97;44m GET     [0m /static/img/9b79c664eb24cca8a9930dd3c0076781.jpg
+2020/02/20 21:46:32.274 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|    585.246µs|   match|[97;46m POST    [0m /signin   r:/signin
+2020/02/20 21:46:32.282 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   4.059612ms|   match|[97;44m GET     [0m /teacher   r:/teacher
+2020/02/20 21:46:32.309 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|     49.253µs|   match|[97;44m GET     [0m /js/user.js
+2020/02/20 21:46:32.314 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|    161.737µs|   match|[97;44m GET     [0m /js/outlook.js
+2020/02/20 21:46:32.314 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|       56.7µs|   match|[97;44m GET     [0m /css/main.css
+2020/02/20 21:46:34.317 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    554.304µs|   match|[97;44m GET     [0m /teacher/setting   r:/teacher/setting
+2020/02/20 21:46:34.348 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;43m 404 [0m|    208.458µs| nomatch|[97;44m GET     [0m /teacher/js/user.js
+2020/02/20 21:46:40.919 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    605.768µs|   match|[97;44m GET     [0m /signin   r:/signin
+2020/02/20 21:47:18.877 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|    348.338µs|   match|[97;46m POST    [0m /signin   r:/signin
+2020/02/20 21:47:18.884 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.194125ms|   match|[97;44m GET     [0m /teacher   r:/teacher
+2020/02/20 21:47:22.217 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    689.976µs|   match|[97;44m GET     [0m /teacher/setting   r:/teacher/setting
+2020/02/20 21:47:22.243 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;43m 404 [0m|    226.187µs| nomatch|[97;44m GET     [0m /teacher/css/main.css
+2020/02/20 21:47:22.246 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;43m 404 [0m|    224.268µs| nomatch|[97;44m GET     [0m /teacher/js/user.js
+table `teacher` already exists, skip
+table `student` already exists, skip
+table `course` already exists, skip
+table `student_courses` already exists, skip
+2020/02/20 21:47:58.487 [1;34m[I][0m [asm_amd64.s:1357]  http server Running on http://127.0.0.1:10001
+2020/02/20 21:48:06.792 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|    212.766µs| nomatch|[97;44m GET     [0m /teacher/setting
+2020/02/20 21:48:06.800 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    971.756µs|   match|[97;44m GET     [0m /signin   r:/signin
+2020/02/20 21:48:06.832 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|    323.628µs|   match|[97;44m GET     [0m /static/img/9b79c664eb24cca8a9930dd3c0076781.jpg
+2020/02/20 21:48:14.357 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|    657.126µs|   match|[97;46m POST    [0m /signin   r:/signin
+2020/02/20 21:48:14.364 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   2.708653ms|   match|[97;44m GET     [0m /student   r:/student
+2020/02/20 21:48:15.374 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    759.183µs|   match|[97;44m GET     [0m /student/setting   r:/student/setting
+2020/02/20 21:48:15.404 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;43m 404 [0m|    243.783µs| nomatch|[97;44m GET     [0m /student/css/main.css
+2020/02/20 21:48:15.407 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;43m 404 [0m|    157.853µs| nomatch|[97;44m GET     [0m /student/js/user.js
+2020/02/20 21:48:20.216 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;43m 404 [0m|    209.296µs| nomatch|[97;44m GET     [0m /student/css/main.css
+table `teacher` already exists, skip
+table `student` already exists, skip
+table `course` already exists, skip
+table `student_courses` already exists, skip
+2020/02/20 21:55:42.760 [1;34m[I][0m [asm_amd64.s:1357]  http server Running on http://127.0.0.1:10001
+2020/02/20 21:56:01.886 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|    370.905µs|   match|[97;44m GET     [0m /     r:/
+2020/02/20 21:56:01.893 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.744058ms|   match|[97;44m GET     [0m /signin   r:/signin
+2020/02/20 21:56:01.980 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    145.077µs|   match|[97;44m GET     [0m /js/user.js
+2020/02/20 21:56:01.999 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.677234ms|   match|[97;44m GET     [0m /css/main.css
+2020/02/20 21:56:01.999 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    754.014µs|   match|[97;44m GET     [0m /static/img/9b79c664eb24cca8a9930dd3c0076781.jpg
+2020/02/20 21:56:02.294 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|     98.056µs| nomatch|[97;44m GET     [0m /favicon.ico
+2020/02/20 21:56:02.299 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.381996ms|   match|[97;44m GET     [0m /signin   r:/signin
+2020/02/20 21:56:12.594 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|    654.161µs|   match|[97;46m POST    [0m /signin   r:/signin
+2020/02/20 21:56:12.602 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   3.958754ms|   match|[97;44m GET     [0m /student   r:/student
+2020/02/20 21:56:12.639 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    106.717µs|   match|[97;44m GET     [0m /js/outlook.js
+2020/02/20 21:56:12.709 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;43m 404 [0m|    142.133µs| nomatch|[97;44m GET     [0m /favicon.ico
+2020/02/20 21:56:27.153 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|   1.459866ms|   match|[97;44m GET     [0m /student/1   r:/student/:cid
+2020/02/20 21:56:27.160 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.731943ms|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/20 21:56:27.179 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|     53.904µs|   match|[97;44m GET     [0m /css/main.css
+2020/02/20 21:59:29.889 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|   1.530849ms|   match|[97;44m GET     [0m /student/1   r:/student/:cid
+2020/02/20 21:59:29.894 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.243836ms|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/20 21:59:29.928 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|     91.115µs|   match|[97;44m GET     [0m /css/main.css
+2020/02/20 22:00:02.348 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|   1.124002ms|   match|[97;44m GET     [0m /student/1   r:/student/:cid
+2020/02/20 22:00:02.354 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.209113ms|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/20 22:00:45.969 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.042581ms|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/20 22:00:45.994 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|    105.732µs|   match|[97;44m GET     [0m /css/main.css
+2020/02/20 22:00:58.788 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|    750.248µs|   match|[97;44m GET     [0m /student/1   r:/student/:cid
+2020/02/20 22:00:58.793 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.124635ms|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/20 22:01:08.178 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    882.554µs|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/20 22:01:59.320 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    765.724µs|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/20 22:01:59.347 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|     94.772µs|   match|[97;44m GET     [0m /css/main.css
+2020/02/20 22:02:12.553 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    1.09547ms|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/20 22:03:47.424 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    984.276µs|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/20 22:03:47.451 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    174.838µs|   match|[97;44m GET     [0m /css/main.css
+2020/02/20 22:05:26.295 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   2.176472ms|   match|[97;44m GET     [0m /student   r:/student
+2020/02/20 22:05:26.320 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    151.385µs|   match|[97;44m GET     [0m /css/main.css
+2020/02/20 22:05:29.285 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|    741.378µs|   match|[97;44m GET     [0m /student/1   r:/student/:cid
+2020/02/20 22:05:29.291 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.379695ms|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/20 22:05:29.318 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|     54.083µs|   match|[97;44m GET     [0m /css/main.css
+2020/02/20 22:06:09.724 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    819.624µs|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/20 22:06:09.755 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|     70.014µs|   match|[97;44m GET     [0m /css/main.css
+2020/02/20 22:06:18.411 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.167658ms|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/20 22:06:18.435 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|     61.429µs|   match|[97;44m GET     [0m /css/main.css
+2020/02/20 22:08:05.994 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.649224ms|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/20 22:08:06.021 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    165.569µs|   match|[97;44m GET     [0m /css/main.css
+2020/02/20 22:09:22.966 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.441964ms|   match|[97;44m GET     [0m /student   r:/student
+2020/02/20 22:09:22.988 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|     77.217µs|   match|[97;44m GET     [0m /css/main.css
+2020/02/20 22:09:32.326 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|    754.131µs|   match|[97;44m GET     [0m /student/1   r:/student/:cid
+2020/02/20 22:09:32.332 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.520957ms|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/20 22:09:32.358 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|     98.122µs|   match|[97;44m GET     [0m /css/main.css
+2020/02/20 22:10:26.960 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.521475ms|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/20 22:10:26.990 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|     59.337µs|   match|[97;44m GET     [0m /css/main.css
+2020/02/20 22:11:07.291 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    862.419µs|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/20 22:11:07.319 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    229.607µs|   match|[97;44m GET     [0m /css/main.css
+2020/02/20 22:11:29.986 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    926.433µs|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/20 22:11:30.013 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|     64.142µs|   match|[97;44m GET     [0m /css/main.css
+2020/02/20 22:35:23.071 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.090213ms|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/20 22:35:23.100 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|      59.23µs|   match|[97;44m GET     [0m /js/user.js
+2020/02/20 22:35:23.103 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|    125.718µs|   match|[97;44m GET     [0m /js/outlook.js
+2020/02/20 22:35:23.103 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|     55.075µs|   match|[97;44m GET     [0m /css/main.css
+2020/02/20 22:36:05.258 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|     855.79µs|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/20 22:36:57.349 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    1.34183ms|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/21 10:53:20.131 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|  18.191815ms|   match|[97;44m GET     [0m /intherow   r:/intherow
+2020/02/21 10:53:21.684 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   3.927862ms|   match|[97;44m GET     [0m /student/setting   r:/student/setting
+2020/02/21 10:53:21.714 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|    439.533µs|   match|[97;44m GET     [0m /css/main.css
+2020/02/21 10:53:21.718 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|    100.155µs|   match|[97;44m GET     [0m /js/user.js
+2020/02/21 10:54:39.840 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|  51.611921ms|   match|[97;44m GET     [0m /student/1   r:/student/:cid
+2020/02/21 10:54:39.849 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   6.462855ms|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/21 10:54:39.880 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|     64.874µs|   match|[97;44m GET     [0m /js/outlook.js
+2020/02/21 10:58:15.731 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.235845ms|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/21 10:58:30.875 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   2.305497ms|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/21 11:06:18.587 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|     77.727µs|   match|[97;44m GET     [0m /     r:/
+2020/02/21 11:06:18.594 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.520543ms|   match|[97;44m GET     [0m /signin   r:/signin
+2020/02/21 11:06:18.629 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 304 [0m|     80.563µs|   match|[97;44m GET     [0m /static/img/9b79c664eb24cca8a9930dd3c0076781.jpg
+2020/02/21 11:06:20.992 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.203199ms|   match|[97;44m GET     [0m /signup   r:/signup
+2020/02/21 11:07:22.939 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|  12.436135ms|   match|[97;46m POST    [0m /signup   r:/signup
+2020/02/21 11:07:22.943 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    428.121µs|   match|[97;44m GET     [0m /signin   r:/signin
+2020/02/21 11:07:34.082 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|    424.855µs|   match|[97;46m POST    [0m /signin   r:/signin
+2020/02/21 11:07:34.089 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   2.803332ms|   match|[97;44m GET     [0m /student   r:/student
+2020/02/21 11:07:44.908 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|     80.451µs|   match|[97;46m POST    [0m /student   r:/student
+2020/02/21 11:07:44.915 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   2.124018ms|   match|[97;44m GET     [0m /student   r:/student
+2020/02/21 11:07:47.644 [1;35m[C][0m [panic.go:679]  the request url is  /student/joincourse/
+2020/02/21 11:07:47.645 [1;35m[C][0m [panic.go:679]  Handler crashed with error runtime error: invalid memory address or nil pointer dereference
+2020/02/21 11:07:47.645 [1;35m[C][0m [panic.go:679]  /usr/local/Cellar/go/1.13.8/libexec/src/runtime/panic.go:679
+2020/02/21 11:07:47.646 [1;35m[C][0m [panic.go:679]  /usr/local/Cellar/go/1.13.8/libexec/src/runtime/panic.go:199
+2020/02/21 11:07:47.646 [1;35m[C][0m [panic.go:679]  /usr/local/Cellar/go/1.13.8/libexec/src/runtime/signal_unix.go:394
+2020/02/21 11:07:47.646 [1;35m[C][0m [panic.go:679]  /Users/ladlod/Home/code/go/src/Teching-assistant-system/controllers/courseController.go:17
+2020/02/21 11:07:47.646 [1;35m[C][0m [panic.go:679]  /usr/local/Cellar/go/1.13.8/libexec/src/reflect/value.go:460
+2020/02/21 11:07:47.646 [1;35m[C][0m [panic.go:679]  /usr/local/Cellar/go/1.13.8/libexec/src/reflect/value.go:321
+2020/02/21 11:07:47.646 [1;35m[C][0m [panic.go:679]  /Users/ladlod/Home/code/go/src/github.com/astaxie/beego/router.go:853
+2020/02/21 11:07:47.646 [1;35m[C][0m [panic.go:679]  /usr/local/Cellar/go/1.13.8/libexec/src/net/http/server.go:2802
+2020/02/21 11:07:47.646 [1;35m[C][0m [panic.go:679]  /usr/local/Cellar/go/1.13.8/libexec/src/net/http/server.go:1890
+2020/02/21 11:07:47.646 [1;35m[C][0m [panic.go:679]  /usr/local/Cellar/go/1.13.8/libexec/src/runtime/asm_amd64.s:1357
+2020/02/21 11:07:47.647 [server.go:3054]  [HTTP] http: superfluous response.WriteHeader call from github.com/astaxie/beego/context.(*Response).WriteHeader (context.go:230)
+2020/02/21 11:48:35.405 [1;35m[C][0m [panic.go:679]  the request url is  /student/joincourse/
+2020/02/21 11:48:35.405 [1;35m[C][0m [panic.go:679]  Handler crashed with error runtime error: invalid memory address or nil pointer dereference
+2020/02/21 11:48:35.405 [1;35m[C][0m [panic.go:679]  /usr/local/Cellar/go/1.13.8/libexec/src/runtime/panic.go:679
+2020/02/21 11:48:35.405 [1;35m[C][0m [panic.go:679]  /usr/local/Cellar/go/1.13.8/libexec/src/runtime/panic.go:199
+2020/02/21 11:48:35.405 [1;35m[C][0m [panic.go:679]  /usr/local/Cellar/go/1.13.8/libexec/src/runtime/signal_unix.go:394
+2020/02/21 11:48:35.405 [1;35m[C][0m [panic.go:679]  /Users/ladlod/Home/code/go/src/Teching-assistant-system/controllers/courseController.go:17
+2020/02/21 11:48:35.405 [1;35m[C][0m [panic.go:679]  /usr/local/Cellar/go/1.13.8/libexec/src/reflect/value.go:460
+2020/02/21 11:48:35.405 [1;35m[C][0m [panic.go:679]  /usr/local/Cellar/go/1.13.8/libexec/src/reflect/value.go:321
+2020/02/21 11:48:35.405 [1;35m[C][0m [panic.go:679]  /Users/ladlod/Home/code/go/src/github.com/astaxie/beego/router.go:853
+2020/02/21 11:48:35.405 [1;35m[C][0m [panic.go:679]  /usr/local/Cellar/go/1.13.8/libexec/src/net/http/server.go:2802
+2020/02/21 11:48:35.405 [1;35m[C][0m [panic.go:679]  /usr/local/Cellar/go/1.13.8/libexec/src/net/http/server.go:1890
+2020/02/21 11:48:35.405 [1;35m[C][0m [panic.go:679]  /usr/local/Cellar/go/1.13.8/libexec/src/runtime/asm_amd64.s:1357
+2020/02/21 11:48:35.405 [server.go:3054]  [HTTP] http: superfluous response.WriteHeader call from github.com/astaxie/beego/context.(*Response).WriteHeader (context.go:230)
+2020/02/21 11:49:15.518 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.189585ms|   match|[97;44m GET     [0m /student   r:/student
+2020/02/21 11:49:19.220 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|     76.653µs|   match|[97;46m POST    [0m /student   r:/student
+2020/02/21 11:49:19.227 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   2.241343ms|   match|[97;44m GET     [0m /student   r:/student
+2020/02/21 11:49:21.515 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|   4.099827ms|   match|[97;44m GET     [0m /student/joincourse/1   r:/student/joincourse/:cid
+2020/02/21 11:49:21.521 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.636817ms|   match|[97;44m GET     [0m /student   r:/student
+2020/02/21 11:49:25.259 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|    752.021µs|   match|[97;44m GET     [0m /student/1   r:/student/:cid
+2020/02/21 11:49:25.265 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.600285ms|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/21 11:50:30.846 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|    637.925µs|   match|[97;44m GET     [0m /student/1   r:/student/:cid
+2020/02/21 11:50:30.852 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   2.056378ms|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/21 11:51:24.726 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|      424.6µs|   match|[97;44m GET     [0m /intherow   r:/intherow
+2020/02/21 11:51:29.328 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   3.045439ms|   match|[97;44m GET     [0m /student/setting   r:/student/setting
+2020/02/21 11:51:30.994 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.582204ms|   match|[97;44m GET     [0m /student   r:/student
+2020/02/21 11:51:49.176 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    468.707µs|   match|[97;44m GET     [0m /intherow   r:/intherow
+2020/02/21 11:52:09.417 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    1.97976ms|   match|[97;44m GET     [0m /student   r:/student
+2020/02/21 11:52:52.077 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[90;47m 302 [0m|    838.907µs|   match|[97;44m GET     [0m /student/1   r:/student/:cid
+2020/02/21 11:52:52.083 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.487342ms|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/21 11:53:33.452 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|   1.737468ms|   match|[97;44m GET     [0m /student/course   r:/student/course
+2020/02/21 11:53:51.139 [1;44m[D][0m [server.go:2802]  |      127.0.0.1|[97;42m 200 [0m|    977.605µs|   match|[97;44m GET     [0m /student/course   r:/student/course

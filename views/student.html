@@ -8,8 +8,8 @@
 
             <title>{{.username}}</title>
 
-            <script src="js/user.js"></script>
-            <script src="js/outlook.js"></script>
+            <script src="/js/user.js"></script>
+            <script src="/js/outlook.js"></script>
             <!--<link rel="stylesheet" type="text/css" href="../static/css/main.css">-->
         </head>
     </head>
@@ -24,7 +24,7 @@
         <nav class="mynav">
             <div>
                 <ul>
-                    <li><a id="class" href="/intherow" class="myselect li" style="background-color: rgb(239, 206, 247);">主页</a></li>
+                    <li><a id="class" class="myselect li" style="background-color: rgb(239, 206, 247);">主页</a></li>
                     <li><a id="discuss" href="/intherow" class="myselect li" onmouseover="setBgColor('discuss', 'rgb(239, 206, 247)')" onmouseout="setBgColor('discuss', 'rgb(245, 232, 248)')">讨论</a></li>
                     <li><a id="setting" href="/student/setting" class="myselect li" onmouseover="setBgColor('setting', 'rgb(239, 206, 247)')" onmouseout="setBgColor('setting', 'rgb(245, 232, 248)')">设置</a></li>
                 </ul>
@@ -33,10 +33,10 @@
         <section class="mysection">
             <div>
                 <div>
-                    <h2 style="text-align: left; font-size: large; padding: 10px;">&nbsp;&nbsp;&nbsp;我的课堂</h2>
+                    <h6>&nbsp;&nbsp;&nbsp;我的课堂</h6>
                 </div>
                 <div class="pagepiece" style="width: 816px; height: 300px; ">
-                    <table class="classtable">
+                    <table class="table course">
                         <tr>
                                 <th class="tabletd">课堂编号</th><th class="tabletd">课堂名称</th><th class="tabletd">教师</th>
                         </tr>
@@ -62,7 +62,7 @@
                 </div>
                 <br />
                 <div>
-                    <h2 style="text-align: left; font-size: large; padding: 10px; width: 200px;">&nbsp;&nbsp;&nbsp;搜索课堂</h2>
+                    <h6>&nbsp;&nbsp;&nbsp;搜索课堂</h6>
                 </div>
                 <div class="pagepiece" style="width: 816px; height: 200px;">
                     <div style="text-align: right; font-size: medium; padding: 10px;">
@@ -72,7 +72,7 @@
                             <button type="submit">搜索</button>
                         </form>
                     </div>
-                    <table class="classtable">
+                    <table class="table course">
                         <tr>
                                 <th class="tabletd">课堂编号</th><th class="tabletd">课堂名称</th><th class="tabletd">教师</th><th class="tabletd"></th>
                         </tr>
@@ -81,7 +81,7 @@
                             <td class="tabletd" id="search_course{{.search_course.Id}}"></td>
                             <td class="tabletd">{{.search_course.Name}}</td>
                             <td class="tabletd">{{.search_course.Teacher.Name}}</td>
-                            <td class="tabletd"><button class="button mybutton" style="height: 30px; font-size: small;" onclick="location.href='/student/joincourse/{{.serch_course.Id}}'">加入课堂</button></td>
+                            <td class="tabletd"><button class="button mybutton" style="height: 30px; font-size: small;" onclick="location.href='/student/joincourse/{{.search_course.Id}}'">加入课堂</button></td>
                             <script>
                                 var res = '{{.search_course.Id}}' + "";
                                 var n = res.length;
@@ -98,7 +98,7 @@
             </div>
             <div style="padding: 15px;">
                 <div>
-                    <h2 style="text-align: left; font-size: large; padding: 10px; width: 200px;">&nbsp;&nbsp;&nbsp;通知</h2>
+                    <h6>&nbsp;&nbsp;&nbsp;通知</h6>
                 </div>
                 <div class="pagepiece" style="float:right; width: 316px; height: 550px;">
                     <a id="message" href="/intherow" class="myselect notice" onmouseover="setBgColor('message', 'rgb(239, 206, 247)')" onmouseout="setBgColor('message', 'rgb(245, 214, 252)')">test</a>

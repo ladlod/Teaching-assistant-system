@@ -3,7 +3,7 @@ blockquote,body,dd,dl,dt,fieldset,figure,h1,h2,h3,h4,h5,h6,hr,html,iframe,legend
 	padding: 0
 }
 
-h1,h4,h5,h6 {
+h1,h4,h5 {
 	font-size: 100%;
 	font-weight: 500;
 }
@@ -16,6 +16,12 @@ h2{
 h3{
 	font-size: 60%;
 	font-weight: 300;
+}
+
+h6{
+	text-align: left;
+	font-size: large;
+	padding: 10px;
 }
 
 ul {
@@ -433,7 +439,7 @@ a.box:active {
     display: block;
     background-color: white;
     text-align: end;
-	padding: 25px
+	padding: 25px;
 }
 
 .mynav{
@@ -455,7 +461,6 @@ a.box:active {
     display: flex;
     padding: 25px;
 	writing-mode: sideways-lr;
-	background-color: yellowgreen;
 }
 
 .myselect{
@@ -503,14 +508,20 @@ a.box:active {
     padding:25px 25px 5px 25px;
 }
 
-.classtable{
-    width: 800px;
+.table{
     text-align: center;
     min-height: 100px;
     background-color: rgb(245, 214, 252);
     border-radius:20px;
     -moz-border-radius:20px;
     box-shadow: 5px 5px 5px #888888;
+}
+
+.table.course{
+	width: 800px;
+}
+.table.student{
+	width: 400px;
 }
 
 .tabletd{
