@@ -7,7 +7,7 @@
         <script src="/js/user.js"></script>
         
         <link rel="stylesheet" type="text/css" href="/css/main.css">
-        <!--<link rel="stylesheet" type="text/css" href="../static/css/main.css">-->
+        <link rel="stylesheet" type="text/css" href="../static/css/main.css">
     </head>
     <body onload="return notice('{{.notice}}')">
         <header class="header">
@@ -19,7 +19,7 @@
         <hr />
 
         <section class="section">
-            <div class="container" style="width: 800px ">
+            <div class="container" style="width: 700px ">
                 <form id="signin_form" action="" onsubmit="return judgeForm('signin_form', 'usertype', 'account', 'password')" method="POST">
                     <div class="filed">
                         <label class="label" for="usertype">请选择身份:</label>
@@ -36,7 +36,7 @@
                     
                     <div class="filed">
                         <label class="label" for="password">请输入密码:</label>
-                        <input class="input" name="password" type="password" id="password" minlength="8" maxlength="20">
+                        <input class="input" name="password" type="password" id="password" minlength="5" maxlength="20">
                     </div>
 
                     <br />
