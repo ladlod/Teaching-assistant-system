@@ -8,11 +8,12 @@
         <script src="/js/outlook.js"></script>
         
         <link rel="stylesheet" type="text/css" href="/css/main.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/main.css">
     </head>
     <body>
         <header class="header2">
             <div>
-                <h1>{{.course.Name}}</h1>
+                <h1>{{.course.Name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button">点击签到</button></h1>
                 <a style="font-size: small;" href="/signin">重新登录</a>
             </div>
         </header>
@@ -20,9 +21,9 @@
         <hr />
 
         <section class="mysection">
-            <div>
+            <div style="padding: 0px 40px 0px 20px;">
                 <div>
-                    <h6>&nbsp;&nbsp;&nbsp;学生列表</h6>
+                    <h6>&nbsp;&nbsp;&nbsp;班级成员</h6>
                 </div>
                 <div class="pagepiece" style="width: 416px; height: 600px;">
                     <table class="table student">
@@ -49,12 +50,48 @@
                 </div>
             </div>
 
+            <div style="padding: 0px 40px 0px 40px;">
+                <div>
+                    <h6>&nbsp;&nbsp;&nbsp;课件</h6>
+                </div>
+                <div class="pagepiece" style="width: 316px; height: 600px;">
+                    <table class="table files">
+                        <tr>
+                            <th class="tabletd">文件名</th><th class="tabletd">上传时间</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div style="padding:0px 20px 0px 40px;">
+                <div>
+                    <h6>&nbsp;&nbsp;&nbsp;考试</h6>
+                </div>
+                <div class="pagepiece" style="width: 416px; height: 250px;">
+                    <table class="table exam">
+                        <tr>
+                            <th class="tabletd">考试编号</th><th class="tabletd">考试时间</th><th class="tabletd">考试状态</th>
+                        </tr>
+                    </table>
+                </div>
+                <br />
+                <div>
+                    <h6>&nbsp;&nbsp;&nbsp;作业</h6>
+                </div>
+                <div class="pagepiece" style="width: 416px; height: 250px;">
+                    <table class="table homework">
+                        <tr>
+                            <th class="tabletd">作业编号</th><th class="tabletd">截止时间</th><th class="tabletd">提交状态</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
         </section>
         
         <footer class="footer">
             <hr />
-            <a href="https://github.com/ladlod/Teaching-assistant-system">帮助</a>
-            <label class="label">Ladlod 2020.2</label>
+            <label>Copyright © <a href="http://ladlod.com" target="_blank">Ladlod</a> |2020.2</label>
         </footer>
     </body>
 </html>

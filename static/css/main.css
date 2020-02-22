@@ -45,16 +45,6 @@ iframe {
 	border: 0
 }
 
-table {
-	border-collapse: collapse;
-	border-spacing: 0
-}
-
-td,th {
-	padding: 0;
-	text-align: left
-}
-
 html {
 	background-color: white;
 	font-size: 16px;
@@ -154,14 +144,6 @@ pre code {
 	padding: 0
 }
 
-table td,table th {
-	text-align: left;
-	vertical-align: top
-}
-
-table th {
-	color: #363636
-}
 
 .box {
 	background-color: white;
@@ -449,7 +431,7 @@ a.box:active {
     display: flex;
     float: left;
     padding: 10px;
-    background-color: rgb(245, 232, 248);
+    background-color: rgb(250, 245, 250);
     border-radius: 10px;
     -moz-border-radius:10px;
     box-shadow: 5px 5px 5px #888888;
@@ -488,17 +470,17 @@ a.box:active {
     padding: 10px;
     width:284px;
     height:100px;
-    background-color:rgb(245, 214, 252);
+    background-color:rgb(250, 230, 250);
     border-radius:20px; 
     -moz-border-radius:20px;
-    box-shadow: 5px 5px 5px #888888;
+	box-shadow: 5px 5px 5px #888888;
 }
 
 .header{
     color:black;
     font-size: 45px;
     text-align:center;
-    padding:25px 25px 5px 25px;
+	padding:25px 25px 5px 25px;
 }
 
 .header2{
@@ -510,8 +492,8 @@ a.box:active {
 
 .table{
     text-align: center;
-    min-height: 100px;
-    background-color: rgb(245, 214, 252);
+    min-height: 50px;
+    background-color: rgb(250, 230, 250);
     border-radius:20px;
     -moz-border-radius:20px;
     box-shadow: 5px 5px 5px #888888;
@@ -520,13 +502,18 @@ a.box:active {
 .table.course{
 	width: 800px;
 }
-.table.student{
+.table.student,.table.exam,.table.homework{
 	width: 400px;
+}
+.table.files{
+	width: 300px;
 }
 
 .tabletd{
     font-size: medium;
-    padding: 10px;
+	padding: 10px;
+	border-radius:20px;
+    -moz-border-radius:20px;
 }
 
 .pagepiece{
