@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{.course.Name}}</title>
+
+        <script src="/js/user.js"></script>
+        <script src="/js/outlook.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="/css/main.css">
+    </head>
+    <body>
+        <header class="header2">
+            <div>
+                <h1>{{.course.Name}}</h1>
+                <a style="font-size: small;" href="/signin">重新登录</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a style="font-size: small;" href="/teacher">我的主页</a>
+            </div>
+        </header>
+
+        <hr />
+
+        <nav class="mynav">
+            <div>
+                <ul>
+                    <li><a id="clockin" href="/intherow" class="myselect li" onmouseover="setBgColor('clockin', 'rgb(245, 220, 245)')" onmouseout="setBgColor('clockin', 'rgb(250, 245, 250)')">开启签到</a></li>
+                    <li><a id="uploadfile" href="/intherow" class="myselect li" onmouseover="setBgColor('uploadfile', 'rgb(245, 220, 245)')" onmouseout="setBgColor('uploadfile', 'rgb(250, 245, 250)')">上传课件</a></li>
+                    <li><a id="exam" href="/intherow" class="myselect li" onmouseover="setBgColor('exam', 'rgb(245, 220, 245)')" onmouseout="setBgColor('exam', 'rgb(250, 245, 250)')">发布考试</a></li>
+                    <li><a id="homework" href="/teacher/setting" class="myselect li" onmouseover="setBgColor('homework', 'rgb(245, 220, 245)')" onmouseout="setBgColor('homework', 'rgb(250, 245, 250)')">布置作业</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <section class="mysection">
+            <div style="padding: 0px 30px 0px 10px;">
+                <div>
+                    <h6>&nbsp;&nbsp;&nbsp;班级成员</h6>
+                </div>
+                <div class="pagepiece" style="width: 416px; height: 600px;">
+                    <table class="table student">
+                        <tr>
+                            <th class="tabletd">学生编号</th><th class="tabletd">学生姓名</th><th class="tabletd">签到状态</th>
+                        </tr>
+                        {{range .students}}
+                        <tr>
+                            <td class="tabletd" id="student{{.Id}}"></td>
+                            <td class="tabletd">{{.Name}}</td>
+                            <td class="tabletd">签到模块待完成</td>
+                            <script>
+                                document.getElementById("student{{.Id}}").innerHTML = numFormat('{{.Id}}');
+                            </script>
+                        </tr>
+                        {{end}}
+                    </table>
+                </div>
+            </div>
+
+            <div style="padding: 0px 30px 0px 30px;">
+                <div>
+                    <h6>&nbsp;&nbsp;&nbsp;课件</h6>
+                </div>
+                <div class="pagepiece" style="width: 316px; height: 600px;">
+                    <table class="table files">
+                        <tr>
+                            <th class="tabletd">文件名</th><th class="tabletd">上传时间</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div style="padding:0px 30px 0px 30px;">
+                <div>
+                    <h6>&nbsp;&nbsp;&nbsp;考试</h6>
+                </div>
+                <div class="pagepiece" style="width: 316px; height: 250px;">
+                    <table class="table teacherexam">
+                        <tr>
+                            <th class="tabletd">考试编号</th><th class="tabletd">考试时间</th>
+                        </tr>
+                    </table>
+                </div>
+                <br />
+                <div>
+                    <h6>&nbsp;&nbsp;&nbsp;作业</h6>
+                </div>
+                <div class="pagepiece" style="width: 316px; height: 250px;">
+                    <table class="table teacherhomework">
+                        <tr>
+                            <th class="tabletd">作业编号</th><th class="tabletd">截止时间</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+        
+        <footer class="footer">
+            <hr />
+            <label>Copyright © <a href="https://ladlod.com" target="_blank">Ladlod</a> |2020.2</label>
+        </footer>
+    </body>
+</html>

@@ -42,15 +42,9 @@
                         {{range .courses}}
                         <tr>
                             <td>
-                                <a id="course{{.Id}}" href="/intherow" class="myselect td" onmouseover="setBgColor('course{{.Id}}', 'rgb(245, 220, 245)')" onmouseout="setBgColor('course{{.Id}}', 'rgb(250, 230, 250)')"></a>
+                                <a id="course{{.Id}}" href="/teacher/{{.Id}}" class="myselect td" onmouseover="setBgColor('course{{.Id}}', 'rgb(245, 220, 245)')" onmouseout="setBgColor('course{{.Id}}', 'rgb(250, 230, 250)')"></a>
                                 <script>
-                                    var res = '{{.Id}}' + "";
-                                    var n = res.length;
-                                    while(n < 4){
-                                        res = '0' + res;
-                                        n++;
-                                        }
-                                    document.getElementById("course{{.Id}}").innerHTML = res;
+                                    document.getElementById("course{{.Id}}").innerHTML = numFormat('{{.Id}}');
                                 </script>
                             </td>
                             <td class="tabletd">{{.Name}}</td>
@@ -94,7 +88,7 @@
 
         <footer class="footer">
             <hr />
-            <label>Copyright © <a href="http://ladlod.com" target="_blank">Ladlod</a> |2020.2</label>
+            <label>Copyright © <a href="https://ladlod.com" target="_blank">Ladlod</a> |2020.2</label>
         </footer>
     </body>
 </html>

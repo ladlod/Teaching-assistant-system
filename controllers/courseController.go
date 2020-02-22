@@ -51,10 +51,11 @@ func (this *CourseController) GetTeacherCourse() {
 		this.Data["notice"] = not
 	}
 	course := this.GetSession("course").(*models.Course)
+
 	students := course.QueryStudents()
 	this.Data["course"] = course
 	this.Data["students"] = students
-	this.TplName = "studentcourse.html"
+	this.TplName = "teachercourse.html"
 }
 
 // @router /teacher/dropcourse/:cid [get]

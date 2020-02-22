@@ -5,14 +5,11 @@
             <meta charset="utf-8">
             
             <link rel="stylesheet" type="text/css" href="/css/main.css">
-            <link rel="stylesheet" type="text/css" href="../static/css/main.css">
 
             <title>{{.username}}</title>
 
             <script src="/js/user.js"></script>
             <script src="/js/outlook.js"></script>
-            <script src="../static/js/user.js"></script>
-            <script src="../static/js/outlook.js"></script>
         </head>
     </head>
     <body onload="return notice('{{.notice}}')">
@@ -47,13 +44,7 @@
                             <td>
                                 <a id="course{{.Id}}" href="/student/{{.Id}}" class="myselect td" onmouseover="setBgColor('course{{.Id}}', 'rgb(245, 220, 245)')" onmouseout="setBgColor('course{{.Id}}', 'rgb(250, 230, 250)')"></a>
                                 <script>
-                                    var res = '{{.Id}}' + "";
-                                    var n = res.length;
-                                    while(n < 4){
-                                        res = '0' + res;
-                                        n++;
-                                        }
-                                    document.getElementById("course{{.Id}}").innerHTML = res;
+                                    document.getElementById("course{{.Id}}").innerHTML = numFormat('{{.Id}}');
                                 </script>
                             </td>
                             <td class="tabletd">{{.Name}}</td>
@@ -76,7 +67,7 @@
                     </div>
                     <table class="table course">
                         <tr>
-                                <th class="tabletd">课堂编号</th><th class="tabletd">课堂名称</th><th class="tabletd">教师</th><th class="tabletd"></th>
+                                <th class="tabletd">课堂编号</th><th class="tabletd">课堂名称</th><th class="tabletd">教师</th><th></th>
                         </tr>
                         {{if .search_course}}
                         <tr>
@@ -85,13 +76,7 @@
                             <td class="tabletd">{{.search_course.Teacher.Name}}</td>
                             <td class="tabletd"><button class="button mybutton" style="height: 30px; font-size: small;" onclick="location.href='/student/joincourse/{{.search_course.Id}}'">加入课堂</button></td>
                             <script>
-                                var res = '{{.search_course.Id}}' + "";
-                                var n = res.length;
-                                while(n < 4){
-                                    res = '0' + res;
-                                    n++;
-                                    }
-                                document.getElementById("search_course{{.search_course.Id}}").innerHTML = res;
+                                document.getElementById("search_course{{.search_course.Id}}").innerHTML = numFormat('{{.search_course.Id}}');
                             </script>
                         </tr>
                         {{end}}
@@ -110,7 +95,7 @@
 
         <footer class="footer">
             <hr />
-            <label>Copyright © <a href="http://ladlod.com" target="_blank">Ladlod</a> |2020.2</label>
+            <label>Copyright © <a href="https://ladlod.com" target="_blank">Ladlod</a> |2020.2</label>
         </footer>
     </body>
 </html>

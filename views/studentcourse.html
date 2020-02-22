@@ -8,13 +8,13 @@
         <script src="/js/outlook.js"></script>
         
         <link rel="stylesheet" type="text/css" href="/css/main.css">
-        <link rel="stylesheet" type="text/css" href="../static/css/main.css">
     </head>
     <body>
         <header class="header2">
             <div>
                 <h1>{{.course.Name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button">点击签到</button></h1>
-                <a style="font-size: small;" href="/signin">重新登录</a>
+                <a style="font-size: small;" href="/signin">重新登录</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a style="font-size: small;" href="/student">我的主页</a>
             </div>
         </header>
 
@@ -36,13 +36,7 @@
                             <td class="tabletd">{{.Name}}</td>
                             <td class="tabletd">签到模块待完成</td>
                             <script>
-                                var res = '{{.Id}}' + "";
-                                var n = res.length;
-                                while(n < 4){
-                                    res = '0' + res;
-                                    n++;
-                                    }
-                                document.getElementById("student{{.Id}}").innerHTML = res;
+                                document.getElementById("student{{.Id}}").innerHTML = numFormat('{{.Id}}');
                             </script>
                         </tr>
                         {{end}}
@@ -68,7 +62,7 @@
                     <h6>&nbsp;&nbsp;&nbsp;考试</h6>
                 </div>
                 <div class="pagepiece" style="width: 416px; height: 250px;">
-                    <table class="table exam">
+                    <table class="table studentexam">
                         <tr>
                             <th class="tabletd">考试编号</th><th class="tabletd">考试时间</th><th class="tabletd">考试状态</th>
                         </tr>
@@ -79,7 +73,7 @@
                     <h6>&nbsp;&nbsp;&nbsp;作业</h6>
                 </div>
                 <div class="pagepiece" style="width: 416px; height: 250px;">
-                    <table class="table homework">
+                    <table class="table studenthomework">
                         <tr>
                             <th class="tabletd">作业编号</th><th class="tabletd">截止时间</th><th class="tabletd">提交状态</th>
                         </tr>
@@ -91,7 +85,7 @@
         
         <footer class="footer">
             <hr />
-            <label>Copyright © <a href="http://ladlod.com" target="_blank">Ladlod</a> |2020.2</label>
+            <label>Copyright © <a href="https://ladlod.com" target="_blank">Ladlod</a> |2020.2</label>
         </footer>
     </body>
 </html>
