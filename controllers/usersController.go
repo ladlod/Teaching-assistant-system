@@ -184,9 +184,11 @@ func (this *UsersController) GetSetStudent() {
 	} else if not, ok := flash.Data["notice"]; ok {
 		this.Data["notice"] = not
 	}
-	var identity = this.GetSession("identity").(string)
-	this.Data["identity"] = identity
-	this.TplName = "setuser.html"
+
+	var student = this.GetSession("account").(models.Student)
+
+	this.Data["username"] = student.Name
+	this.TplName = "setstudent.html"
 }
 
 // @router /student/setting [post]
@@ -217,9 +219,11 @@ func (this *UsersController) GetSetTeacher() {
 	} else if not, ok := flash.Data["notice"]; ok {
 		this.Data["notice"] = not
 	}
-	var identity = this.GetSession("identity").(string)
-	this.Data["identity"] = identity
-	this.TplName = "setuser.html"
+
+	var teacher = this.GetSession("account").(models.Teacher)
+
+	this.Data["username"] = teacher.Name
+	this.TplName = "setteacher.html"
 }
 
 // @router /teacher/setting [post]
@@ -234,10 +238,10 @@ func (this *UsersController) PostSetTeacher() {
 		this.SetSession("identity", "teacher")
 		flash.Notice("修改成功")
 		flash.Store(&this.Controller)
-		this.Redirect("/student/setting", 302)
+		this.Redirect("/teacher/setting", 302)
 	} else {
 		flash.Error("修改失败")
 		flash.Store(&this.Controller)
-		this.Redirect("/student/setting", 302)
+		this.Redirect("/teacher/setting", 302)
 	}
 }

@@ -438,8 +438,8 @@ a.box:active {
 }
 
 .mysection{
+	display: block;
     height: 650px;
-    text-align: center;
     display: flex;
     padding: 25px;
 	writing-mode: sideways-lr;
