@@ -1,7 +1,7 @@
 # Teaching-assistant-system
 华中科技大学计算机学院本科毕业设计
 ## Demo
-  [hust.ladlod.com](http://hust.ladlod.com)
+  [hust.ladlod.com](https://hust.ladlod.com)
 ## 要求
   综合运用所学知识，实现一个编译原理教辅系统
 - 发布教学材料
