@@ -54,12 +54,8 @@ func (course *Course) QueryStudents() []*Student {
 
 //Addstudent 添加学生
 func (course *Course) Addstudent(student *Student) bool {
-	n, _ := O.QueryTable("course").Filter("id", course.Id).Filter("Student__Id", student.Id).Count()
-
 	ids := []int{student.Id, course.Id}
-	if n != 0 {
-		return false
-	}
+
 	if _, err := O.Raw("Insert into student_courses values(null, ?, ?)", ids).Exec(); err == nil {
 		return true
 	} else {

@@ -11,6 +11,7 @@ package models
 	Signin 登录
 	Change 修改用户信息
 	QueryCourse 查询我选择的课堂
+	QueryNotice 查询我的通知
 	JoinCourse 加入课堂
 */
 type Student struct {
@@ -51,8 +52,13 @@ func (student *Student) Change() bool {
 
 // JionCourse 加入课堂
 func (student *Student) JionCourse(cid int) bool {
+	n, _ := O.QueryTable("student_courses").Filter("course_id", cid).Filter("student_id", student.Id).Count()
+	if n != 0 {
+		return false
+	}
 	course := Course{Id: cid}
-	return course.Addstudent(student)
+
+	return NoticeSBuild(student, &course)
 }
 
 // QueryCourse 查询我选择的课堂
@@ -63,4 +69,12 @@ func (student *Student) QueryCourse() []*Course {
 		O.Read(courses[i].Teacher)
 	}
 	return courses
+}
+
+//QueryNotice 查询我的通知
+func (student *Student) QueryNotice() []*NoticeS {
+	var notices []*NoticeS
+	O.Raw("select * from notice_s where course_id in (select course_id from student_courses where student_id = ?)", student.Id).QueryRows(&notices)
+
+	return notices
 }

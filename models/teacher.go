@@ -10,8 +10,10 @@ package models
 	Signup 注册
 	Signin 登录
 	QueryCourse 查询我创建的课堂
+	QueryNotice 查询我的通知
 	MakeCourse 创建课堂
 	DeleteCourse 删除课堂
+	AddStudent 添加学生
 */
 type Teacher struct {
 	Id       int `orm:"column(id);auto"`
@@ -69,4 +71,17 @@ func (teacher *Teacher) MakeCourse(course *Course) (int, bool) {
 func (teacher *Teacher) DeleteCourse(cid int) bool {
 	course := Course{Id: cid}
 	return course.DeleteCourse()
+}
+
+//AddStudent 添加学生
+func (teacher *Teacher) AddStudent(student *Student, course *Course, notice *NoticeS) bool {
+	return course.Addstudent(student) && notice.DeleteNotice()
+}
+
+//QueryNotice 查询我的通知
+func (teacher *Teacher) QueryNotice() []*NoticeS {
+	var notices []*NoticeS
+	O.Raw("select * from notice_s where course_id in (select course_id from course where teacher_id = ?)", teacher.Id).QueryRows(&notices)
+
+	return notices
 }

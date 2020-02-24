@@ -122,8 +122,10 @@ func (this *UsersController) GetStudent() {
 	var student = this.GetSession("account").(models.Student)
 
 	courses := student.QueryCourse()
+	notices := student.QueryNotice()
 
 	this.Data["courses"] = courses
+	this.Data["notices"] = notices
 	this.Data["username"] = student.Name
 	this.TplName = "student.html"
 }
@@ -147,14 +149,16 @@ func (this *UsersController) PostSearchCourse() {
 // @router /teacher [get]
 func (this *UsersController) GetTeacher() {
 	flash := beego.ReadFromRequest(&this.Controller)
-	if not, ok := flash.Data["notice"]; ok {
-		this.Data["notice"] = not
+	if err, ok := flash.Data["error"]; ok {
+		this.Data["notice"] = err
 	}
 	var teacher = this.GetSession("account").(models.Teacher)
 
 	courses := teacher.QueryCourse()
+	notices := teacher.QueryNotice()
 
 	this.Data["courses"] = courses
+	this.Data["notices"] = notices
 	this.Data["username"] = teacher.Name
 	this.TplName = "teacher.html"
 }
@@ -166,11 +170,11 @@ func (this *UsersController) PostCreateCourse() {
 	course.Name = this.GetString("course")
 	teacher := this.GetSession("account").(models.Teacher)
 	if id, b := teacher.MakeCourse(&course); b {
-		flash.Notice("创建成功, 课堂ID为" + strconv.Itoa(id))
+		flash.Error("创建成功, 课堂ID为" + strconv.Itoa(id))
 		flash.Store(&this.Controller)
 		this.Redirect("/teacher", 302)
 	} else {
-		flash.Notice("创建失败，请稍后再试")
+		flash.Error("创建失败，请稍后再试")
 		flash.Store(&this.Controller)
 		this.Redirect("/teacher", 302)
 	}

@@ -4,6 +4,7 @@
         <head>
             <meta charset="utf-8">
             
+            <link rel="shortcurt icon" href="/img/logo.ico">
             <link rel="stylesheet" type="text/css" href="/css/main.css">
 
             <title>{{.username}}</title>
@@ -88,7 +89,16 @@
                     <h6>&nbsp;&nbsp;&nbsp;通知</h6>
                 </div>
                 <div class="pagepiece" style="float:right; width: 316px; height: 550px;">
-                    <a id="message" href="/intherow" class="myselect notice" onmouseover="setBgColor('message', 'rgb(245, 220, 245)')" onmouseout="setBgColor('message', 'rgb(250, 230, 250)')">test</a>
+                    {{range .notices}}
+                    <a id="message" href="/intherow" class="myselect notice" onmouseover="setBgColor('message', 'rgb(245, 220, 245)')" onmouseout="setBgColor('message', 'rgb(250, 230, 250)')">
+                        <p>Title</p>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{.Content}}
+                        <br />
+                        <div class="time">
+                            时间：{{.Time}}
+                        </div>
+                    </a>
+                    {{end}}
                 </div>
             </div>
         </section>

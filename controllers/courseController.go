@@ -3,6 +3,7 @@ package controllers
 import (
 	"Teaching-assistant-system/models"
 	"strconv"
+	"strings"
 
 	"github.com/astaxie/beego"
 )
@@ -64,14 +65,41 @@ func (this *CourseController) DeleteCourse() {
 	teacher := this.GetSession("account").(models.Teacher)
 	flash := beego.NewFlash()
 	if teacher.DeleteCourse(cid) {
-		flash.Notice("删除成功")
+		flash.Error("删除成功")
 		flash.Store(&this.Controller)
 		this.Redirect("/teacher", 302)
 	} else {
-		flash.Notice("删除失败，课堂不存在")
+		flash.Error("删除失败，课堂不存在")
 		flash.Store(&this.Controller)
 		this.Redirect("/teacher", 302)
 	}
+}
+
+// @router /teacher/addstudent/:scid [get]
+func (this *CourseController) AddStudent() {
+	s := this.Ctx.Input.Param(":scid")
+	ids := strings.Split(s, "&")
+
+	sid, _ := strconv.Atoi(ids[0])
+	cid, _ := strconv.Atoi(ids[1])
+	nid, _ := strconv.Atoi(ids[2])
+
+	student := &models.Student{Id: sid}
+	course := &models.Course{Id: cid}
+	notice := &models.NoticeS{Id: nid}
+
+	teacher := this.GetSession("account").(models.Teacher)
+	flash := beego.NewFlash()
+	if teacher.AddStudent(student, course, notice) {
+		flash.Error("添加学生成功")
+		flash.Store(&this.Controller)
+		this.Redirect("/teacher", 302)
+	} else {
+		flash.Error("添加学生失败")
+		flash.Store(&this.Controller)
+		this.Redirect("/teacher", 302)
+	}
+
 }
 
 // @router /student/joincourse/:cid [get]
@@ -80,11 +108,11 @@ func (this *CourseController) JionCourse() {
 	student := this.GetSession("account").(models.Student)
 	flash := beego.NewFlash()
 	if student.JionCourse(cid) {
-		flash.Error("加入成功")
+		flash.Error("请求已发送，请等待老师同意")
 		flash.Store(&this.Controller)
 		this.Redirect("/student", 302)
 	} else {
-		flash.Error("加入失败，您已经在课堂内请重试")
+		flash.Error("加入失败，您已经在课堂内，请重试")
 		flash.Store(&this.Controller)
 		this.Redirect("/student", 302)
 	}

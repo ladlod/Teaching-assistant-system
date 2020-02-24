@@ -83,3 +83,10 @@ function returnToUser(identity) {
         location.href = "/student"
     }
 }
+
+function confirmAddStudent(){
+    if(confirm('是否允许这名学生加入课堂？')){
+        return true;
+    }
+    return false;
+}
