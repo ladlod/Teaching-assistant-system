@@ -1,5 +1,10 @@
 package models
 
+import (
+	"os"
+	"strconv"
+)
+
 // SearchCourse 查找课堂
 func SearchCourse(cid int) *Course {
 	var course Course
@@ -32,6 +37,10 @@ type Course struct {
 // MakeCourse 创建课堂
 func (course *Course) MakeCourse() (int, bool) {
 	if _, err := O.Insert(course); err == nil {
+		path := "files/" + strconv.Itoa(course.Id)
+		if err := os.Mkdir(path, os.ModePerm); err != nil {
+			return 0, false
+		}
 		return course.Id, true
 	}
 	return 0, false
@@ -39,6 +48,10 @@ func (course *Course) MakeCourse() (int, bool) {
 
 // DeleteCourse 删除课堂
 func (course *Course) DeleteCourse() bool {
+	path := "files/" + strconv.Itoa(course.Id)
+	if err := os.RemoveAll(path); err != nil {
+		return false
+	}
 	if _, err := O.Delete(course); err == nil {
 		return true
 	}

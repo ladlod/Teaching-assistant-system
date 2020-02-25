@@ -81,7 +81,7 @@ func (teacher *Teacher) AddStudent(student *Student, course *Course, notice *Not
 //QueryNotice 查询我的通知
 func (teacher *Teacher) QueryNotice() []*NoticeS {
 	var notices []*NoticeS
-	O.Raw("select * from notice_s where course_id in (select course_id from course where teacher_id = ?)", teacher.Id).QueryRows(&notices)
+	O.Raw("select * from notice_s where course_id in (select id from course where teacher_id = ?)", teacher.Id).QueryRows(&notices)
 
 	return notices
 }

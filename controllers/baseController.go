@@ -12,7 +12,7 @@ type BaseController struct {
 }
 
 func (this *BaseController) Prepare() {
-	this.Data["StartTime"] = time.Now()
+	this.Data["StartTime"] = time.Now().Format("2006-01-02 15:04:05")
 }
 
 var GlobalSessions *session.Manager //全局Session

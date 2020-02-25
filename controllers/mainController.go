@@ -13,8 +13,3 @@ func (this *MainController) Get() {
 func (this *MainController) InTheRow() {
 	this.TplName = "intherow.html"
 }
-
-// @router /help [get]
-func (this *MainController) GetHelp() {
-	this.Redirect("/intherow", 302)
-}

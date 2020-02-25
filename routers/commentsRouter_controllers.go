@@ -81,15 +81,6 @@ func init() {
 
     beego.GlobalControllerRouter["Teaching-assistant-system/controllers:MainController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:MainController"],
         beego.ControllerComments{
-            Method: "GetHelp",
-            Router: `/help`,
-            AllowHTTPMethods: []string{"get"},
-            MethodParams: param.Make(),
-            Filters: nil,
-            Params: nil})
-
-    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:MainController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:MainController"],
-        beego.ControllerComments{
             Method: "InTheRow",
             Router: `/intherow`,
             AllowHTTPMethods: []string{"get"},
