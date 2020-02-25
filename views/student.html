@@ -90,7 +90,7 @@
                 </div>
                 <div class="pagepiece" style="float:right; width: 316px; height: 550px;">
                     {{range .notices}}
-                    <a id="message" href="/intherow" class="myselect notice" onmouseover="setBgColor('message', 'rgb(245, 220, 245)')" onmouseout="setBgColor('message', 'rgb(250, 230, 250)')">
+                    <a id="message{{.Id}}" href="/intherow" class="myselect notice" onmouseover="setBgColor('message{{.Id}}', 'rgb(245, 220, 245)')" onmouseout="setBgColor('message{{.Id}}', 'rgb(250, 230, 250)')">
                         <p>Title</p>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{.Content}}
                         <br />

@@ -16,8 +16,8 @@ package models
 	AddStudent 添加学生
 */
 type Teacher struct {
-	Id       int `orm:"column(id);auto"`
-	Account  string
+	Id       int    `orm:"column(id);auto"`
+	Account  string `orm:"unique"`
 	Name     string
 	Password string
 	Courses  []*Course `orm:"reverse(many)"`
@@ -25,9 +25,6 @@ type Teacher struct {
 
 // Signup 用户注册
 func (teacher *Teacher) Signup() bool {
-	if err := O.Read(teacher, "Name"); err == nil {
-		return false
-	}
 	if _, err := O.Insert(teacher); err == nil {
 		return true
 	} else {

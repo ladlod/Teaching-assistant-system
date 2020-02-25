@@ -465,22 +465,21 @@ a.box:active {
 }
 
 .myselect.notice{
-	position: absolute;
     color: black;
     font-weight: 500;
-    padding: 10px;
+	padding: 10px;
+	margin: 5px;
     width:284px;
-    height:80px;
+    height:70px;
     background-color:rgb(250, 230, 250);
-    border-radius:20px; 
-    -moz-border-radius:20px;
+    border-radius:15px; 
+    -moz-border-radius:15px;
 	box-shadow: 5px 5px 5px #888888;
 }
 
 .time{
 	font-size: smaller;
-	position:absolute;
-	right: 8px; bottom: 10px;
+	float: right;
 }
 
 .header{

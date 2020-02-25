@@ -15,18 +15,15 @@ package models
 	JoinCourse 加入课堂
 */
 type Student struct {
-	Id       int `orm:"column(id);auto"`
-	Account  string
+	Id       int    `orm:"column(id);auto"`
+	Account  string `orm:"unique"`
 	Name     string
 	Password string
-	Course   []*Course `orm:"rel(m2m)"`
+	Course   []*Course `orm:"rel(m2m);"`
 }
 
 // Signup 用户注册
 func (student *Student) Signup() bool {
-	if err := O.Read(student, "Name"); err == nil {
-		return false
-	}
 	if _, err := O.Insert(student); err == nil {
 		return true
 	} else {
@@ -72,9 +69,9 @@ func (student *Student) QueryCourse() []*Course {
 }
 
 //QueryNotice 查询我的通知
-func (student *Student) QueryNotice() []*NoticeS {
-	var notices []*NoticeS
-	O.Raw("select * from notice_s where course_id in (select course_id from student_courses where student_id = ?)", student.Id).QueryRows(&notices)
+func (student *Student) QueryNotice() []*NoticeT {
+	var notices []*NoticeT
+	O.Raw("select * from notice_t where course_id in (select course_id from student_courses where student_id = ?)", student.Id).QueryRows(&notices)
 
 	return notices
 }
