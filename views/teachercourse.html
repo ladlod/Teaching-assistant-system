@@ -10,7 +10,7 @@
         <link rel="shortcurt icon" href="/img/logo.ico">
         <link rel="stylesheet" type="text/css" href="/css/main.css">
     </head>
-    <body>
+    <body onload="return notice('{{.notice}}')">
         <header class="header2">
             <div>
                 <h1>{{.course.Name}}</h1>
@@ -24,10 +24,10 @@
         <nav class="mynav">
             <div>
                 <ul>
+                    <li><a id="class" class="myselect li" style="background-color: rgb(245, 220, 245);">主页</a></li>
                     <li><a id="clockin" href="/intherow" class="myselect li" onmouseover="setBgColor('clockin', 'rgb(245, 220, 245)')" onmouseout="setBgColor('clockin', 'rgb(250, 245, 250)')">开启签到</a></li>
-                    <li><a id="uploadfile" href="/intherow" class="myselect li" onmouseover="setBgColor('uploadfile', 'rgb(245, 220, 245)')" onmouseout="setBgColor('uploadfile', 'rgb(250, 245, 250)')">上传课件</a></li>
                     <li><a id="exam" href="/intherow" class="myselect li" onmouseover="setBgColor('exam', 'rgb(245, 220, 245)')" onmouseout="setBgColor('exam', 'rgb(250, 245, 250)')">发布考试</a></li>
-                    <li><a id="homework" href="/teacher/setting" class="myselect li" onmouseover="setBgColor('homework', 'rgb(245, 220, 245)')" onmouseout="setBgColor('homework', 'rgb(250, 245, 250)')">布置作业</a></li>
+                    <li><a id="homework" href="/intherow" class="myselect li" onmouseover="setBgColor('homework', 'rgb(245, 220, 245)')" onmouseout="setBgColor('homework', 'rgb(250, 245, 250)')">布置作业</a></li>
                 </ul>
             </div>
         </nav>
@@ -60,7 +60,19 @@
                 <div>
                     <h6>&nbsp;&nbsp;&nbsp;课件</h6>
                 </div>
-                <div class="pagepiece" style="width: 316px; height: 600px;">
+                <div>
+                    <form id="file"  method="post" enctype="multipart/form-data">
+                        <div calss="filed">
+                            <input type="file" id="uploadfile" name="uploadfile" style="width: 200px;">
+                        </div>
+                        <div class="filed">
+                            <p class="control">
+                                <button type="submit" value="upload"> 上传 </button>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+                <div class="pagepiece" style="width: 316px; height: 550px;">
                     <table class="table files">
                         <tr>
                             <th class="tabletd">文件名</th><th class="tabletd">上传时间</th>

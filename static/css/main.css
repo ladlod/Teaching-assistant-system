@@ -3,7 +3,7 @@ blockquote,body,dd,dl,dt,fieldset,figure,h1,h2,h3,h4,h5,h6,hr,html,iframe,legend
 	padding: 0
 }
 
-h1,h4,h5 {
+h1 {
 	font-size: 100%;
 	font-weight: 500;
 }
@@ -214,13 +214,13 @@ a.box:active {
 }
 
 .button.is-success {
-	background-color: #23d160;
+	background-color: mediumorchid;
 	border-color: transparent;
 	color: #fff
 }
 
 .button.is-success.is-hovered,.button.is-success:hover {
-	background-color: #22c65b;
+	background-color: rgb(200, 0, 250);
 	border-color: transparent;
 	color: #fff
 }
@@ -242,7 +242,7 @@ a.box:active {
 }
 
 .button.is-success[disabled] {
-	background-color: #23d160;
+	background-color: mediumorchid;
 	border-color: transparent;
 	-webkit-box-shadow: none;
 	box-shadow: none
@@ -250,7 +250,7 @@ a.box:active {
 
 .button.is-success.is-inverted {
 	background-color: #fff;
-	color: #23d160
+	color: mediumorchid;
 }
 
 .button.is-success.is-inverted:hover {
@@ -262,7 +262,7 @@ a.box:active {
 	border-color: transparent;
 	-webkit-box-shadow: none;
 	box-shadow: none;
-	color: #23d160
+	color: mediumorchid;
 }
 
 .button.is-success.is-loading:after {
@@ -271,26 +271,26 @@ a.box:active {
 
 .button.is-success.is-outlined {
 	background-color: transparent;
-	border-color: #23d160;
-	color: #23d160
+	border-color: mediumorchid;
+	color: mediumorchid
 }
 
 .button.is-success.is-outlined:focus,.button.is-success.is-outlined:hover {
-	background-color: #23d160;
-	border-color: #23d160;
+	background-color: mediumorchid;
+	border-color: mediumorchid;
 	color: #fff
 }
 
 .button.is-success.is-outlined.is-loading:after {
-	border-color: transparent transparent #23d160 #23d160 !important
+	border-color: transparent transparent mediumorchid mediumorchid !important
 }
 
 .button.is-success.is-outlined[disabled] {
 	background-color: transparent;
-	border-color: #23d160;
+	border-color:mediumorchid;
 	-webkit-box-shadow: none;
 	box-shadow: none;
-	color: #23d160
+	color: mediumorchid
 }
 
 .button.is-success.is-inverted.is-outlined {
@@ -301,7 +301,7 @@ a.box:active {
 
 .button.is-success.is-inverted.is-outlined:focus,.button.is-success.is-inverted.is-outlined:hover {
 	background-color: #fff;
-	color: #23d160
+	color: mediumorchid;
 }
 
 .button.is-success.is-inverted.is-outlined[disabled] {
@@ -527,10 +527,4 @@ a.box:active {
     background-color: rgb(245, 245, 245);
     border-radius:10px; 
     -moz-border-radius:10px;
-}
-
-.button.mybutton {
-	background-color:mediumorchid;
-	border-color: transparent;
-	color: #fff
 }

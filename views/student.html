@@ -75,7 +75,7 @@
                             <td class="tabletd" id="search_course{{.search_course.Id}}"></td>
                             <td class="tabletd">{{.search_course.Name}}</td>
                             <td class="tabletd">{{.search_course.Teacher.Name}}</td>
-                            <td class="tabletd"><button class="button mybutton" style="height: 30px; font-size: small;" onclick="location.href='/student/joincourse/{{.search_course.Id}}'">加入课堂</button></td>
+                            <td class="tabletd"><button class="button is-success" style="height: 30px; font-size: small;" onclick="location.href='/student/joincourse/{{.search_course.Id}}'">加入课堂</button></td>
                             <script>
                                 document.getElementById("search_course{{.search_course.Id}}").innerHTML = numFormat('{{.search_course.Id}}');
                             </script>

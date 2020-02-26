@@ -16,6 +16,7 @@ type CourseController struct {
 func (this *CourseController) StudentSelectCourse() {
 	cid, _ := strconv.Atoi(this.Ctx.Input.Param(":cid"))
 	course := models.SearchCourse(cid)
+	course.Student = course.QueryStudents()
 	this.SetSession("course", *course)
 	this.Redirect("/student/course", 302)
 }
@@ -23,7 +24,7 @@ func (this *CourseController) StudentSelectCourse() {
 // @router /student/course [get]
 func (this *CourseController) GetStudentCourse() {
 	flash := beego.ReadFromRequest(&this.Controller)
-	if not, ok := flash.Data["notice"]; ok {
+	if not, ok := flash.Data["error"]; ok {
 		this.Data["notice"] = not
 	}
 
@@ -31,9 +32,8 @@ func (this *CourseController) GetStudentCourse() {
 	this.Data["student"] = student
 
 	course := this.GetSession("course").(models.Course)
-	students := course.QueryStudents()
 	this.Data["course"] = course
-	this.Data["students"] = students
+	this.Data["students"] = course.Student
 	this.TplName = "studentcourse.html"
 }
 
@@ -41,6 +41,7 @@ func (this *CourseController) GetStudentCourse() {
 func (this *CourseController) TeacherSelectCourse() {
 	cid, _ := strconv.Atoi(this.Ctx.Input.Param(":cid"))
 	course := models.SearchCourse(cid)
+	course.Student = course.QueryStudents()
 	this.SetSession("course", course)
 	this.Redirect("/teacher/course", 302)
 }
@@ -48,14 +49,13 @@ func (this *CourseController) TeacherSelectCourse() {
 // @router /teacher/course [get]
 func (this *CourseController) GetTeacherCourse() {
 	flash := beego.ReadFromRequest(&this.Controller)
-	if not, ok := flash.Data["notice"]; ok {
+	if not, ok := flash.Data["error"]; ok {
 		this.Data["notice"] = not
 	}
 	course := this.GetSession("course").(*models.Course)
 
-	students := course.QueryStudents()
 	this.Data["course"] = course
-	this.Data["students"] = students
+	this.Data["students"] = course.Student
 	this.TplName = "teachercourse.html"
 }
 

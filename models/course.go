@@ -61,7 +61,8 @@ func (course *Course) DeleteCourse() bool {
 // QueryStudents 查询选择这门课的学生
 func (course *Course) QueryStudents() []*Student {
 	var students []*Student
-	O.QueryTable("student").Filter("Course__Course__id", course.Id).All(&students)
+	//O.Raw("select * from student where id in (select student_id from student_courses where course_id = ?)", course.Id).QueryRows(&students)
+	O.QueryTable("student").Filter("Course__Course__id", course.Id).All(&students, "Id", "Name")
 	return students
 }
 
@@ -77,5 +78,10 @@ func (course *Course) Addstudent(student *Student) bool {
 }
 
 //QueryFiles 查询课件
-func (course *Course) QueryFiles() {
+func (course *Course) QueryFiles() bool {
+	/*fd, err := os.Open("files/" + strconv.Itoa(course.Id))
+	if err != nil {
+		return false
+	}*/
+	return true
 }

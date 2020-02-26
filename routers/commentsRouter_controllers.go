@@ -79,6 +79,24 @@ func init() {
             Filters: nil,
             Params: nil})
 
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:FileController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:FileController"],
+        beego.ControllerComments{
+            Method: "GetDownloadFile",
+            Router: `/student/download/:filename`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:FileController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:FileController"],
+        beego.ControllerComments{
+            Method: "PostUploadFile",
+            Router: `/teacher/course`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["Teaching-assistant-system/controllers:MainController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:MainController"],
         beego.ControllerComments{
             Method: "Get",
