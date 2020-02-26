@@ -13,5 +13,5 @@
 - 其它
 ## Flow chart
 [流程图](https://github.com/ladlod/Teaching-assistant-system/tree/master/static/img/flow_chart.png)
-![](http://m.qpic.cn/psc?/V11W6Yxv03HQuT/wSJ2S*tZT7v.5zxXfWcfXRS9Di1UmqtA4G13gQwFWuRhTwb1dd5isiQbaH5J6pgRc2uO*386CoMKZljPekg5q6kuaPvO4KqM2fH2bg37A0E!/b&bo=2AY4BAAAAAADB8A!&rf=viewer_4)
+![](https://hust.ladlod.com/img/flow_chart.png)
 ## Screenshots
