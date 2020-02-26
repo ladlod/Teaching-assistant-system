@@ -78,7 +78,7 @@ func (this *CourseController) DeleteCourse() {
 // @router /teacher/addstudent/:scid [get]
 func (this *CourseController) AddStudent() {
 	s := this.Ctx.Input.Param(":scid")
-	ids := strings.Split(s, "&")
+	ids := strings.Split(s, "&&")
 
 	sid, _ := strconv.Atoi(ids[0])
 	cid, _ := strconv.Atoi(ids[1])
@@ -96,6 +96,29 @@ func (this *CourseController) AddStudent() {
 		this.Redirect("/teacher", 302)
 	} else {
 		flash.Error("添加学生失败")
+		flash.Store(&this.Controller)
+		this.Redirect("/teacher", 302)
+	}
+
+}
+
+// @router /teacher/refusestudent/:scid [get]
+func (this *CourseController) RefuseStudent() {
+	s := this.Ctx.Input.Param(":scid")
+	ids := strings.Split(s, "&&")
+
+	nid, _ := strconv.Atoi(ids[2])
+
+	notice := &models.NoticeS{Id: nid}
+
+	teacher := this.GetSession("account").(models.Teacher)
+	flash := beego.NewFlash()
+	if teacher.RefuseStudent(notice) {
+		flash.Error("已拒绝该学生")
+		flash.Store(&this.Controller)
+		this.Redirect("/teacher", 302)
+	} else {
+		flash.Error("操作失败，请重试")
 		flash.Store(&this.Controller)
 		this.Redirect("/teacher", 302)
 	}

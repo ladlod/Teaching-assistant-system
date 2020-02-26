@@ -14,6 +14,7 @@ package models
 	MakeCourse 创建课堂
 	DeleteCourse 删除课堂
 	AddStudent 添加学生
+	RefuseStudent 拒绝学生
 */
 type Teacher struct {
 	Id       int    `orm:"column(id);auto"`
@@ -70,12 +71,17 @@ func (teacher *Teacher) DeleteCourse(cid int) bool {
 	return course.DeleteCourse()
 }
 
-//AddStudent 添加学生
+// AddStudent 添加学生
 func (teacher *Teacher) AddStudent(student *Student, course *Course, notice *NoticeS) bool {
 	return course.Addstudent(student) && notice.DeleteNotice()
 }
 
-//QueryNotice 查询我的通知
+// RefuseStudent 拒绝学生
+func (teacher *Teacher) RefuseStudent(notice *NoticeS) bool {
+	return notice.DeleteNotice()
+}
+
+// QueryNotice 查询我的通知
 func (teacher *Teacher) QueryNotice() []*NoticeS {
 	var notices []*NoticeS
 	O.Raw("select * from notice_s where course_id in (select id from course where teacher_id = ?)", teacher.Id).QueryRows(&notices)

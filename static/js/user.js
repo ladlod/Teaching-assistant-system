@@ -84,9 +84,10 @@ function returnToUser(identity) {
     }
 }
 
-function confirmAddStudent(){
+function confirmAddStudent(sid, cid, nid){
     if(confirm('是否允许这名学生加入课堂？')){
-        return true;
+        location.href="/teacher/addstudent/"+sid+"&&"+cid+"&&"+nid;
+    }else{
+        location.href="/teacher/refusestudent/"+sid+"&&"+cid+"&&"+nid;
     }
-    return false;
 }

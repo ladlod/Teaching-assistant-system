@@ -79,7 +79,7 @@
                 </div>
                 <div class="pagepiece" style="float:right; width: 316px; height: 550px;">
                     {{range .notices}}
-                    <a id="message{{.Id}}" onclick="return confirmAddStudent()" href="/teacher/addstudent/{{.Student.Id}}&{{.Course.Id}}&{{.Id}}" class="myselect notice" onmouseover="setBgColor('message{{.Id}}', 'rgb(245, 220, 245)')" onmouseout="setBgColor('message{{.Id}}', 'rgb(250, 230, 250)')">
+                    <a id="message{{.Id}}" onclick="confirmAddStudent('{{.Student.Id}}', '{{.Course.Id}}', '{{.Id}}')" class="myselect notice" onmouseover="setBgColor('message{{.Id}}', 'rgb(245, 220, 245)')" onmouseout="setBgColor('message{{.Id}}', 'rgb(250, 230, 250)')">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{.Content}}
                         <br />
                         <div class="time">
