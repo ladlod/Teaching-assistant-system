@@ -61,7 +61,7 @@
                     <h6>&nbsp;&nbsp;&nbsp;课件</h6>
                 </div>
                 <div>
-                    <form id="file"  method="post" enctype="multipart/form-data">
+                    <form id="file"  method="post" enctype="multipart/form-data" onsubmit="return judgeFile()">
                         <div calss="filed">
                             <input type="file" id="uploadfile" name="uploadfile" style="width: 200px;">
                         </div>
@@ -73,10 +73,20 @@
                     </form>
                 </div>
                 <div class="pagepiece" style="width: 316px; height: 550px;">
-                    <table class="table files">
+                    <table id="filetable" class="table files">
                         <tr>
-                            <th class="tabletd">文件名</th><th class="tabletd">上传时间</th>
+                            <th class="tabletd">文件名</th><th class="tabletd">大小</th>
                         </tr>
+                        {{range .fileInfo}}
+                            <tr>
+                                <td><a class="myselect ti" href="/download/{{.Name}}" download="{{.Name}}">{{.Name}}</a></td>
+                                <td id = "{{.Name}}"></td>
+                                <td><button onclick="location.href='/teacher/delete/{{.Name}}'" class="button is-success" style="height: 30px; font-size: small;">删除</button></td>
+                                <script>
+                                    document.getElementById("{{.Name}}").innerHTML = sizeFormat("{{.Size}}") + "Mb"
+                                </script>
+                            </tr>
+                        {{end}}
                     </table>
                 </div>
             </div>

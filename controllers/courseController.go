@@ -34,6 +34,13 @@ func (this *CourseController) GetStudentCourse() {
 	course := this.GetSession("course").(models.Course)
 	this.Data["course"] = course
 	this.Data["students"] = course.Student
+
+	if fileInfo, err := course.QueryFiles(); err == nil {
+		this.Data["fileInfo"] = fileInfo
+	} else {
+		this.Data["notice"] = err
+	}
+
 	this.TplName = "studentcourse.html"
 }
 
@@ -56,6 +63,13 @@ func (this *CourseController) GetTeacherCourse() {
 
 	this.Data["course"] = course
 	this.Data["students"] = course.Student
+
+	if fileInfo, err := course.QueryFiles(); err == nil {
+		this.Data["fileInfo"] = fileInfo
+	} else {
+		this.Data["notice"] = err
+	}
+
 	this.TplName = "teachercourse.html"
 }
 

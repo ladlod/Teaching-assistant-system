@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"Teaching-assistant-system/models"
+	"os"
 	"path"
 	"strconv"
 
@@ -25,6 +26,14 @@ func (this *FileController) PostUploadFile() {
 	fileName := h.Filename
 	f.Close()
 	course := this.GetSession("course").(*models.Course)
+
+	if _, filestat := os.Stat("files/" + strconv.Itoa(course.Id) + "/" + fileName); filestat == nil {
+		flash.Error("文件已存在或文件名重复")
+		flash.Store(&this.Controller)
+		this.Redirect("/teacher/course", 302)
+		return
+	}
+
 	if err := this.SaveToFile("uploadfile", path.Join("files/"+strconv.Itoa(course.Id), fileName)); err != nil {
 		flash.Error(err.Error())
 		flash.Store(&this.Controller)
@@ -38,7 +47,27 @@ func (this *FileController) PostUploadFile() {
 	}
 }
 
-// @router /student/download/:filename [get]
+// @router /download/:filename [get]
 func (this *FileController) GetDownloadFile() {
+	filename := this.Ctx.Input.Param(":filename")
+	course := this.GetSession("course").(*models.Course)
+	d_url := "files/" + strconv.Itoa(course.Id) + "/" + filename
+	this.Ctx.Output.Download(d_url)
+}
 
+// @router /teacher/delete/:filename [get]
+func (this *FileController) GetDeleteFile() {
+	flash := beego.NewFlash()
+	filename := this.Ctx.Input.Param(":filename")
+	course := this.GetSession("course").(*models.Course)
+	d_url := "files/" + strconv.Itoa(course.Id) + "/" + filename
+	if err := os.RemoveAll(d_url); err == nil {
+		flash.Error("删除成功")
+		flash.Store(&this.Controller)
+		this.Redirect("/teacher/course", 302)
+	} else {
+		flash.Error("删除失败")
+		flash.Store(&this.Controller)
+		this.Redirect("/teacher/course", 302)
+	}
 }

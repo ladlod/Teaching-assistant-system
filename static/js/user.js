@@ -6,6 +6,14 @@ function judgeEmpty(f, p, q){
     }
 }
 
+function judgeFile(){
+    var x = document.getElementById("uploadfile").value;
+    if(x == ""){
+        alert("请选择文件")
+        return false
+    }
+}
+
 function judgeForm(p, p1 ,p2, p3) {
     var x = document.forms[p][p1].value;
     var y = document.forms[p][p2].value;

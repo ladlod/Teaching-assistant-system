@@ -25,7 +25,7 @@ func SearchCourse(cid int) *Course {
 	DeleteCourse 删除课堂
 	QueryStudents 查询选择这门课的学生
 	Addstudent 添加学生
-	QueryFiles 查询课件 //未完成
+	QueryFiles 查询课件
 */
 type Course struct {
 	Id      int `orm:"column(id);auto"`
@@ -78,10 +78,10 @@ func (course *Course) Addstudent(student *Student) bool {
 }
 
 //QueryFiles 查询课件
-func (course *Course) QueryFiles() bool {
-	/*fd, err := os.Open("files/" + strconv.Itoa(course.Id))
+func (course *Course) QueryFiles() ([]os.FileInfo, error) {
+	fd, err := os.Open("files/" + strconv.Itoa(course.Id))
 	if err != nil {
-		return false
-	}*/
-	return true
+		return nil, err
+	}
+	return fd.Readdir(0)
 }

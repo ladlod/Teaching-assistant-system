@@ -52,8 +52,17 @@
                 <div class="pagepiece" style="width: 316px; height: 600px;">
                     <table class="table files">
                         <tr>
-                            <th class="tabletd">文件名</th><th class="tabletd">上传时间</th>
+                            <th class="tabletd">文件名</th><th class="tabletd">大小</th>
                         </tr>
+                        {{range .fileInfo}}
+                            <tr>
+                                <td><a class="myselect ti" href="/download/{{.Name}}" download="{{.Name}}">{{.Name}}</a></td>
+                                <td id = "{{.Name}}"></td>
+                                <script>
+                                    document.getElementById("{{.Name}}").innerHTML = sizeFormat("{{.Size}}") + "Mb"
+                                </script>
+                            </tr>
+                        {{end}}
                     </table>
                 </div>
             </div>
