@@ -15,3 +15,5 @@
 [流程图](https://github.com/ladlod/Teaching-assistant-system/tree/master/static/img/flow_chart.png)
 ![](https://hust.ladlod.com/img/flow_chart.png)
 ## Screenshots
+- 主页
+![](https://hust.ladlod.com/img/main_page.png)
