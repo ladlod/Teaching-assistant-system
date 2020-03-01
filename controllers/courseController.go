@@ -49,7 +49,7 @@ func (this *CourseController) TeacherSelectCourse() {
 	cid, _ := strconv.Atoi(this.Ctx.Input.Param(":cid"))
 	course := models.SearchCourse(cid)
 	course.Student = course.QueryStudents()
-	this.SetSession("course", course)
+	this.SetSession("course", *course)
 	this.Redirect("/teacher/course", 302)
 }
 
@@ -59,7 +59,7 @@ func (this *CourseController) GetTeacherCourse() {
 	if not, ok := flash.Data["error"]; ok {
 		this.Data["notice"] = not
 	}
-	course := this.GetSession("course").(*models.Course)
+	course := this.GetSession("course").(models.Course)
 
 	this.Data["course"] = course
 	this.Data["students"] = course.Student

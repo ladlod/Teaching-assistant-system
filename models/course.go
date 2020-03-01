@@ -37,7 +37,7 @@ type Course struct {
 // MakeCourse 创建课堂
 func (course *Course) MakeCourse() (int, bool) {
 	if _, err := O.Insert(course); err == nil {
-		path := "files/" + strconv.Itoa(course.Id)
+		path := "files/courseware/" + strconv.Itoa(course.Id)
 		if err := os.Mkdir(path, os.ModePerm); err != nil {
 			return 0, false
 		}
@@ -48,7 +48,7 @@ func (course *Course) MakeCourse() (int, bool) {
 
 // DeleteCourse 删除课堂
 func (course *Course) DeleteCourse() bool {
-	path := "files/" + strconv.Itoa(course.Id)
+	path := "files/courseware/" + strconv.Itoa(course.Id)
 	if err := os.RemoveAll(path); err != nil {
 		return false
 	}
@@ -79,7 +79,7 @@ func (course *Course) Addstudent(student *Student) bool {
 
 //QueryFiles 查询课件
 func (course *Course) QueryFiles() ([]os.FileInfo, error) {
-	fd, err := os.Open("files/" + strconv.Itoa(course.Id))
+	fd, err := os.Open("files/courseware/" + strconv.Itoa(course.Id))
 	if err != nil {
 		return nil, err
 	}
