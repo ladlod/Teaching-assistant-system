@@ -106,6 +106,51 @@ func init() {
             Filters: nil,
             Params: nil})
 
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:HomeworkController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:HomeworkController"],
+        beego.ControllerComments{
+            Method: "GetStudentHomework",
+            Router: `/student/course/homework/:hid`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:HomeworkController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:HomeworkController"],
+        beego.ControllerComments{
+            Method: "PostStudentHomework",
+            Router: `/student/course/homework/:hid`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:HomeworkController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:HomeworkController"],
+        beego.ControllerComments{
+            Method: "GetAddHomework",
+            Router: `/teacher/course/homework`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:HomeworkController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:HomeworkController"],
+        beego.ControllerComments{
+            Method: "PostAddHomework",
+            Router: `/teacher/course/homework`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:HomeworkController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:HomeworkController"],
+        beego.ControllerComments{
+            Method: "GetTeacherHomework",
+            Router: `/teacher/course/homework/:hid`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["Teaching-assistant-system/controllers:MainController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:MainController"],
         beego.ControllerComments{
             Method: "Get",

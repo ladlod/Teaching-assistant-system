@@ -33,4 +33,5 @@ func init() {
 	beego.Include(&controllers.CourseController{})
 	beego.Include(&controllers.UsersController{})
 	beego.Include(&controllers.FileController{})
+	beego.Include(&controllers.HomeworkController{})
 }

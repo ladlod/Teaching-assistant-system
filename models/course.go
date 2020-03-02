@@ -26,6 +26,7 @@ func SearchCourse(cid int) *Course {
 	QueryStudents 查询选择这门课的学生
 	Addstudent 添加学生
 	QueryFiles 查询课件
+	QueryHomework 查询作业
 */
 type Course struct {
 	Id      int `orm:"column(id);auto"`
@@ -66,7 +67,7 @@ func (course *Course) QueryStudents() []*Student {
 	return students
 }
 
-//Addstudent 添加学生
+// Addstudent 添加学生
 func (course *Course) Addstudent(student *Student) bool {
 	ids := []int{student.Id, course.Id}
 
@@ -77,11 +78,22 @@ func (course *Course) Addstudent(student *Student) bool {
 	}
 }
 
-//QueryFiles 查询课件
+// QueryFiles 查询课件
 func (course *Course) QueryFiles() ([]os.FileInfo, error) {
 	fd, err := os.Open("files/courseware/" + strconv.Itoa(course.Id))
 	if err != nil {
 		return nil, err
 	}
 	return fd.Readdir(0)
+}
+
+// QueryHomework 查询作业
+func (course *Course) QueryHomework() []*Homework {
+	var homeworks []*Homework
+	_, err := O.QueryTable("homework").Filter("course_id", course.Id).All(&homeworks)
+	if err == nil {
+		return homeworks
+	}
+
+	return nil
 }
