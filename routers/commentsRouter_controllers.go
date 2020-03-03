@@ -27,6 +27,15 @@ func init() {
 
     beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CourseController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CourseController"],
         beego.ControllerComments{
+            Method: "DealNotice",
+            Router: `/student/dealnotice/:ncid`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CourseController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CourseController"],
+        beego.ControllerComments{
             Method: "JionCourse",
             Router: `/student/joincourse/:cid`,
             AllowHTTPMethods: []string{"get"},

@@ -17,15 +17,15 @@ func NoticeSBuild(student *Student, course *Course) bool {
 	return false
 }
 
-func NoticeTBuild(teacher *Teacher, course *Course, typ int) bool {
+func NoticeTBuild(teacher *Teacher, course *Course, student *Student, typ int) bool {
 	var content string
 	if typ == 1 {
-		content = strconv.Itoa(course.Id) + "布置了新作业"
+		content = "课堂" + strconv.Itoa(course.Id) + "布置了新作业。"
 	} else {
-		content = strconv.Itoa(course.Id) + "发布了新考试"
+		content = "课堂" + strconv.Itoa(course.Id) + "发布了新考试。"
 	}
 	t := time.Now().Format("2006-01-02 15:04:05")
-	notice := &NoticeT{Type: typ, Content: content, Time: t, Teacher: teacher, Course: course}
+	notice := &NoticeT{Type: typ, Content: content, Time: t, Teacher: teacher, Course: course, Student: student}
 
 	if _, err := O.Insert(notice); err == nil {
 		return true
@@ -39,7 +39,8 @@ func NoticeTBuild(teacher *Teacher, course *Course, typ int) bool {
 	Type 通知类别是1代表考试通知或是1代表作业通知
 	Content 通知内容
 	Teacher 发起通知的教师
-	Course 通知的对象班级
+	Course  通知的对象课堂
+	Student 通知的对象学生
 方法说明：
 	DeleteNotice 删除通知
 */
@@ -50,6 +51,7 @@ type NoticeT struct {
 	Time    string
 	Teacher *Teacher `orm:"rel(fk)"`
 	Course  *Course  `orm:"rel(fk)"`
+	Student *Student `orm:"rel(fk)"`
 }
 
 // DeleteNotice 删除通知

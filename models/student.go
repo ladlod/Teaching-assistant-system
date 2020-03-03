@@ -71,7 +71,8 @@ func (student *Student) QueryCourse() []*Course {
 //QueryNotice 查询我的通知
 func (student *Student) QueryNotice() []*NoticeT {
 	var notices []*NoticeT
-	O.Raw("select * from notice_t where course_id in (select course_id from student_courses where student_id = ?)", student.Id).QueryRows(&notices)
+	O.QueryTable("notice_t").Filter("student_id", student.Id).All(&notices)
+	//O.Raw("select * from notice_t where course_id in (select course_id from student_courses where student_id = ?)", student.Id).QueryRows(&notices)
 
 	return notices
 }

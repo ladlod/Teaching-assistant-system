@@ -156,3 +156,14 @@ func (this *CourseController) JionCourse() {
 		this.Redirect("/student", 302)
 	}
 }
+
+// @router /student/dealnotice/:ncid [get]
+func (this *CourseController) DealNotice() {
+	ncid := this.Ctx.Input.Param(":ncid")
+	ids := strings.Split(ncid, "&&")
+	nid, _ := strconv.Atoi(ids[0])
+	notice := models.NoticeT{Id: nid}
+	notice.DeleteNotice()
+
+	this.Redirect("/student/"+ids[1], 302)
+}
