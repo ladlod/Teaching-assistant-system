@@ -123,13 +123,18 @@ func (this *CourseController) RefuseStudent() {
 	s := this.Ctx.Input.Param(":scid")
 	ids := strings.Split(s, "&&")
 
+	sid, _ := strconv.Atoi(ids[0])
+	cid, _ := strconv.Atoi(ids[1])
 	nid, _ := strconv.Atoi(ids[2])
 
+	student := &models.Student{Id: sid}
+	course := &models.Course{Id: cid}
 	notice := &models.NoticeS{Id: nid}
 
 	teacher := this.GetSession("account").(models.Teacher)
 	flash := beego.NewFlash()
 	if teacher.RefuseStudent(notice) {
+		models.NoticeTBuild(&teacher, course, student, 3)
 		flash.Error("已拒绝该学生")
 		flash.Store(&this.Controller)
 		this.Redirect("/teacher", 302)
@@ -157,13 +162,20 @@ func (this *CourseController) JionCourse() {
 	}
 }
 
-// @router /student/dealnotice/:ncid [get]
+// @router /student/dealnotice/:nctid [get]
 func (this *CourseController) DealNotice() {
-	ncid := this.Ctx.Input.Param(":ncid")
-	ids := strings.Split(ncid, "&&")
+	nctid := this.Ctx.Input.Param(":nctid")
+	ids := strings.Split(nctid, "&&")
+
+	typ, _ := strconv.Atoi(ids[2])
+
 	nid, _ := strconv.Atoi(ids[0])
 	notice := models.NoticeT{Id: nid}
 	notice.DeleteNotice()
+	if typ == 1 || typ == 2 {
+		this.Redirect("/student/"+ids[1], 302)
+	} else {
+		this.Redirect("/student", 302)
+	}
 
-	this.Redirect("/student/"+ids[1], 302)
 }

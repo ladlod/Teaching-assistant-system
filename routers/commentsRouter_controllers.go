@@ -28,7 +28,7 @@ func init() {
     beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CourseController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CourseController"],
         beego.ControllerComments{
             Method: "DealNotice",
-            Router: `/student/dealnotice/:ncid`,
+            Router: `/student/dealnotice/:nctid`,
             AllowHTTPMethods: []string{"get"},
             MethodParams: param.Make(),
             Filters: nil,

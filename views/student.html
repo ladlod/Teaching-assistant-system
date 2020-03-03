@@ -90,10 +90,14 @@
                 </div>
                 <div class="pagepiece" style="float:right; width: 316px; height: 550px;">
                     {{range .notices}}
-                    <a id="message{{.Id}}" href="/student/dealnotice/{{.Id}}&&{{.Course.Id}}" class="myselect notice" onmouseover="setBgColor('message{{.Id}}', 'rgb(245, 220, 245)')" onmouseout="setBgColor('message{{.Id}}', 'rgb(250, 230, 250)')">
+                    <a id="message{{.Id}}" href="/student/dealnotice/{{.Id}}&&{{.Course.Id}}&&{{.Type}}" class="myselect notice" onmouseover="setBgColor('message{{.Id}}', 'rgb(245, 220, 245)')" onmouseout="setBgColor('message{{.Id}}', 'rgb(250, 230, 250)')">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{.Content}}
-                        <br />
-                        <br />
+                        <p id="brtmp"></p>
+                        <script>
+                            if('{{.Type}}' == 1 || '{{.Type}}' == 2){
+                                document.getElementById("brtmp").innerHTML = "<br />"
+                            }
+                        </script>
                         <div class="time">
                             时间：{{.Time}}
                         </div>

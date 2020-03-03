@@ -21,8 +21,10 @@ func NoticeTBuild(teacher *Teacher, course *Course, student *Student, typ int) b
 	var content string
 	if typ == 1 {
 		content = "课堂" + strconv.Itoa(course.Id) + "布置了新作业。"
-	} else {
+	} else if typ == 2 {
 		content = "课堂" + strconv.Itoa(course.Id) + "发布了新考试。"
+	} else {
+		content = "老师" + teacher.Name + "拒绝了您对课堂" + strconv.Itoa(course.Id) + "的加入申请。"
 	}
 	t := time.Now().Format("2006-01-02 15:04:05")
 	notice := &NoticeT{Type: typ, Content: content, Time: t, Teacher: teacher, Course: course, Student: student}
