@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{.course.Name}}</title>
+
+        <script src="/js/user.js"></script>
+        <script src="/js/outlook.js"></script>
+        
+        <link rel="shortcurt icon" href="/img/logo.ico">
+        <link rel="stylesheet" type="text/css" href="/css/main.css">
+    </head>
+    <body onload="return notice('{{.notice}}')">
+        <header class="header2">
+            <div>
+                <h1>{{.course.Name}}</h1>
+                <a style="font-size: small;" href="/signin">重新登录</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a style="font-size: small;" href="/teacher">我的主页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a style="font-size: small;" href="/teacher/course">班级主页</a>
+            </div>
+        </header>
+
+        <hr />
+
+        <section class="mysection">
+            <div style="padding: 0px 30px 0px 10px;">
+                <div class="pagepiece" style="width: 500px; height: 550px;">
+                    <div>
+                        <textarea class="textarea" style="margin: 20px; height: 400px;" type="text" name="content" readonly>    {{.homework.Content}}</textarea>
+                    </div>
+                    <div class="time" style="float: left;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        截止日期：{{.homework.Ddl}}
+                    </div>
+                </div>
+            </div>
+            <div style="padding: 0px 30px 0px 10px;">
+                <div class="pagepiece" style="width: 716px; height: 550px;">
+                    <table id="homeworktable" class="table homework">
+                        <tr>
+                            <th class="tabletd">学生姓名</th><th class="tabletd">提交状态</th><th class="tabletd">文件</th><th class="tabletd">提交时间</th>
+                        </tr>
+                        {{range .students}}
+                            <tr>
+                                <td id="studentname">{{.Student.Name}}</td>
+                                <td id="stat">{{.Stat}}</td>
+                                <td><a class="myselect ti" href="/teacher/download/{{.Homework.Id}}&&{{.Filename}}" download="{{.Filename}}">{{.Filename}}</a></td>
+                                <td>{{.Time}}</td>
+                            </tr>
+                        {{end}}
+                    </table>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="footer">
+            <hr />
+            <label>Copyright © <a href="https://ladlod.com" target="_blank">Ladlod</a> |2020.2</label>
+        </footer>
+    </body>
+</html>

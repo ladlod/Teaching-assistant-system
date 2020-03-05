@@ -48,7 +48,7 @@ func (this *CourseController) GetStudentCourse() {
 		this.Data["notice"] = err
 	}
 
-	this.TplName = "student/studentcourse.html"
+	this.TplName = "student/studentCourse.html"
 }
 
 // @router /teacher/:cid [get]
@@ -78,7 +78,7 @@ func (this *CourseController) GetTeacherCourse() {
 		this.Data["notice"] = err
 	}
 
-	this.TplName = "teacher/teachercourse.html"
+	this.TplName = "teacher/teacherCourse.html"
 }
 
 // @router /teacher/dropcourse/:cid [get]

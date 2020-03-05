@@ -91,7 +91,7 @@ func init() {
     beego.GlobalControllerRouter["Teaching-assistant-system/controllers:FileController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:FileController"],
         beego.ControllerComments{
             Method: "GetDownloadFile",
-            Router: `/download/:filename`,
+            Router: `/download/courseware/:filename`,
             AllowHTTPMethods: []string{"get"},
             MethodParams: param.Make(),
             Filters: nil,
@@ -155,6 +155,15 @@ func init() {
         beego.ControllerComments{
             Method: "GetTeacherHomework",
             Router: `/teacher/course/homework/:hid`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:HomeworkController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:HomeworkController"],
+        beego.ControllerComments{
+            Method: "DownloadHomework",
+            Router: `/teacher/download/:filename`,
             AllowHTTPMethods: []string{"get"},
             MethodParams: param.Make(),
             Filters: nil,

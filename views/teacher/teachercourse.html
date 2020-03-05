@@ -79,7 +79,7 @@
                         </tr>
                         {{range .fileInfo}}
                             <tr>
-                                <td><a class="myselect ti" href="/download/{{.Name}}" download="{{.Name}}">{{.Name}}</a></td>
+                                <td><a class="myselect ti" href="/download/courseware/{{.Name}}" download="{{.Name}}">{{.Name}}</a></td>
                                 <td id = "{{.Name}}"></td>
                                 <td><button onclick="location.href='/teacher/delete/{{.Name}}'" class="button is-success" style="height: 30px; font-size: small;">删除</button></td>
                                 <script>

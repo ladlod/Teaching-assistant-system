@@ -27,7 +27,13 @@
                 <div class="pagepiece" style="width: 800px; height: 500px;">
                     <form action="" method="post" enctype="multipart/form-data" onsubmit="return judgeFile()">
                         <div>
-                            <textarea class="textarea" style="margin: 30px; height: 300px;" type="text" name="content" readonly>{{.homework.Content}}</textarea>
+                            <textarea class="textarea" style="margin: 30px; height: 300px;" type="text" name="content" readonly>    {{.homework.Content}}</textarea>
+                        </div>
+                        <div class="time" style="float: left;">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            截止日期：{{.homework.Ddl}}
+                            <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            注意：提交作业时请以自己的学号或姓名作为文件名用于与他人区分。
                         </div>
                         <div style="padding: 0px 20px; float: right;">
                             <input class="file" type="file" id="uploadfile" name="uploadfile" style="font-size: medium; width: 200px;">

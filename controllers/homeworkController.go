@@ -5,6 +5,7 @@ import (
 	"os"
 	"path"
 	"strconv"
+	"strings"
 
 	"github.com/astaxie/beego"
 )
@@ -55,7 +56,18 @@ func (this *HomeworkController) PostAddHomework() {
 
 // @router /teacher/course/homework/:hid [get]
 func (this *HomeworkController) GetTeacherHomework() {
-	this.Redirect("/intherow", 302)
+	hid_s := this.Ctx.Input.Param(":hid")
+	hid, _ := strconv.Atoi(hid_s)
+
+	homework := models.SearchHomeWork(hid)
+	students := homework.QueryStudentsStat()
+
+	this.Data["teacher"] = this.GetSession("account").(models.Teacher)
+	this.Data["course"] = this.GetSession("course").(models.Course)
+	this.Data["homework"] = homework
+	this.Data["students"] = students
+
+	this.TplName = "teacher/teacherHomework.html"
 }
 
 // @router /student/course/homework/:hid [get]
@@ -72,7 +84,7 @@ func (this *HomeworkController) GetStudentHomework() {
 	this.Data["course"] = this.GetSession("course").(models.Course)
 	this.Data["student"] = this.GetSession("account").(models.Student)
 
-	this.TplName = "student/studenthomework.html"
+	this.TplName = "student/studentHomework.html"
 }
 
 // @router /student/course/homework/:hid [post]
@@ -94,7 +106,7 @@ func (this *HomeworkController) PostStudentHomework() {
 	student := this.GetSession("account").(models.Student)
 
 	if _, filestat := os.Stat("files/homework/" + hid_s + "/" + fileName); filestat == nil {
-		flash.Error("文件已存在或文件名重复")
+		flash.Error("您已提交过作业")
 		flash.Store(&this.Controller)
 		this.Redirect("/student/course/homework/"+hid_s, 302)
 		return
@@ -106,10 +118,18 @@ func (this *HomeworkController) PostStudentHomework() {
 		this.Redirect("/student/course/homework/"+hid_s, 302)
 		return
 	} else {
-		student.SubmitHomework(hid)
+		student.SubmitHomework(hid, fileName)
 		flash.Error("上传成功!")
 		flash.Store(&this.Controller)
 		this.Redirect("/student/course/homework/"+hid_s, 302)
 		return
 	}
+}
+
+// @router /teacher/download/:filename [get]
+func (this *HomeworkController) DownloadHomework() {
+	filename := this.Ctx.Input.Param(":filename")
+	f := strings.Split(filename, "&&")
+	d_url := "files/homework/" + f[0] + "/" + f[1]
+	this.Ctx.Output.Download(d_url)
 }

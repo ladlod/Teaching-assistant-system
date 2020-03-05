@@ -508,6 +508,10 @@ a.box:active {
 .table.course{
 	width: 800px;
 }
+.table.homework{
+	width: 700px;
+}
+
 .table.student,.table.studentexam,.table.studenthomework{
 	width: 400px;
 }

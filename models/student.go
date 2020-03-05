@@ -1,5 +1,7 @@
 package models
 
+import "time"
+
 /*Student 学生
 属性说明：
 	Id 顺序产生的编号
@@ -79,11 +81,13 @@ func (student *Student) QueryNotice() []*NoticeT {
 }
 
 // SubmitHomework 提交作业
-func (student *Student) SubmitHomework(hid int) bool {
+func (student *Student) SubmitHomework(hid int, filename string) bool {
 	var s_h StudentHomework
 	O.QueryTable("student_homework").Filter("student_id", student.Id).Filter("homework_id", hid).One(&s_h)
 	s_h.Stat = "已提交"
-	if _, err := O.Update(&s_h, "Stat"); err == nil {
+	s_h.Filename = filename
+	s_h.Time = time.Now().Format("2006-01-02 15:04:05")
+	if _, err := O.Update(&s_h, "Stat", "Filename", "Time"); err == nil {
 		return true
 	}
 

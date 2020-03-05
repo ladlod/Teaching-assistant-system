@@ -56,7 +56,7 @@
                         </tr>
                         {{range .fileInfo}}
                             <tr>
-                                <td><a class="myselect ti" href="/download/{{.Name}}" download="{{.Name}}">{{.Name}}</a></td>
+                                <td><a class="myselect ti" href="/download/courseware/{{.Name}}" download="{{.Name}}">{{.Name}}</a></td>
                                 <td id = "{{.Name}}"></td>
                                 <script>
                                     document.getElementById("{{.Name}}").innerHTML = sizeFormat("{{.Size}}") + "Mb"

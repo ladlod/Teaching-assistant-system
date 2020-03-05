@@ -47,7 +47,7 @@ func (this *FileController) PostUploadFile() {
 	}
 }
 
-// @router /download/:filename [get]
+// @router /download/courseware/:filename [get]
 func (this *FileController) GetDownloadFile() {
 	filename := this.Ctx.Input.Param(":filename")
 	course := this.GetSession("course").(models.Course)
