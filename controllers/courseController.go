@@ -16,7 +16,6 @@ type CourseController struct {
 func (this *CourseController) StudentSelectCourse() {
 	cid, _ := strconv.Atoi(this.Ctx.Input.Param(":cid"))
 	course := models.SearchCourse(cid)
-	course.Student = course.QueryStudents()
 	this.SetSession("course", *course)
 	this.Redirect("/student/course", 302)
 }
@@ -34,7 +33,7 @@ func (this *CourseController) GetStudentCourse() {
 	course := this.GetSession("course").(models.Course)
 	this.Data["course"] = course
 
-	this.Data["students"] = course.Student
+	this.Data["students"] = course.QueryStudents()
 
 	homeworks := course.QueryHomework()
 	for i := range homeworks {
@@ -55,7 +54,6 @@ func (this *CourseController) GetStudentCourse() {
 func (this *CourseController) TeacherSelectCourse() {
 	cid, _ := strconv.Atoi(this.Ctx.Input.Param(":cid"))
 	course := models.SearchCourse(cid)
-	course.Student = course.QueryStudents()
 	this.SetSession("course", *course)
 	this.Redirect("/teacher/course", 302)
 }
@@ -69,7 +67,7 @@ func (this *CourseController) GetTeacherCourse() {
 	course := this.GetSession("course").(models.Course)
 
 	this.Data["course"] = course
-	this.Data["students"] = course.Student
+	this.Data["students"] = course.QueryStudents()
 	this.Data["homeworks"] = course.QueryHomework()
 
 	if fileInfo, err := course.QueryFiles(); err == nil {

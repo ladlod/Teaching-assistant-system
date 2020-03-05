@@ -99,3 +99,17 @@ function confirmAddStudent(sid, cid, nid){
         location.href="/teacher/refusestudent/"+sid+"&&"+cid+"&&"+nid;
     }
 }
+
+function setSignPassword(){
+    var password = prompt("请输入签到密码", "");
+    if(password != null && password != ""){
+        location.href="/teacher/course/setclockin/" + password;
+    }
+}
+
+function clockIn(){
+    var password = prompt("请输入签到密码", "");
+    if(password != null && password != ""){
+        location.href="/student/course/clockin/" + password;
+    }
+}

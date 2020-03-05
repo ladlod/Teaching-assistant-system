@@ -16,13 +16,15 @@ import "time"
 	QueryNotice 查询我的通知
 	JoinCourse 加入课堂
 	SubmitHomework 提交作业
+	ClockIn 签到
 */
 type Student struct {
-	Id       int    `orm:"column(id);auto"`
-	Account  string `orm:"unique"`
-	Name     string
-	Password string
-	Course   []*Course `orm:"rel(m2m);"`
+	Id        int    `orm:"column(id);auto"`
+	Account   string `orm:"unique"`
+	Name      string
+	Password  string
+	Course    []*Course `orm:"rel(m2m);"`
+	ClockStat string    `orm:"-"`
 }
 
 // Signup 用户注册
@@ -92,4 +94,24 @@ func (student *Student) SubmitHomework(hid int, filename string) bool {
 	}
 
 	return false
+}
+
+// ClockIn 签到
+func (student *Student) Clockin(password string, course *Course) bool {
+	var clock Clockin
+	O.QueryTable("clockin").Filter("course_id", course.Id).One(&clock)
+	timeTmp := "2006-01-02 15:04:05"
+	ddl, _ := time.ParseInLocation(timeTmp, clock.Ddl, time.Local)
+	if time.Now().After(ddl) || password != clock.Password {
+		return false
+	}
+
+	var studentclockin StudentClockin
+	O.QueryTable("student_clockin").Filter("student_id", student.Id).Filter("clockin_id", clock.Id).One(&studentclockin)
+	studentclockin.Stat = "已签到"
+	if _, err := O.Update(&studentclockin, "Stat"); err != nil {
+		return false
+	}
+
+	return true
 }

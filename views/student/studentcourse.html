@@ -13,7 +13,7 @@
     <body onload="return notice('{{.notice}}')">
         <header class="header2">
             <div>
-                <h1>{{.course.Name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button">点击签到</button></h1>
+                <h1>{{.course.Name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button" onclick="clockIn()">点击签到</button></h1>
                 <a style="font-size: small;" href="/signin">重新登录</a>&nbsp;&nbsp;&nbsp;&nbsp;
                 <a style="font-size: small;" href="/student">我的主页</a>
             </div>
@@ -35,7 +35,7 @@
                         <tr>
                             <td class="tabletd" id="student{{.Id}}"></td>
                             <td class="tabletd">{{.Name}}</td>
-                            <td class="tabletd">签到模块待完成</td>
+                            <td class="tabletd">{{.ClockStat}}</td>
                             <script>
                                 document.getElementById("student{{.Id}}").innerHTML = numFormat('{{.Id}}');
                             </script>

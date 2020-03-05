@@ -7,6 +7,24 @@ import (
 
 func init() {
 
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ClockinController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ClockinController"],
+        beego.ControllerComments{
+            Method: "Clockin",
+            Router: `/student/course/clockin/:password`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ClockinController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ClockinController"],
+        beego.ControllerComments{
+            Method: "SetClock",
+            Router: `/teacher/course/setclockin/:password`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CourseController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CourseController"],
         beego.ControllerComments{
             Method: "StudentSelectCourse",

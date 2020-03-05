@@ -63,7 +63,16 @@ func (course *Course) DeleteCourse() bool {
 func (course *Course) QueryStudents() []*Student {
 	var students []*Student
 	//O.Raw("select * from student where id in (select student_id from student_courses where course_id = ?)", course.Id).QueryRows(&students)
-	O.QueryTable("student").Filter("Course__Course__id", course.Id).All(&students, "Id", "Name")
+	O.QueryTable("student").Filter("Course__Course__id", course.Id).All(&students)
+
+	for i := range students {
+		clock := &Clockin{Course: course}
+		O.Read(clock, "course_id")
+		sclock := &StudentClockin{Student: students[i], Clockin: clock}
+		O.Read(sclock, "student_id", "clockin_id")
+		students[i].ClockStat = sclock.Stat
+	}
+
 	return students
 }
 
