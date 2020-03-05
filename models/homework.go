@@ -3,6 +3,7 @@ package models
 import (
 	"os"
 	"strconv"
+	"time"
 )
 
 // 查找作业
@@ -27,6 +28,7 @@ func SearchHomeWork(hid int) *Homework {
 	QueryStat 查询某个学生的完成状态
 	QueryStudentsStat 查询全部学生的完成状态
 	QueryFiles 查询作业文件
+	JudgeOutdata 判断作业是否截止
 */
 type Homework struct {
 	Id      int    `orm:"column(id);auto"`
@@ -80,6 +82,22 @@ func (h *Homework) QueryFiles() ([]os.FileInfo, error) {
 		return nil, err
 	}
 	return fd.Readdir(0)
+}
+
+// JudgeOutdata 判断作业是否截止
+func (h *Homework) JudgeOutdata() bool {
+	if h.Ddl == "0000-00-00" {
+		return true
+	}
+
+	timeTmp := "2006-01-02"
+	ddl, _ := time.ParseInLocation(timeTmp, h.Ddl, time.Local)
+
+	if time.Now().Before(ddl) {
+		return true
+	}
+
+	return false
 }
 
 type StudentHomework struct {

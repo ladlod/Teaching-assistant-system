@@ -112,6 +112,14 @@ func (this *HomeworkController) PostStudentHomework() {
 		return
 	}
 
+	homework := models.SearchHomeWork(hid)
+	if !homework.JudgeOutdata() {
+		flash.Error("该作业已超过截止日期!")
+		flash.Store(&this.Controller)
+		this.Redirect("/student/course/homework/"+hid_s, 302)
+		return
+	}
+
 	if err := this.SaveToFile("uploadfile", path.Join("files/homework/"+hid_s, fileName)); err != nil {
 		flash.Error(err.Error())
 		flash.Store(&this.Controller)
