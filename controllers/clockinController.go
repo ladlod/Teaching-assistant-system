@@ -16,7 +16,7 @@ func (this *ClockinController) SetClock() {
 
 	password := this.Ctx.Input.Param(":password")
 	course := this.GetSession("course").(models.Course)
-	if models.NewClockin(password, course.Id) {
+	if course.AddClockin(password) {
 		flash.Error("开启签到成功")
 		flash.Store(&this.Controller)
 		this.Redirect("/teacher/course", 302)
@@ -36,7 +36,7 @@ func (this *ClockinController) Clockin() {
 	student := this.GetSession("account").(models.Student)
 	course := this.GetSession("course").(models.Course)
 
-	if !models.SearchClockin(course.Id) {
+	if !course.JudgeClockin() {
 		flash.Error("暂无开启的签到")
 		flash.Store(&this.Controller)
 		this.Redirect("/student/course", 302)

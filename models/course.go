@@ -3,6 +3,7 @@ package models
 import (
 	"os"
 	"strconv"
+	"time"
 )
 
 // SearchCourse 查找课堂
@@ -20,6 +21,10 @@ func SearchCourse(cid int) *Course {
 属性说明：
 	Id 顺序产生的编号
 	Name 课堂名
+	Teacher 课堂教师
+	Teacher 课堂内学生
+	Password 签到密码
+	Ddl 签到截止时间
 方法说明：
 	MakeCourse 创建课堂
 	DeleteCourse 删除课堂
@@ -27,12 +32,23 @@ func SearchCourse(cid int) *Course {
 	Addstudent 添加学生
 	QueryFiles 查询课件
 	QueryHomework 查询作业
+	AddClockin 发起签到
+	JudgeClockin 判断是否有签到发起
 */
 type Course struct {
-	Id      int `orm:"column(id);auto"`
-	Name    string
-	Teacher *Teacher   `orm:"rel(fk)"`
-	Student []*Student `orm:"reverse(many)"`
+	Id       int `orm:"column(id);auto"`
+	Name     string
+	Teacher  *Teacher   `orm:"rel(fk)"`
+	Student  []*Student `orm:"reverse(many)"`
+	Password string     `orm:"null"`
+	Ddl      string     `orm:"null"`
+}
+
+type StudentCourses struct {
+	Id      int      `orm:"auto"`
+	Stat    string   `orm:"null"`
+	Student *Student `orm:"rel(fk)"`
+	Course  *Course  `orm:"rel(fk)"`
 }
 
 // MakeCourse 创建课堂
@@ -66,11 +82,9 @@ func (course *Course) QueryStudents() []*Student {
 	O.QueryTable("student").Filter("Course__Course__id", course.Id).All(&students)
 
 	for i := range students {
-		clock := &Clockin{Course: course}
-		O.Read(clock, "course_id")
-		sclock := &StudentClockin{Student: students[i], Clockin: clock}
-		O.Read(sclock, "student_id", "clockin_id")
-		students[i].ClockStat = sclock.Stat
+		studentcourse := &StudentCourses{Student: students[i], Course: course}
+		O.Read(studentcourse, "student_id", "course_id")
+		students[i].ClockStat = studentcourse.Stat
 	}
 
 	return students
@@ -105,4 +119,35 @@ func (course *Course) QueryHomework() []*Homework {
 	}
 
 	return nil
+}
+
+// AddClockin 发起签到
+func (course *Course) AddClockin(password string) bool {
+	start := time.Now()
+	end := start.Add(time.Minute * 5)
+
+	ddl := end.Format("2006-01-02 15:04:05")
+	course.Password = password
+	course.Ddl = ddl
+
+	if _, err := O.Update(course, "Password", "Ddl"); err == nil {
+		students := course.QueryStudents()
+		for i := range students {
+			studentcourse := StudentCourses{Student: students[i], Course: course}
+			O.Read(&studentcourse, "student_id", "course_id")
+			studentcourse.Stat = "未签到"
+			O.Update(&studentcourse, "Stat")
+		}
+		return true
+	}
+	return false
+}
+
+// JudgeClockin 判断是否有签到发起
+func (course *Course) JudgeClockin() bool {
+	O.Read(course)
+	if course.Password == "" && course.Ddl == "" {
+		return false
+	}
+	return true
 }

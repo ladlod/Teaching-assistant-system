@@ -23,7 +23,7 @@ type Student struct {
 	Account   string `orm:"unique"`
 	Name      string
 	Password  string
-	Course    []*Course `orm:"rel(m2m);"`
+	Course    []*Course `orm:"rel(m2m);rel_through(Teaching-assistant-system/models.StudentCourses)"`
 	ClockStat string    `orm:"-"`
 }
 
@@ -98,18 +98,16 @@ func (student *Student) SubmitHomework(hid int, filename string) bool {
 
 // ClockIn 签到
 func (student *Student) Clockin(password string, course *Course) bool {
-	var clock Clockin
-	O.QueryTable("clockin").Filter("course_id", course.Id).One(&clock)
 	timeTmp := "2006-01-02 15:04:05"
-	ddl, _ := time.ParseInLocation(timeTmp, clock.Ddl, time.Local)
-	if time.Now().After(ddl) || password != clock.Password {
+	ddl, _ := time.ParseInLocation(timeTmp, course.Ddl, time.Local)
+	if time.Now().After(ddl) || password != course.Password {
 		return false
 	}
 
-	var studentclockin StudentClockin
-	O.QueryTable("student_clockin").Filter("student_id", student.Id).Filter("clockin_id", clock.Id).One(&studentclockin)
-	studentclockin.Stat = "已签到"
-	if _, err := O.Update(&studentclockin, "Stat"); err != nil {
+	studentcourse := StudentCourses{Student: student, Course: course}
+	O.Read(&studentcourse, "student_id", "course_id")
+	studentcourse.Stat = "已签到"
+	if _, err := O.Update(&studentcourse, "Stat"); err != nil {
 		return false
 	}
 
