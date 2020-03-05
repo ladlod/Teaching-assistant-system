@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>编译原理教辅系统</title>
+        <script src="/js/user.js"></script>
+        
+        <link rel="shortcurt icon" href="/img/logo.ico">
+        <link rel="stylesheet" type="text/css" href="/css/main.css">
+    </head>
+    <body onload="return notice('{{.notice}}')">
+        <header class="header">
+            <h1>
+                <img src="../static/img/9b79c664eb24cca8a9930dd3c0076781.jpg" style="width: 100px;">
+                华中科技大学编译原理教辅系统
+            </h1>
+        </header>
+        <hr />
+
+        <section class="section">
+            <div class="container" style="width: 700px ">
+                <form id="signin_form" action="" onsubmit="return judgeForm('signin_form', 'usertype', 'account', 'password')" method="POST">
+                    <div>
+                        <label class="label" for="usertype">请选择身份:</label>
+                        <input class="radio" type="radio" name="usertype" value="teacher">Teacher&nbsp;
+                        <input class="radio" type="radio" name="usertype" value="student">Student
+                    </div>
+
+                    <br />
+
+                    <div>
+                        <label class="label" for="account">请输入账号:</label>
+                        <input class="input"  type="text" name="account" minlength="3" maxlength="20">
+                    </div>
+                    
+                    <div>
+                        <label class="label" for="password">请输入密码:</label>
+                        <input class="input" name="password" type="password" id="password" minlength="5" maxlength="20">
+                    </div>
+
+                    <br />
+
+                    <div>
+                        <p class="control">
+                            <button type="submit" class="button is-success" value="singin"> 登录 </button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button type="reset" class="button is-success" value="signup" onclick="location.href='/signup'"> 注册 </button>
+                        </p>
+                    </div>
+                </form>
+            </div>
+            <br /><br /><br />
+        </section>
+
+        <footer class="footer">
+            <hr />
+            <label>Copyright © <a href="https://ladlod.com" target="_blank">Ladlod</a> |2020.2</label>
+        </footer>
+    </body>
+</html>

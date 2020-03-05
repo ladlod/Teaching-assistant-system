@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>编译原理教辅系统</title>
+        <script src="/js/user.js"></script>
+        
+        <link rel="shortcurt icon" href="/img/logo.ico">
+        <link rel="stylesheet" type="text/css" href="/css/main.css">
+        <!--<link rel="stylesheet" type="text/css" href="../static/css/main.css">-->
+    </head>
+    <body onload="return notice('{{.notice}}')">
+        <header class="header2">
+            <h1>注册账号</h1>
+        </header>
+        <hr />
+
+        <section class="section">
+            <div class="container" style="width: 700px ">
+                <form id="signup_form" action="" onsubmit="return judgeForm2('signup_form', 'usertype', 'account', 'username', 'password')" method="POST">
+                    <div>
+                        <label class="label" for="usertype">请选择身份:</label>
+                        <input class="radio" type="radio" name="usertype" value="teacher">Teacher&nbsp;
+                        <input class="radio" type="radio" name="usertype" value="student">Student
+                    </div>
+
+                    <br />
+
+                    <div>
+                        <label class="label" for="account">请输入账号:</label>
+                        <input class="input"  type="text" name="account" minlength="3" maxlength="20">
+                    </div>
+
+                    <div>
+                        <label class="label" for="username">请输入姓名:</label>
+                        <input class="input"  type="text" name="username" minlength="3" maxlength="20">
+                    </div>
+                    
+                    <div>
+                        <label class="label" for="password">请输入密码:</label>
+                        <input class="input" name="password" type="password" id="password" minlength="8" maxlength="20">
+                    </div>
+
+                    <div>
+                        <label class="label" for="confirm">请确认密码:</label>
+                        <input class="input" name="confirm" type="password" id="confirm" minlength="8" maxlength="20">
+                    </div>
+
+                    <br />
+
+                    <div>
+                        <p class="control">
+                            <button type="submit" class="button is-success" value="singup" onclick="return judgePassword('signup_form', 'password', 'confirm')"> 确认 </button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button type="reset" class="button is-success" value="signup" onclick="location.href='/signin'"> 返回 </button>
+                        </p>
+                    </div>
+                </form>
+            </div>
+            <br /><br /><br /><br /><br />
+        </section>
+    </body>
+</html>

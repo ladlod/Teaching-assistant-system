@@ -13,6 +13,7 @@ package models
 	QueryCourse 查询我选择的课堂
 	QueryNotice 查询我的通知
 	JoinCourse 加入课堂
+	SubmitHomework 提交作业
 */
 type Student struct {
 	Id       int    `orm:"column(id);auto"`
@@ -75,4 +76,16 @@ func (student *Student) QueryNotice() []*NoticeT {
 	//O.Raw("select * from notice_t where course_id in (select course_id from student_courses where student_id = ?)", student.Id).QueryRows(&notices)
 
 	return notices
+}
+
+// SubmitHomework 提交作业
+func (student *Student) SubmitHomework(hid int) bool {
+	var s_h StudentHomework
+	O.QueryTable("student_homework").Filter("student_id", student.Id).Filter("homework_id", hid).One(&s_h)
+	s_h.Stat = "已提交"
+	if _, err := O.Update(&s_h, "Stat"); err == nil {
+		return true
+	}
+
+	return false
 }

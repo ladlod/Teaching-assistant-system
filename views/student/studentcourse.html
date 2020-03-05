@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{.course.Name}}</title>
+
+        <script src="/js/user.js"></script>
+        <script src="/js/outlook.js"></script>
+        
+        <link rel="shortcurt icon" href="/img/logo.ico">
+        <link rel="stylesheet" type="text/css" href="/css/main.css">
+    </head>
+    <body onload="return notice('{{.notice}}')">
+        <header class="header2">
+            <div>
+                <h1>{{.course.Name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="button">点击签到</button></h1>
+                <a style="font-size: small;" href="/signin">重新登录</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a style="font-size: small;" href="/student">我的主页</a>
+            </div>
+        </header>
+
+        <hr />
+
+        <section class="mysection">
+            <div style="padding: 0px 40px 0px 20px;">
+                <div>
+                    <h6>&nbsp;&nbsp;&nbsp;班级成员</h6>
+                </div>
+                <div class="pagepiece" style="width: 416px; height: 600px;">
+                    <table class="table student">
+                        <tr>
+                            <th class="tabletd">学生编号</th><th class="tabletd">学生姓名</th><th class="tabletd">签到状态</th>
+                        </tr>
+                        {{range .students}}
+                        <tr>
+                            <td class="tabletd" id="student{{.Id}}"></td>
+                            <td class="tabletd">{{.Name}}</td>
+                            <td class="tabletd">签到模块待完成</td>
+                            <script>
+                                document.getElementById("student{{.Id}}").innerHTML = numFormat('{{.Id}}');
+                            </script>
+                        </tr>
+                        {{end}}
+                    </table>
+                </div>
+            </div>
+
+            <div style="padding: 0px 40px 0px 40px;">
+                <div>
+                    <h6>&nbsp;&nbsp;&nbsp;课件</h6>
+                </div>
+                <div class="pagepiece" style="width: 316px; height: 600px;">
+                    <table class="table files">
+                        <tr>
+                            <th class="tabletd">文件名</th><th class="tabletd">大小</th>
+                        </tr>
+                        {{range .fileInfo}}
+                            <tr>
+                                <td><a class="myselect ti" href="/download/{{.Name}}" download="{{.Name}}">{{.Name}}</a></td>
+                                <td id = "{{.Name}}"></td>
+                                <script>
+                                    document.getElementById("{{.Name}}").innerHTML = sizeFormat("{{.Size}}") + "Mb"
+                                </script>
+                            </tr>
+                        {{end}}
+                    </table>
+                </div>
+            </div>
+
+            <div style="padding:0px 20px 0px 40px;">
+                <div>
+                    <h6>&nbsp;&nbsp;&nbsp;考试</h6>
+                </div>
+                <div class="pagepiece" style="width: 416px; height: 250px;">
+                    <table class="table studentexam">
+                        <tr>
+                            <th class="tabletd">考试编号</th><th class="tabletd">考试时间</th><th class="tabletd">考试状态</th>
+                        </tr>
+                    </table>
+                </div>
+                <br />
+                <div>
+                    <h6>&nbsp;&nbsp;&nbsp;作业</h6>
+                </div>
+                <div class="pagepiece" style="width: 416px; height: 250px;">
+                    <table class="table studenthomework">
+                        <tr>
+                            <th class="tabletd">作业编号</th><th class="tabletd">截止时间</th><th class="tabletd">提交状态</th>
+                        </tr>
+                        {{range .homeworks}}
+                        <tr>
+                            <td>
+                                <a id="homework{{.Id}}" href="/student/course/homework/{{.Id}}" class="myselect td" onmouseover="setBgColor('homework{{.Id}}', 'rgb(245, 220, 245)')" onmouseout="setBgColor('homework{{.Id}}', 'rgb(250, 230, 250)')"></a>
+                            </td>
+                            <td class="tabletd">{{.Ddl}}</td>
+                            <td class="tablete">{{.Stat}}</td>
+                            <script>
+                                document.getElementById("homework{{.Id}}").innerHTML = numFormat('{{.Id}}');
+                            </script>
+                        </tr>
+                        {{end}}
+                    </table>
+                </div>
+            </div>
+
+        </section>
+        
+        <footer class="footer">
+            <hr />
+            <label>Copyright © <a href="https://ladlod.com" target="_blank">Ladlod</a> |2020.2</label>
+        </footer>
+    </body>
+</html>

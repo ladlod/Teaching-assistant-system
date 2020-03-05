@@ -17,7 +17,7 @@ func (this *UsersController) GetSignin() {
 	if not, ok := flash.Data["notice"]; ok {
 		this.Data["notice"] = not
 	}
-	this.TplName = "signin.html"
+	this.TplName = "sign/signin.html"
 }
 
 // @router /signin [post]
@@ -65,7 +65,7 @@ func (this *UsersController) GetSignup() {
 	if err, ok := flash.Data["notice"]; ok {
 		this.Data["notice"] = err
 	}
-	this.TplName = "signup.html"
+	this.TplName = "sign/signup.html"
 }
 
 // @router /signup [post]
@@ -127,7 +127,7 @@ func (this *UsersController) GetStudent() {
 	this.Data["courses"] = courses
 	this.Data["notices"] = notices
 	this.Data["username"] = student.Name
-	this.TplName = "student.html"
+	this.TplName = "student/student.html"
 }
 
 // @router /student [post]
@@ -160,7 +160,7 @@ func (this *UsersController) GetTeacher() {
 	this.Data["courses"] = courses
 	this.Data["notices"] = notices
 	this.Data["username"] = teacher.Name
-	this.TplName = "teacher.html"
+	this.TplName = "teacher/teacher.html"
 }
 
 // @router /teacher [post]
@@ -192,7 +192,7 @@ func (this *UsersController) GetSetStudent() {
 	var student = this.GetSession("account").(models.Student)
 
 	this.Data["username"] = student.Name
-	this.TplName = "setstudent.html"
+	this.TplName = "student/setstudent.html"
 }
 
 // @router /student/setting [post]
@@ -227,7 +227,7 @@ func (this *UsersController) GetSetTeacher() {
 	var teacher = this.GetSession("account").(models.Teacher)
 
 	this.Data["username"] = teacher.Name
-	this.TplName = "setteacher.html"
+	this.TplName = "teacher/setteacher.html"
 }
 
 // @router /teacher/setting [post]

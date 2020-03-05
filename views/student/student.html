@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <head>
+            <meta charset="utf-8">
+            
+            <link rel="shortcurt icon" href="/img/logo.ico">
+            <link rel="stylesheet" type="text/css" href="/css/main.css">
+
+            <title>{{.username}}</title>
+
+            <script src="/js/user.js"></script>
+            <script src="/js/outlook.js"></script>
+        </head>
+    </head>
+    <body onload="return notice('{{.notice}}')">
+        <header class="header2">
+            <div>
+                <h1>{{.username}}</h1>
+                <a style="font-size: medium;" href="/signin">重新登录</a>
+            </div>
+        </header>
+        <hr />
+        <nav class="mynav">
+            <div>
+                <ul>
+                    <li><a id="class" class="myselect li" style="background-color: rgb(245, 220, 245);">主页</a></li>
+                    <li><a id="discuss" href="/intherow" class="myselect li" onmouseover="setBgColor('discuss', 'rgb(245, 220, 245)')" onmouseout="setBgColor('discuss', 'rgb(250, 245, 250)')">讨论</a></li>
+                    <li><a id="setting" href="/student/setting" class="myselect li" onmouseover="setBgColor('setting', 'rgb(245, 220, 245)')" onmouseout="setBgColor('setting', 'rgb(250, 245, 250)')">设置</a></li>
+                </ul>
+            </div>
+        </nav>
+        <section class="mysection">
+            <div>
+                <div>
+                    <h6>&nbsp;&nbsp;&nbsp;我的课堂</h6>
+                </div>
+                <div class="pagepiece" style="width: 816px; height: 300px; ">
+                    <table class="table course">
+                        <tr>
+                                <th class="tabletd">课堂编号</th><th class="tabletd">课堂名称</th><th class="tabletd">教师</th>
+                        </tr>
+                        {{range .courses}}
+                        <tr>
+                            <td>
+                                <a id="course{{.Id}}" href="/student/{{.Id}}" class="myselect td" onmouseover="setBgColor('course{{.Id}}', 'rgb(245, 220, 245)')" onmouseout="setBgColor('course{{.Id}}', 'rgb(250, 230, 250)')"></a>
+                                <script>
+                                    document.getElementById("course{{.Id}}").innerHTML = numFormat('{{.Id}}');
+                                </script>
+                            </td>
+                            <td class="tabletd">{{.Name}}</td>
+                            <td class="tabletd">{{.Teacher.Name}}</td>
+                        </tr>
+                        {{end}}
+                    </table>
+                </div>
+                <br />
+                <div>
+                    <h6>&nbsp;&nbsp;&nbsp;搜索课堂</h6>
+                </div>
+                <div class="pagepiece" style="width: 816px; height: 200px;">
+                    <div style="text-align: right; font-size: medium; padding: 10px;">
+                        <form id="search_form" action="" onsubmit="return judgeEmpty('search_form', 'search_class', '搜索内容')" method="POST">
+                            <label>请输入课堂编号：</label>
+                            <input name="course" id="course" type="text"></input>
+                            <button type="submit">搜索</button>
+                        </form>
+                    </div>
+                    <table class="table course">
+                        <tr>
+                                <th class="tabletd">课堂编号</th><th class="tabletd">课堂名称</th><th class="tabletd">教师</th><th></th>
+                        </tr>
+                        {{if .search_course}}
+                        <tr>
+                            <td class="tabletd" id="search_course{{.search_course.Id}}"></td>
+                            <td class="tabletd">{{.search_course.Name}}</td>
+                            <td class="tabletd">{{.search_course.Teacher.Name}}</td>
+                            <td class="tabletd"><button class="button is-success" style="height: 30px; font-size: small;" onclick="location.href='/student/joincourse/{{.search_course.Id}}'">加入课堂</button></td>
+                            <script>
+                                document.getElementById("search_course{{.search_course.Id}}").innerHTML = numFormat('{{.search_course.Id}}');
+                            </script>
+                        </tr>
+                        {{end}}
+                    </table>
+                </div>
+            </div>
+            <div style="padding: 15px;">
+                <div>
+                    <h6>&nbsp;&nbsp;&nbsp;通知</h6>
+                </div>
+                <div class="pagepiece" style="float:right; width: 316px; height: 550px;">
+                    {{range .notices}}
+                    <a id="message{{.Id}}" href="/student/dealnotice/{{.Id}}&&{{.Course.Id}}&&{{.Type}}" class="myselect notice" onmouseover="setBgColor('message{{.Id}}', 'rgb(245, 220, 245)')" onmouseout="setBgColor('message{{.Id}}', 'rgb(250, 230, 250)')">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{.Content}}
+                        <p id="brtmp"></p>
+                        <script>
+                            if('{{.Type}}' == 1 || '{{.Type}}' == 2){
+                                document.getElementById("brtmp").innerHTML = "<br />"
+                            }
+                        </script>
+                        <div class="time">
+                            时间：{{.Time}}
+                        </div>
+                    </a>
+                    {{end}}
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <hr />
+            <label>Copyright © <a href="https://ladlod.com" target="_blank">Ladlod</a> |2020.2</label>
+        </footer>
+    </body>
+</html>

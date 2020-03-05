@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <head>
+            <meta charset="utf-8">
+            <title>{{.username}}</title>
+            <script src="/js/user.js"></script>
+            <script src="/js/outlook.js"></script>
+            
+            <link rel="shortcurt icon" href="/img/logo.ico">
+            <link rel="stylesheet" type="text/css" href="/css/main.css">
+        </head>
+    </head>
+    <body onload="return notice('{{.notice}}')">
+        <header class="header2">
+            <div>
+                <h1>{{.username}}</h1>
+                <a style="font-size: medium;" href="/signin">重新登录</a>
+            </div>
+        </header>
+        <hr />
+        <nav class="mynav">
+            <div>
+                <ul>
+                    <li><a id="class" class="myselect li" style="background-color: rgb(245, 220, 245);">主页</a></li>
+                    <li><a id="exam" href="/intherow" class="myselect li" onmouseover="setBgColor('exam', 'rgb(245, 220, 245)')" onmouseout="setBgColor('exam', 'rgb(250, 245, 250)')">题库</a></li>
+                    <li><a id="discuss" href="/intherow" class="myselect li" onmouseover="setBgColor('discuss', 'rgb(245, 220, 245)')" onmouseout="setBgColor('discuss', 'rgb(250, 245, 250)')">讨论</a></li>
+                    <li><a id="setting" href="/teacher/setting" class="myselect li" onmouseover="setBgColor('setting', 'rgb(245, 220, 245)')" onmouseout="setBgColor('setting', 'rgb(250, 245, 250)')">设置</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <section class="mysection">
+            <div>
+                <div>
+                    <h6>&nbsp;&nbsp;&nbsp;我的课堂</h6>
+                </div>
+                <div class="pagepiece" style="width: 816px; height: 300px; ">
+                    <table class="table course">
+                        <tr>
+                                <th class="tabletd">课堂编号</th><th class="tabletd">课堂名称</th>
+                        </tr>
+                        {{range .courses}}
+                        <tr>
+                            <td>
+                                <a id="course{{.Id}}" href="/teacher/{{.Id}}" class="myselect td" onmouseover="setBgColor('course{{.Id}}', 'rgb(245, 220, 245)')" onmouseout="setBgColor('course{{.Id}}', 'rgb(250, 230, 250)')"></a>
+                                <script>
+                                    document.getElementById("course{{.Id}}").innerHTML = numFormat('{{.Id}}');
+                                </script>
+                            </td>
+                            <td class="tabletd">{{.Name}}</td>
+                            <td class="tabletd"><button class="button is-success" style="height: 30px; font-size: small;" onclick="location.href='/teacher/dropcourse/{{.Id}}'">解散课堂</button></td>
+                        </tr>
+                        {{end}}
+                    </table>
+                </div>
+                <br />
+
+                <div>
+                    <h6>&nbsp;&nbsp;&nbsp;创建课堂</h6>
+                </div>
+                <div class="pagepiece" style="width: 776px; height: 200px; padding: 0px 20px;">
+                    <form id="course_form" action="" onsubmit="return judgeEmpty('course_form', 'course', '课堂名称')" method="POST">
+                        <br />
+                        <div>
+                            <label class="label" for="course_name">请输入课堂名称:</label>
+                            <input class="input" style="width: 750px;" type="text" name="course" minlength="3" maxlength="20">
+                        </div>
+                        <div style="padding: 25px;">
+                            <button type="submit" class="button is-success" style="float: right;" value="make"> 创建 </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div style="padding: 15px;">
+                <div>
+                    <h6>&nbsp;&nbsp;&nbsp;通知</h6>
+                </div>
+                <div class="pagepiece" style="float:right; width: 316px; height: 550px;">
+                    {{range .notices}}
+                    <a id="message{{.Id}}" onclick="confirmAddStudent('{{.Student.Id}}', '{{.Course.Id}}', '{{.Id}}')" class="myselect notice" onmouseover="setBgColor('message{{.Id}}', 'rgb(245, 220, 245)')" onmouseout="setBgColor('message{{.Id}}', 'rgb(250, 230, 250)')">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{.Content}}
+                        <br />
+                        <div class="time">
+                            时间：{{.Time}}
+                        </div>
+                    </a>
+                    {{end}}
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <hr />
+            <label>Copyright © <a href="https://ladlod.com" target="_blank">Ladlod</a> |2020.2</label>
+        </footer>
+    </body>
+</html>

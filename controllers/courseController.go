@@ -33,8 +33,14 @@ func (this *CourseController) GetStudentCourse() {
 
 	course := this.GetSession("course").(models.Course)
 	this.Data["course"] = course
+
 	this.Data["students"] = course.Student
-	this.Data["homeworks"] = course.QueryHomework()
+
+	homeworks := course.QueryHomework()
+	for i := range homeworks {
+		homeworks[i].QueryStat(&student)
+	}
+	this.Data["homeworks"] = homeworks
 
 	if fileInfo, err := course.QueryFiles(); err == nil {
 		this.Data["fileInfo"] = fileInfo
@@ -42,7 +48,7 @@ func (this *CourseController) GetStudentCourse() {
 		this.Data["notice"] = err
 	}
 
-	this.TplName = "studentcourse.html"
+	this.TplName = "student/studentcourse.html"
 }
 
 // @router /teacher/:cid [get]
@@ -72,7 +78,7 @@ func (this *CourseController) GetTeacherCourse() {
 		this.Data["notice"] = err
 	}
 
-	this.TplName = "teachercourse.html"
+	this.TplName = "teacher/teachercourse.html"
 }
 
 // @router /teacher/dropcourse/:cid [get]
@@ -177,5 +183,4 @@ func (this *CourseController) DealNotice() {
 	} else {
 		this.Redirect("/student", 302)
 	}
-
 }
