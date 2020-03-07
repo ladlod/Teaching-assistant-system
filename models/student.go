@@ -15,6 +15,7 @@ import "time"
 	QueryCourse 查询我选择的课堂
 	QueryNotice 查询我的通知
 	JoinCourse 加入课堂
+	QuitCourse 退出课堂
 	SubmitHomework 提交作业
 	ClockIn 签到
 */
@@ -67,6 +68,12 @@ func (student *Student) JionCourse(cid int) bool {
 	course := Course{Id: cid}
 
 	return NoticeSBuild(student, &course)
+}
+
+// QuitCourse 退出课堂
+func (student *Student) QuitCourse(cid int) bool {
+	course := &Course{Id: cid}
+	return course.DeleteStudent(student)
 }
 
 // QueryCourse 查询我选择的课堂

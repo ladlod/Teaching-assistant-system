@@ -38,7 +38,7 @@
                 <div class="pagepiece" style="width: 816px; height: 300px; ">
                     <table class="table course">
                         <tr>
-                                <th class="tabletd">课堂编号</th><th class="tabletd">课堂名称</th><th class="tabletd">教师</th>
+                                <th class="tabletd">课堂编号</th><th class="tabletd">课堂名称</th><th class="tabletd">教师</th><th> </th>
                         </tr>
                         {{range .courses}}
                         <tr>
@@ -50,6 +50,7 @@
                             </td>
                             <td class="tabletd">{{.Name}}</td>
                             <td class="tabletd">{{.Teacher.Name}}</td>
+                            <td class="tabletd"><button class="button is-success" style="height: 30px; font-size: small;" onclick="return quitCourse('{{.Id}}')">退出课堂</button></td>
                         </tr>
                         {{end}}
                     </table>

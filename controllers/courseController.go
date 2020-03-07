@@ -166,19 +166,18 @@ func (this *CourseController) JionCourse() {
 	}
 }
 
-// @router /student/dealnotice/:nctid [get]
-func (this *CourseController) DealNotice() {
-	nctid := this.Ctx.Input.Param(":nctid")
-	ids := strings.Split(nctid, "&&")
-
-	typ, _ := strconv.Atoi(ids[2])
-
-	nid, _ := strconv.Atoi(ids[0])
-	notice := models.NoticeT{Id: nid}
-	notice.DeleteNotice()
-	if typ == 1 || typ == 2 {
-		this.Redirect("/student/"+ids[1], 302)
+// @router /student/quitcourse/:cid [get]
+func (this *CourseController) QuitCourse() {
+	cid, _ := strconv.Atoi(this.Ctx.Input.Param(":cid"))
+	student := this.GetSession("account").(models.Student)
+	flash := beego.NewFlash()
+	if student.QuitCourse(cid) {
+		flash.Error("您已成功退出课堂")
+		flash.Store(&this.Controller)
+		this.Redirect("/student", 302)
 	} else {
+		flash.Error("退出失败")
+		flash.Store(&this.Controller)
 		this.Redirect("/student", 302)
 	}
 }

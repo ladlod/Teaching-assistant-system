@@ -31,6 +31,7 @@ func SearchCourse(cid int) *Course {
 	DeleteCourse 删除课堂
 	QueryStudents 查询选择这门课的学生
 	Addstudent 添加学生
+	DeleteStudent 删除学生
 	QueryFiles 查询课件
 	QueryHomework 查询作业
 	AddClockin 发起签到
@@ -103,9 +104,16 @@ func (course *Course) Addstudent(student *Student) bool {
 
 	if _, err := O.Raw("Insert into student_courses values(null, ?, ?)", ids).Exec(); err == nil {
 		return true
-	} else {
-		return false
 	}
+	return false
+}
+
+// DeleteStudent 删除学生
+func (course *Course) DeleteStudent(student *Student) bool {
+	if _, err := O.QueryTable("student_courses").Filter("student_id", student.Id).Filter("course_id", course.Id).Delete(); err == nil {
+		return true
+	}
+	return false
 }
 
 // QueryFiles 查询课件

@@ -18,11 +18,11 @@ func QueryQuestionsByTime() []*Question {
 
 // AddQuestion 发帖
 func AddQuestion(topic string, content string, student *Student, teacher *Teacher) bool {
-	var q Question
+	var q *Question
 	if teacher == nil {
-		q = Question{Topic: topic, Content: content, Student: student}
+		q = &Question{Topic: topic, Content: content, Student: student}
 	} else {
-		q = Question{Topic: topic, Content: content, Teacher: teacher}
+		q = &Question{Topic: topic, Content: content, Teacher: teacher}
 	}
 
 	if _, err := O.Insert(q); err == nil {
@@ -110,11 +110,11 @@ func (question *Question) SupportQuestion(student *Student, teacher *Teacher) bo
 
 // AnswerQuestion 回帖
 func (question *Question) AnswerQuestion(content string, teacher *Teacher, student *Student) bool {
-	var an Answer
+	var an *Answer
 	if teacher == nil {
-		an = Answer{Content: content, Student: student, Question: question}
+		an = &Answer{Content: content, Student: student, Question: question}
 	} else {
-		an = Answer{Content: content, Teacher: teacher, Question: question}
+		an = &Answer{Content: content, Teacher: teacher, Question: question}
 	}
 
 	if _, err := O.Insert(an); err == nil {
@@ -209,4 +209,35 @@ func (sa *SupportAnswer) TableIndex() [][]string {
 	return [][]string{
 		[]string{"student_id", "teacher_id", "answer_id"},
 	}
+}
+
+type AnswerNotice struct {
+	Id            int `orm:"auto"`
+	Content       string
+	SourceStudent *Student  `orm:"rel(fk);null"`
+	SourceTeacher *Teacher  `orm:"rel(fk);null"`
+	Question      *Question `orm:"rel(fk)"`
+}
+
+// 构造回帖时的通知
+func AddAnswerNotice(s *Student, t *Teacher, q *Question) bool {
+	var content string
+	if s == nil {
+		content = s.Name + "回复了您的帖子。"
+	} else {
+		content = t.Name + "回复了您的帖子。"
+	}
+	answernotice := &AnswerNotice{Content: content, SourceStudent: s, SourceTeacher: t, Question: q}
+	if _, err := O.Insert(answernotice); err == nil {
+		return true
+	}
+	return false
+}
+
+// DeleteNotice 删除通知
+func (notice *AnswerNotice) Delete() bool {
+	if _, err := O.Delete(notice); err == nil {
+		return true
+	}
+	return false
 }

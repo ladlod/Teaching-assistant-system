@@ -113,3 +113,12 @@ function clockIn(){
         location.href="/student/course/clockin/" + password;
     }
 }
+
+function quitCourse(cid){
+    if(confirm('请确认退出课堂')){
+        location.href= "/student/quitcourse/" + cid;
+        return true;
+    }else{
+        return false;
+    }
+}

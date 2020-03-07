@@ -3,6 +3,7 @@ package controllers
 import (
 	"Teaching-assistant-system/models"
 	"strconv"
+	"strings"
 
 	"github.com/astaxie/beego"
 )
@@ -247,5 +248,22 @@ func (this *UsersController) PostSetTeacher() {
 		flash.Error("修改失败")
 		flash.Store(&this.Controller)
 		this.Redirect("/teacher/setting", 302)
+	}
+}
+
+// @router /student/dealnotice/:nctid [get]
+func (this *UsersController) DealNotice() {
+	nctid := this.Ctx.Input.Param(":nctid")
+	ids := strings.Split(nctid, "&&")
+
+	typ, _ := strconv.Atoi(ids[2])
+
+	nid, _ := strconv.Atoi(ids[0])
+	notice := models.NoticeT{Id: nid}
+	notice.DeleteNotice()
+	if typ == 1 || typ == 2 {
+		this.Redirect("/student/"+ids[1], 302)
+	} else {
+		this.Redirect("/student", 302)
 	}
 }
