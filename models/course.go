@@ -45,6 +45,12 @@ type Course struct {
 	Ddl      string     `orm:"null"`
 }
 
+func (course *Course) TableIndex() [][]string {
+	return [][]string{
+		[]string{"teacher"},
+	}
+}
+
 type StudentCourses struct {
 	Id      int      `orm:"auto"`
 	Stat    string   `orm:"null"`

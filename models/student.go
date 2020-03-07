@@ -27,6 +27,12 @@ type Student struct {
 	ClockStat string    `orm:"-"`
 }
 
+func (student *Student) TableUnique() [][]string {
+	return [][]string{
+		[]string{"account"},
+	}
+}
+
 // Signup 用户注册
 func (student *Student) Signup() bool {
 	if _, err := O.Insert(student); err == nil {

@@ -24,6 +24,12 @@ type Teacher struct {
 	Courses  []*Course `orm:"reverse(many)"`
 }
 
+func (teacher *Teacher) TableUnique() [][]string {
+	return [][]string{
+		[]string{"account"},
+	}
+}
+
 // Signup 用户注册
 func (teacher *Teacher) Signup() bool {
 	if _, err := O.Insert(teacher); err == nil {

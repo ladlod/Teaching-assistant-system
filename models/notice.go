@@ -56,6 +56,12 @@ type NoticeT struct {
 	Student *Student `orm:"rel(fk)"`
 }
 
+func (notice *NoticeT) TableIndex() [][]string {
+	return [][]string{
+		[]string{"student_id", "course_id"},
+	}
+}
+
 // DeleteNotice 删除通知
 func (notice *NoticeT) DeleteNotice() bool {
 	if _, err := O.Delete(notice); err == nil {
@@ -79,6 +85,12 @@ type NoticeS struct {
 	Time    string
 	Student *Student `orm:"rel(fk)"`
 	Course  *Course  `orm:"rel(fk)"`
+}
+
+func (notice *NoticeS) TableIndex() [][]string {
+	return [][]string{
+		[]string{"course_id"},
+	}
 }
 
 // DeleteNotice 删除通知

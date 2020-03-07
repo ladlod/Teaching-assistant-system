@@ -38,6 +38,12 @@ type Homework struct {
 	Stat    string  `orm:"-"`
 }
 
+func (homework *Homework) TableIndex() [][]string {
+	return [][]string{
+		[]string{"course_id"},
+	}
+}
+
 // AddHomework 布置作业
 func (h *Homework) AddHomework() bool {
 	if _, err := O.Insert(h); err == nil {
