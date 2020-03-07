@@ -1,6 +1,7 @@
 package models
 
 import (
+	"fmt"
 	"os"
 	"strconv"
 	"time"
@@ -114,11 +115,39 @@ func (course *Course) QueryFiles() ([]os.FileInfo, error) {
 func (course *Course) QueryHomework() []*Homework {
 	var homeworks []*Homework
 	_, err := O.QueryTable("homework").Filter("course_id", course.Id).All(&homeworks)
+	SortHomework(homeworks)
 	if err == nil {
 		return homeworks
 	}
 
 	return nil
+}
+
+// SortHomework 对作业进行排序
+func SortHomework(homeworks []*Homework) {
+	hmap := make(map[*Homework]float64)
+	timeTmp := "2006-01-02 15:04:05"
+	for i := range homeworks {
+		now := time.Now()
+		ddl, _ := time.ParseInLocation(timeTmp, homeworks[i].Ddl, time.Local)
+		if now.Before(ddl) {
+			hmap[homeworks[i]] = ddl.Sub(now).Seconds()
+		} else {
+			hmap[homeworks[i]] = -1
+		}
+	}
+	fmt.Println(hmap)
+
+	for i := range homeworks {
+		for j := 0; j < len(homeworks)-i-1; j++ {
+			if hmap[homeworks[j]] == -1 ||
+				(hmap[homeworks[j+1]] != -1 && hmap[homeworks[j]] > hmap[homeworks[j+1]]) {
+				tmp := homeworks[j]
+				homeworks[j] = homeworks[j+1]
+				homeworks[j+1] = tmp
+			}
+		}
+	}
 }
 
 // AddClockin 发起签到
