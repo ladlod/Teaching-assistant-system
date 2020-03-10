@@ -102,7 +102,7 @@ func (course *Course) QueryStudents() []*Student {
 func (course *Course) Addstudent(student *Student) bool {
 	ids := []int{student.Id, course.Id}
 
-	if _, err := O.Raw("Insert into student_courses values(null, ?, ?)", ids).Exec(); err == nil {
+	if _, err := O.Raw("Insert into student_courses values(null, ?, ?, null)", ids).Exec(); err == nil {
 		return true
 	}
 	return false

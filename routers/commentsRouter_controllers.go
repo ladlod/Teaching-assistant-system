@@ -81,6 +81,24 @@ func init() {
 
     beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CommunityController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CommunityController"],
         beego.ControllerComments{
+            Method: "GetMyAnswer",
+            Router: `/community/myanswers`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CommunityController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CommunityController"],
+        beego.ControllerComments{
+            Method: "GetMyQuestion",
+            Router: `/community/myquestions`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CommunityController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:CommunityController"],
+        beego.ControllerComments{
             Method: "GetNewQuestion",
             Router: `/community/postquestion`,
             AllowHTTPMethods: []string{"get"},

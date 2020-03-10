@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            
+        <link rel="stylesheet" type="text/css" href="/css/main.css">
+        <link rel="shortcurt icon" href="/img/logo.ico">
+
+        <title>编译原理教辅系统讨论区</title>
+
+        <script src="/js/user.js"></script>
+        <script src="/js/outlook.js"></script>
+    </head>
+    <body onload="return notice('{{.notice}}')">
+        <header class="header2">
+            <div>
+                <h1>{{.user.Name}}</h1>
+                <a style="font-size: small;" href="/signin">重新登录</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a style="font-size: small;" href="/{{.identity}}">我的主页</a>
+            </div>
+        </header>
+        <hr />
+
+        <nav class="mynav">
+            <div>
+                <ul>
+                    <li><a id="main" class="myselect li" style="background-color: rgb(245, 220, 245);">论坛首页</a></li>
+                    <li><a id="addq" href="/community/postquestion" class="myselect li" onmouseover="setBgColor('addq', 'rgb(245, 220, 245)')" onmouseout="setBgColor('addq', 'rgb(250, 245, 250)')">发帖</a></li>
+                    <li><a id="questions" href="/intherow" class="myselect li" onmouseover="setBgColor('questions', 'rgb(245, 220, 245)')" onmouseout="setBgColor('questions', 'rgb(250, 245, 250)')">我的帖子</a></li>
+                    <li><a id="answers" href="/intherow" class="myselect li" onmouseover="setBgColor('answers', 'rgb(245, 220, 245)')" onmouseout="setBgColor('answers', 'rgb(250, 245, 250)')">我的回帖</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <section class="mysection">
+            <div>
+                <div>
+                    <h6>
+                        &nbsp;&nbsp;&nbsp;帖子
+                        <select class="select" id="sortQ" onchange="changeSort()">
+                            <option value="time">时间</option>
+                            <option value="support">推荐</option>
+                        </select>
+                    </h6>
+                </div>
+                <div class="pagepiece" style="width: 816px; height: 580px;">
+                    <div id="s1">
+                        {{range .queByTime}}
+                            <a class="questiontopic" href="/community/{{.Id}}">
+                                {{.AuthorName}}:{{.Topic}}
+                                推荐:{{.Support}}
+                                <br />
+                                <div class="time">{{.Time}}</div>
+                            </a>
+                        {{end}}
+                    </div>
+                    <div id="s2" style="display: none;">
+                        {{range .queBySupport}}
+                            <a class="questiontopic" href="/community/{{.Id}}">
+                                {{.AuthorName}}:{{.Topic}}
+                                赞:{{.Support}}
+                                <br />
+                                <div class="time">{{.Time}}</div>
+                            </a>
+                        {{end}}
+                    </div>
+                    <script>
+                        function changeSort(){
+                            var s = document.getElementById("sortQ");
+                            if (s.value == "time"){
+                                document.getElementById("s1").style.display="inline"
+                                document.getElementById("s2").style.display="none"
+                            }else if(s.value == "support"){
+                                document.getElementById("s2").style.display="inline"
+                                document.getElementById("s1").style.display="none"
+                            }
+                        }
+                    </script>
+                </div>
+            </div>
+
+            <div style="padding: 15px;">
+                <div>
+                    <h6>&nbsp;&nbsp;&nbsp;通知</h6>
+                </div>
+                <div class="pagepiece" style="float:right; width: 316px; height: 550px;">
+                </div>
+            </div>
+        </section>
+
+        <hr />
+
+        <footer class="footer">
+            <label>Copyright © <a href="https://ladlod.com" target="_blank">Ladlod</a> |2020.2</label>
+        </footer>
+    </body>
+</html>

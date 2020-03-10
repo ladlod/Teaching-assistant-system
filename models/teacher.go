@@ -15,6 +15,8 @@ package models
 	DeleteCourse 删除课堂
 	AddStudent 添加学生
 	RefuseStudent 拒绝学生
+	QueryMyQuestion 查询我发的帖子
+	QueryMyAnswer 查询我发的回帖
 */
 type Teacher struct {
 	Id       int    `orm:"column(id);auto"`
@@ -93,4 +95,18 @@ func (teacher *Teacher) QueryNotice() []*NoticeS {
 	O.Raw("select * from notice_s where course_id in (select id from course where teacher_id = ?)", teacher.Id).QueryRows(&notices)
 
 	return notices
+}
+
+// QueryMyQuestion 查询我发的帖子
+func (teacher *Teacher) QueryMyQuestion() []*Question {
+	var questions []*Question
+	O.QueryTable("question").Filter("teacher_id", teacher.Id).OrderBy("-Id").All(&questions)
+	return questions
+}
+
+// QueryMyAnswer 查询我发的回帖
+func (teacher *Teacher) QueryMyAnswer() []*Answer {
+	var answers []*Answer
+	O.QueryTable("answer").Filter("teacher_id", teacher.Id).OrderBy("-Id").All(&answers)
+	return answers
 }

@@ -18,6 +18,8 @@ import "time"
 	QuitCourse 退出课堂
 	SubmitHomework 提交作业
 	ClockIn 签到
+	QueryMyQuestion 查询我发的帖子
+	QueryMyAnswer 查询我发的回帖
 */
 type Student struct {
 	Id        int    `orm:"column(id);auto"`
@@ -125,4 +127,18 @@ func (student *Student) Clockin(password string, course *Course) bool {
 	}
 
 	return true
+}
+
+// QueryMyQuestion 查询我发的帖子
+func (student *Student) QueryMyQuestion() []*Question {
+	var questions []*Question
+	O.QueryTable("question").Filter("student_id", student.Id).OrderBy("-Id").All(&questions)
+	return questions
+}
+
+// QueryMyAnswer 查询我发的回帖
+func (student *Student) QueryMyAnswer() []*Answer {
+	var answers []*Answer
+	O.QueryTable("answer").Filter("student_id", student.Id).OrderBy("-Id").All(&answers)
+	return answers
 }

@@ -231,12 +231,12 @@ a.box:active {
 }
 
 .button.is-success.is-focused:not(:active),.button.is-success:focus:not(:active) {
-	-webkit-box-shadow: 0 0 0 0.125em rgba(35, 209, 96, 0.25);
-	box-shadow: 0 0 0 0.125em rgba(35, 209, 96, 0.25)
+	-webkit-box-shadow: 0 0 0 0.125em rgb(200, 0, 250);;
+	box-shadow: 0 0 0 0.125em rgb(200, 0, 250);
 }
 
 .button.is-success.is-active,.button.is-success:active {
-	background-color: #20bc56;
+	background-color:  mediumorchid;
 	border-color: transparent;
 	color: #fff
 }
@@ -364,6 +364,8 @@ a.box:active {
 }
 
 .select {
+	width: 50px;
+	height: 30px;
 	display: inline-block;
 	max-width: 100%;
 	position: relative;
@@ -531,4 +533,16 @@ a.box:active {
     background-color: rgb(245, 245, 245);
     border-radius:10px; 
     -moz-border-radius:10px;
+}
+
+.questiontopic{
+	display: block;
+    font-size: medium;
+	padding: 5px;
+	margin: 10px;
+	background-color: #fff;
+	height: 50px;
+	width: 780px;
+	border-radius:5px;
+    -moz-border-radius:5px;
 }
