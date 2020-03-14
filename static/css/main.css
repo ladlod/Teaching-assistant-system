@@ -479,8 +479,19 @@ a.box:active {
 	box-shadow: 5px 5px 5px #888888;
 }
 
+.myselect.question{
+	padding: 5px;
+	margin: 10px;
+	background-color: #fff;
+	height: auto;
+	width: 780px;
+	border-radius:5px;
+    -moz-border-radius:5px;
+}
+
 .time{
 	font-size: smaller;
+	color: black;
 	float: right;
 }
 
@@ -535,14 +546,16 @@ a.box:active {
     -moz-border-radius:10px;
 }
 
-.questiontopic{
-	display: block;
-    font-size: medium;
-	padding: 5px;
-	margin: 10px;
-	background-color: #fff;
-	height: 50px;
-	width: 780px;
-	border-radius:5px;
-    -moz-border-radius:5px;
+.topic {
+	font-size: medium;
+	color: darkslateblue;;
+}
+
+.inscribe {
+	font-size: smaller;
+	color:gray;
+}
+
+.question{
+	background-color: white;
 }

@@ -46,21 +46,21 @@
                 <div class="pagepiece" style="width: 816px; height: 580px;">
                     <div id="s1">
                         {{range .queByTime}}
-                            <a class="questiontopic" href="/community/{{.Id}}">
-                                {{.AuthorName}}:{{.Topic}}
-                                推荐:{{.Support}}
-                                <br />
-                                <div class="time">{{.Time}}</div>
+                            <a id="question{{.Id}}" class="myselect question" href="/community/{{.Id}}">
+                                <p class="topic">{{.Topic}}</p>
+                                <p class="inscribe">
+                                    {{.AuthorName}}&nbsp;&nbsp;{{.Time}}&nbsp;&nbsp;推荐:{{.Support}}
+                                </p>
                             </a>
                         {{end}}
                     </div>
                     <div id="s2" style="display: none;">
                         {{range .queBySupport}}
-                            <a class="questiontopic" href="/community/{{.Id}}">
-                                {{.AuthorName}}:{{.Topic}}
-                                赞:{{.Support}}
-                                <br />
-                                <div class="time">{{.Time}}</div>
+                            <a id="question{{.Id}}" class="myselect question" href="/community/{{.Id}}">
+                                <p class="topic">{{.Topic}}</p>
+                                <p class="inscribe">
+                                    {{.AuthorName}}&nbsp;&nbsp;{{.Time}}&nbsp;&nbsp;推荐:{{.Support}}
+                               </p>
                             </a>
                         {{end}}
                     </div>
