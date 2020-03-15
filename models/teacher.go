@@ -16,7 +16,7 @@ package models
 	AddStudent 添加学生
 	RefuseStudent 拒绝学生
 	QueryMyQuestion 查询我发的帖子
-	QueryMyAnswer 查询我发的回帖
+	QueryAnswerNotice 查询我的回帖通知
 */
 type Teacher struct {
 	Id       int    `orm:"column(id);auto"`
@@ -104,9 +104,9 @@ func (teacher *Teacher) QueryMyQuestion() []*Question {
 	return questions
 }
 
-// QueryMyAnswer 查询我发的回帖
-func (teacher *Teacher) QueryMyAnswer() []*Answer {
-	var answers []*Answer
-	O.QueryTable("answer").Filter("teacher_id", teacher.Id).OrderBy("-Id").All(&answers)
-	return answers
+// QueryAnswerNotice 查询我的回帖通知
+func (teacher *Teacher) QueryAnswerNotice() []*AnswerNotice {
+	var notices []*AnswerNotice
+	O.QueryTable("answer_notice").Filter("Question__Teacher__Id", teacher.Id).OrderBy("-Id").All(&notices)
+	return notices
 }

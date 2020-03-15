@@ -19,7 +19,7 @@ import "time"
 	SubmitHomework 提交作业
 	ClockIn 签到
 	QueryMyQuestion 查询我发的帖子
-	QueryMyAnswer 查询我发的回帖
+	QUeryFNotice 查询我的回帖通知
 */
 type Student struct {
 	Id        int    `orm:"column(id);auto"`
@@ -136,9 +136,9 @@ func (student *Student) QueryMyQuestion() []*Question {
 	return questions
 }
 
-// QueryMyAnswer 查询我发的回帖
-func (student *Student) QueryMyAnswer() []*Answer {
-	var answers []*Answer
-	O.QueryTable("answer").Filter("student_id", student.Id).OrderBy("-Id").All(&answers)
-	return answers
+// QueryAnswerNotice 查询我的回帖通知
+func (student *Student) QueryAnswerNotice() []*AnswerNotice {
+	var notices []*AnswerNotice
+	O.QueryTable("answer_notice").Filter("Question__Student__Id", student.Id).OrderBy("-Id").All(&notices)
+	return notices
 }

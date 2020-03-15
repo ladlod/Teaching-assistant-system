@@ -26,8 +26,7 @@
                 <ul>
                     <li><a id="main" href="/community" class="myselect li" onmouseover="setBgColor('main', 'rgb(245, 220, 245)')" onmouseout="setBgColor('main', 'rgb(250, 245, 250)')">论坛首页</a></li>
                     <li><a id="addq" href="/community/postquestion" class="myselect li" onmouseover="setBgColor('addq', 'rgb(245, 220, 245)')" onmouseout="setBgColor('addq', 'rgb(250, 245, 250)')">发帖</a></li>
-                    <li><a id="questions" href="/intherow" class="myselect li" onmouseover="setBgColor('questions', 'rgb(245, 220, 245)')" onmouseout="setBgColor('questions', 'rgb(250, 245, 250)')">我的帖子</a></li>
-                    <li><a id="answers" href="/intherow" class="myselect li" onmouseover="setBgColor('answers', 'rgb(245, 220, 245)')" onmouseout="setBgColor('answers', 'rgb(250, 245, 250)')">我的回帖</a></li>
+                    <li><a id="questions" href="/community/myquestions" class="myselect li" onmouseover="setBgColor('questions', 'rgb(245, 220, 245)')" onmouseout="setBgColor('questions', 'rgb(250, 245, 250)')">我的帖子</a></li>
                 </ul>
             </div>
         </nav>
@@ -40,7 +39,7 @@
                     </h6>
                 </div>
 
-                <div class="pagepiece" style="padding: 5px; width: 1016px; height: 580px;">
+                <div class="pagepiece" style="padding: 5px; width: 1016px; height: 120px;">
                     <div class="question">
                         <div>
                             <p>{{.question.Content}}</p>
@@ -54,13 +53,15 @@
                             <p class="inscribe">{{.question.Time}}</p>
                         </div>
                     </div>
-                    <hr />
-                    <div>
-                        <select class="select" id="sortQ" onchange="changeSort()">
-                            <option value="time">时间</option>
-                            <option value="support">点亮</option>
-                        </select>
-                    </div>
+                </div>
+                <hr />
+                <div>
+                    <select class="select" id="sortQ" onchange="changeSort()">
+                        <option value="time">时间</option>
+                        <option value="support">点亮</option>
+                    </select>
+                </div>
+                <div class="pagepiece" style="padding: 5px; width: 1016px; height: 400px;"> 
                     <div id="s1">
                         {{range .ansByTime}}
                             <div>

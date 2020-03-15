@@ -3,6 +3,7 @@ package controllers
 import (
 	"Teaching-assistant-system/models"
 	"strconv"
+	"strings"
 
 	"github.com/astaxie/beego"
 )
@@ -20,10 +21,14 @@ func (this *CommunityController) Get() {
 
 	if this.GetSession("identity").(string) == "student" {
 		this.Data["identity"] = "student"
-		this.Data["user"] = this.GetSession("account").(models.Student)
+		student := this.GetSession("account").(models.Student)
+		this.Data["user"] = student
+		this.Data["notices"] = student.QueryAnswerNotice()
 	} else if this.GetSession("identity").(string) == "teacher" {
 		this.Data["identity"] = "teacher"
-		this.Data["user"] = this.GetSession("account").(models.Teacher)
+		teacher := this.GetSession("account").(models.Teacher)
+		this.Data["user"] = teacher
+		this.Data["notices"] = teacher.QueryAnswerNotice()
 	}
 	this.Data["queByTime"] = models.QueryQuestionsByTime()
 	this.Data["queBySupport"] = models.QueryQuestionsBySupport()
@@ -191,7 +196,7 @@ func (this *CommunityController) SupportAnswer() {
 
 // @router /community/myquestions [get]
 func (this *CommunityController) GetMyQuestion() {
-	flash := beego.NewFlash()
+	flash := beego.ReadFromRequest(&this.Controller)
 	if not, ok := flash.Data["error"]; ok {
 		this.Data["notice"] = not
 	}
@@ -206,35 +211,39 @@ func (this *CommunityController) GetMyQuestion() {
 		this.Data["questions"] = teacher.QueryMyQuestion()
 	}
 
-	this.Redirect("/intherow", 302)
-}
-
-// @router /community/myanswers [get]
-func (this *CommunityController) GetMyAnswer() {
-	flash := beego.NewFlash()
-	if not, ok := flash.Data["error"]; ok {
-		this.Data["notice"] = not
-	}
-
-	if this.GetSession("identity").(string) == "student" {
-		student := this.GetSession("account").(models.Student)
-		this.Data["user"] = student
-		this.Data["answers"] = student.QueryMyAnswer()
-	} else if this.GetSession("identity").(string) == "teacher" {
-		teacher := this.GetSession("account").(models.Teacher)
-		this.Data["user"] = teacher
-		this.Data["answers"] = teacher.QueryMyAnswer()
-	}
-
-	this.Redirect("/intherow", 302)
+	this.TplName = "community/myquestion.html"
 }
 
 // @router /community/delete/:qid [get]
 func (this *CommunityController) DeleteQuestion() {
-	this.Redirect("/intherow", 302)
+	flash := beego.NewFlash()
+	qid, _ := strconv.Atoi(this.Ctx.Input.Param(":qid"))
+	question := models.GetQuestionById(qid)
+
+	if question.Delete() {
+		flash.Error("删除成功")
+		flash.Store(&this.Controller)
+	} else {
+		flash.Error("删除失败")
+		flash.Store(&this.Controller)
+	}
+
+	this.Redirect("/community/myquestions", 302)
 }
 
-// @router /community/answer/delete/:aid [get]
-func (this *CommunityController) DeleteAnswer() {
-	this.Redirect("/intherow", 302)
+// @router /community/notice/:nqid [get]
+func (this *CommunityController) DealNotice() {
+	flash := beego.NewFlash()
+	nqid := strings.Split(this.Ctx.Input.Param(":nqid"), "&&")
+	nid, _ := strconv.Atoi(nqid[0])
+	notice := &models.AnswerNotice{Id: nid}
+	if notice.Delete() {
+		this.Redirect("/community/"+nqid[1], 302)
+		return
+	} else {
+		flash.Error("未知错误")
+		flash.Store(&this.Controller)
+		this.Redirect("/community", 302)
+		return
+	}
 }

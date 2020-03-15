@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            
+        <link rel="stylesheet" type="text/css" href="/css/main.css">
+        <link rel="shortcurt icon" href="/img/logo.ico">
+
+        <title>编译原理教辅系统讨论区</title>
+
+        <script src="/js/user.js"></script>
+        <script src="/js/outlook.js"></script>
+    </head>
+    <body onload="return notice('{{.notice}}')">
+        <header class="header2">
+            <div>
+                <h1>{{.user.Name}}</h1>
+                <a style="font-size: small;" href="/signin">重新登录</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a style="font-size: small;" href="/{{.identity}}">我的主页</a>
+            </div>
+        </header>
+        <hr />
+
+        <nav class="mynav">
+            <div>
+                <ul>
+                    <li><a id="main" href="/community" class="myselect li" onmouseover="setBgColor('main', 'rgb(245, 220, 245)')" onmouseout="setBgColor('main', 'rgb(250, 245, 250)')">论坛首页</a></li>
+                    <li><a id="addq" href="/community/postquestion" class="myselect li" onmouseover="setBgColor('addq', 'rgb(245, 220, 245)')" onmouseout="setBgColor('addq', 'rgb(250, 245, 250)')">发帖</a></li>
+                    <li><a id="questions" class="myselect li" style="background-color: rgb(245, 220, 245);">我的帖子</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <section class="mysection">
+            <div>
+                <div>
+                    <h6>
+                        &nbsp;&nbsp;&nbsp;我的帖子
+                    </h6>
+                </div>
+                <div class="pagepiece" style="width: 916px; height: 580px;">
+                    {{range .questions}}
+                    <div style="display: flex;">
+                        <div>
+                            <a id="question{{.Id}}" class="myselect question" href="/community/{{.Id}}">
+                                <p class="topic">{{.Topic}}</p>
+                                <p class="inscribe">
+                                    {{.Time}}&nbsp;&nbsp;推荐:{{.Support}}
+                                </p>
+                            </a>
+                        </div>
+                        <div>
+                            <br />
+                            <button class="button is-success" style="height: 30px; font-size: small;" onclick="return deletequestion('{{.Id}}')">删除帖子</button>
+                        </div>
+                    </div>
+                    {{end}}
+                </div>
+            </div>
+        </section>
+
+        <hr />
+
+        <footer class="footer">
+            <label>Copyright © <a href="https://ladlod.com" target="_blank">Ladlod</a> |2020.2</label>
+        </footer>
+    </body>
+</html>

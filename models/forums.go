@@ -181,6 +181,7 @@ func (question *Question) AnswerQuestion(content string, teacher *Teacher, stude
 	}
 
 	if _, err := O.Insert(an); err == nil {
+		AddAnswerNotice(student, teacher, question)
 		return true
 	}
 	return false
@@ -196,7 +197,6 @@ func (question *Question) AnswerQuestion(content string, teacher *Teacher, stude
 	Student 回帖学生，当回帖人为教师时为null
 	Question 回复的主贴
 方法说明：
-	Delete 删帖
 	SupportAnswer点亮回帖
 */
 type Answer struct {
@@ -214,14 +214,6 @@ func (answer *Answer) TableIndex() [][]string {
 	return [][]string{
 		[]string{"question_id"},
 	}
-}
-
-// Delete 删帖
-func (answer *Answer) Delete() bool {
-	if _, err := O.Delete(answer); err == nil {
-		return true
-	}
-	return false
 }
 
 // SupportAnswer 点亮回帖
@@ -285,13 +277,14 @@ type AnswerNotice struct {
 
 // 构造回帖时的通知
 func AddAnswerNotice(s *Student, t *Teacher, q *Question) bool {
-	var content string
+	var answernotice *AnswerNotice
 	if s == nil {
-		content = s.Name + "回复了您的帖子。"
+		content := t.Name + "回复了您的帖子。"
+		answernotice = &AnswerNotice{Content: content, SourceTeacher: t, Question: q}
 	} else {
-		content = t.Name + "回复了您的帖子。"
+		content := s.Name + "回复了您的帖子。"
+		answernotice = &AnswerNotice{Content: content, SourceStudent: s, Question: q}
 	}
-	answernotice := &AnswerNotice{Content: content, SourceStudent: s, SourceTeacher: t, Question: q}
 	if _, err := O.Insert(answernotice); err == nil {
 		return true
 	}

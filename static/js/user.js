@@ -122,3 +122,12 @@ function quitCourse(cid){
         return false;
     }
 }
+
+function deletequestion(qid){
+    if(confirm('请确认删除帖子')){
+        location.href="/community/delete/" + qid;
+        return true
+    }else {
+        return false
+    }
+}
