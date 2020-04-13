@@ -559,3 +559,13 @@ a.box:active {
 .question{
 	background-color: white;
 }
+
+.problem{
+	padding: 5px;
+	margin: 10px;
+	background-color: #fff;
+	height: auto;
+	width: 980px;
+	border-radius:5px;
+    -moz-border-radius:5px;
+}

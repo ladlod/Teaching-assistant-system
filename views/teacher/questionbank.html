@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            
+        <link rel="stylesheet" type="text/css" href="/css/main.css">
+        <link rel="shortcurt icon" href="/img/logo.ico">
+
+        <title>编译原理教辅系统题库</title>
+
+        <script src="/js/user.js"></script>
+        <script src="/js/outlook.js"></script>
+    </head>
+    <body onload="return notice('{{.notice}}')">
+        <header class="header2">
+            <div>
+                <h1>{{.user.Name}}</h1>
+                <a style="font-size: small;" href="/signin">重新登录</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a style="font-size: small;" href="/teacher">我的主页</a>
+            </div>
+        </header>
+        <hr />
+
+        <nav class="mynav">
+            <div>
+                <ul>
+                    <li><a id="class" href="/teacher" class="myselect li" onmouseover="setBgColor('class', 'rgb(245, 220, 245)')" onmouseout="setBgColor('class', 'rgb(250, 245, 250)')">主页</a></li>
+                    <li><a id="exam" class="myselect li" style="background-color: rgb(245, 220, 245);">题库</a></li>
+                    <li><a id="discuss" href="/community" class="myselect li" onmouseover="setBgColor('discuss', 'rgb(245, 220, 245)')" onmouseout="setBgColor('discuss', 'rgb(250, 245, 250)')">讨论</a></li>
+                    <li><a id="setting" href="/teacher/setting" class="myselect li" onmouseover="setBgColor('setting', 'rgb(245, 220, 245)')" onmouseout="setBgColor('setting', 'rgb(250, 245, 250)')">设置</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <section class="mysection">
+            <div>
+                <div>
+                    <h6>
+                        &nbsp;&nbsp;&nbsp;章节目录
+                    </h6>
+                </div>
+                <div class="pagepiece" style="width: 816px; height: 580px;">
+                    <a id="capter1" href="/teacher/problems/1" class="myselect question">1.绪论</a>
+                    <a id="capter2" href="/teacher/problems/2" class="myselect question">2.一个简单的语法制导翻译器</a>
+                    <a id="capter3" href="/teacher/problems/3" class="myselect question">3.词法分析</a>
+                    <a id="capter4" href="/teacher/problems/4" class="myselect question">4.语法分析</a>
+                    <a id="capter5" href="/teacher/problems/5" class="myselect question">5.语法制导的翻译</a>
+                    <a id="capter6" href="/teacher/problems/6" class="myselect question">6.中间代码生成</a>
+                    <a id="capter7" href="/teacher/problems/7" class="myselect question">7.运行时刻环境</a>
+                    <a id="capter8" href="/teacher/problems/8" class="myselect question">8.代码生成</a>
+                    <a id="capter9" href="/teacher/problems/9" class="myselect question">9.机器无关优化</a>
+                    <a id="capter10" href="/teacher/problems/10" class="myselect question">10.指令级并行</a>
+                    <a id="capter11" href="/teacher/problems/11" class="myselect question">11.并行性和局部性优化</a>
+                    <a id="capter12" href="/teacher/problems/12" class="myselect question">12.过程间分析</a>
+                </div>
+            </div>
+
+        </section>
+
+        <hr />
+
+        <footer class="footer">
+            <label>Copyright © <a href="https://ladlod.com" target="_blank">Ladlod</a> |2020.2</label>
+        </footer>
+    </body>
+</html>

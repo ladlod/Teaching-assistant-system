@@ -1,45 +1,32 @@
 package models
 
-/* Chapter 章节
-属性说明：
-	Id 顺序产生的编号
-	Tpoic 章节名称
-方法说明：
-	QueryProblems 查询该章节的题目
-	AddProblem 添加题目
-*/
-type Chapter struct {
-	Id    int `orm:"column(id);auto"`
-	Topic string
+var Chapter []string = []string{
+	"1.绪论",
+	"2.一个简单的语法制导翻译器",
+	"3.词法分析",
+	"4.语法分析",
+	"5.语法制导的翻译",
+	"6.中间代码生成",
+	"7.运行时刻环境",
+	"8.代码生成",
+	"9.机器无关优化",
+	"10.指令级并行",
+	"11.并行性和局部性优化",
+	"12.过程间分析",
 }
 
-// NewChapter 创建新章节
-func NewChapter(topic string) int64 {
-	Chapter := Chapter{Topic: topic}
-	id, _ := O.Insert(Chapter)
-	return id
-}
-
-// QueryAllChapter 查询全部章节
-func QUeryAllChapter() []*Chapter {
-	var chapter []*Chapter
-	O.QueryTable("chapter").OrderBy("id").All(&chapter)
-
-	return chapter
-}
-
-// QueryProblems 查询该章节的题目
-func (chapter *Chapter) QueryProblems() []*Problem {
+// QueryProblems 查询某章节的题目
+func QueryProblems(cid int) []*Problem {
 	var problems []*Problem
-	O.QueryTable("problem").Filter("chapter_id", chapter.Id).All(&problems)
+	O.QueryTable("problem").Filter("chapter", cid).All(&problems)
 
 	return problems
 }
 
 // AddProblem 添加题目
-func (chapter *Chapter) AddProblem(probelm Problem) bool {
-	probelm.Chapter = chapter
-	if _, err := O.Insert(probelm); err == nil {
+func AddProblem(probelm Problem, cid int) bool {
+	probelm.Chapter = cid
+	if _, err := O.Insert(&probelm); err == nil {
 		return true
 	}
 	return false
@@ -57,22 +44,27 @@ func (chapter *Chapter) AddProblem(probelm Problem) bool {
 */
 type Problem struct {
 	Id       int `orm:"column(id);auto"`
-	Chapter  *Chapter
+	Chapter  int
 	Type     int
+	A        string `orm:"null"`
+	B        string `orm:"null"`
+	C        string `orm:"null"`
+	D        string `orm:"null"`
 	Question string `orm:"size(1024)"`
 	Answer   string `orm:"size(1024)"`
 }
 
 func (problem *Problem) TableIndex() [][]string {
 	return [][]string{
-		[]string{"chapter_id"},
+		[]string{"chapter"},
 	}
 }
 
 // Delete 删除题目
-func (problem *Problem) Delete() bool {
+func (problem *Problem) Delete() (int, bool) {
+	O.Read(problem)
 	if _, err := O.Delete(problem); err == nil {
-		return true
+		return problem.Chapter, true
 	}
-	return false
+	return 0, false
 }

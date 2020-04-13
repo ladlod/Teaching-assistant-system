@@ -25,6 +25,7 @@ func Init() {
 		new(SupportQuestion),
 		new(SupportAnswer),
 		new(AnswerNotice),
+		new(Problem),
 	)
 
 	orm.RunSyncdb("default", false, true) //自动建表

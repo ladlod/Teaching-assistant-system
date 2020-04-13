@@ -295,6 +295,42 @@ func init() {
             Filters: nil,
             Params: nil})
 
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ProblemsController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ProblemsController"],
+        beego.ControllerComments{
+            Method: "GetProblems",
+            Router: `/teacher/problems`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ProblemsController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ProblemsController"],
+        beego.ControllerComments{
+            Method: "GetProblemsByCapter",
+            Router: `/teacher/problems/:cid`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ProblemsController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ProblemsController"],
+        beego.ControllerComments{
+            Method: "PostProblemsByCapter",
+            Router: `/teacher/problems/:cid`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ProblemsController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ProblemsController"],
+        beego.ControllerComments{
+            Method: "DeleteProblem",
+            Router: `/teacher/problems/delete/:pid`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:UsersController"],
         beego.ControllerComments{
             Method: "GetSignin",

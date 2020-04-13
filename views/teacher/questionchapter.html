@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            
+        <link rel="stylesheet" type="text/css" href="/css/main.css">
+        <link rel="shortcurt icon" href="/img/logo.ico">
+
+        <title>编译原理教辅系统题库</title>
+
+        <script src="/js/user.js"></script>
+        <script src="/js/outlook.js"></script>
+    </head>
+    <body onload="return notice('{{.notice}}')">
+        <header class="header2">
+            <div>
+                <h1>{{.user.Name}}</h1>
+                <a style="font-size: small;" href="/signin">重新登录</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a style="font-size: small;" href="/teacher">我的主页</a>
+            </div>
+        </header>
+        <hr />
+
+        <nav class="mynav">
+            <div>
+                <ul>
+                    <li><a id="class" href="/teacher" class="myselect li" onmouseover="setBgColor('class', 'rgb(245, 220, 245)')" onmouseout="setBgColor('class', 'rgb(250, 245, 250)')">主页</a></li>
+                    <li><a id="exam" class="myselect li" style="background-color: rgb(245, 220, 245);">题库</a></li>
+                    <li><a id="discuss" href="/community" class="myselect li" onmouseover="setBgColor('discuss', 'rgb(245, 220, 245)')" onmouseout="setBgColor('discuss', 'rgb(250, 245, 250)')">讨论</a></li>
+                    <li><a id="setting" href="/teacher/setting" class="myselect li" onmouseover="setBgColor('setting', 'rgb(245, 220, 245)')" onmouseout="setBgColor('setting', 'rgb(250, 245, 250)')">设置</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <section class="mysection">
+            <div>
+                <div>
+                    <h6>
+                        &nbsp;&nbsp;&nbsp;{{.chapter}}
+                        <br />
+                        &nbsp;&nbsp;&nbsp;<a style="font-size: small;" href="/teacher/problems">返回目录</a>
+                        &nbsp;&nbsp;&nbsp;<a style="font-size: small;" href="#problem_form">添加题目</a>
+                    </h6>
+                </div>
+                <div class="pagepiece" style="width: 1016px; height: 560px;">
+                    <div>
+                        {{range .problems}}
+                        <div class="problem">
+                            Question:{{.Question}}
+                            <br />
+                            {{if eq .Type 1}}
+                            A.{{.A}}&nbsp;B.{{.B}}&nbsp;C.{{.C}}&nbsp;D.{{.D}}
+                            <br />
+                            {{end}}
+                            Answer:{{.Answer}}
+                            <button style="float: right;" onclick="location.href='/teacher/problems/delete/{{.Id}}'">删除题目</button>
+                        </div>
+                        {{end}}
+                    </div>
+                    <hr />
+                    <div style="padding: 15px;">
+                        <form name="problem_form" id="problem_form" action="" onsubmit="return judgeEmpty('problem_form', 'question', '问题')" method="post">
+                            <div>
+                                <select class="select" name="typ" id="typ" style="width: 70px;" onchange="changeType()">
+                                    <option value="1">选择题</option>
+                                    <option value="2">填空题</option>
+                                    <option value="3">简答题</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label>请输入题目:</label><br/>
+                                <textarea class="input" style="height: 5em;" type="text" name="question" minlength="3" maxlength="512"></textarea>
+                            </div>
+                            <br />
+                            <div id="answer1">
+                                <label>A:</label>
+                                <input type="text" name="A" minlength="3" maxlength="20">
+                                <label>B:</label>
+                                <input type="text" name="B" minlength="3" maxlength="20">
+                                <label>C:</label>
+                                <input type="text" name="C" minlength="3" maxlength="20">
+                                <label>D:</label>
+                                <input type="text" name="D" minlength="3" maxlength="20">
+                                <br />
+                                <br />
+                                <label>请设置正确答案:</label>
+                                <select class="select" name="chooseanswer" id="chooseanswer">
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                </select>
+                            </div>
+                            <div id="answer2"  style="display: none;">
+                                <label>请设置参考答案:</label><br/>
+                                <textarea class="input" style="height: 5em;" type="text" name="blankanswer" minlength="3" maxlength="512"></textarea>
+                            </div>
+
+                            <script>
+                                function changeType(){
+                                    var s = document.getElementById("typ");
+                                    if (s.value == "1"){
+                                        document.getElementById("answer1").style.display="inline"
+                                        document.getElementById("answer2").style.display="none"
+                                    }else{
+                                        document.getElementById("answer2").style.display="inline"
+                                        document.getElementById("answer1").style.display="none"
+                                    }
+                                }
+                            </script>
+
+                            <div>
+                                <br />
+                                <p class="control">
+                                    <button type="submit" class="button is-success" value="submit"> 提交 </button>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <hr />
+
+        <footer class="footer">
+            <label>Copyright © <a href="https://ladlod.com" target="_blank">Ladlod</a> |2020.2</label>
+        </footer>
+    </body>
+</html>
