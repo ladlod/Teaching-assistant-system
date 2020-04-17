@@ -348,6 +348,11 @@ a.box:active {
 	width: 80%
 }
 
+.chapterinput{
+	text-align: end;
+	width: 40px;
+}
+
 .textarea {
 	display: block;
 	max-width: 90%;

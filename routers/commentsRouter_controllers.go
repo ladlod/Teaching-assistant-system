@@ -196,6 +196,51 @@ func init() {
             Filters: nil,
             Params: nil})
 
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ExamController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ExamController"],
+        beego.ControllerComments{
+            Method: "GetStudentExam",
+            Router: `/student/course/exam/:eid`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ExamController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ExamController"],
+        beego.ControllerComments{
+            Method: "StudentJoinExam",
+            Router: `/student/joinexam/:eid`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ExamController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ExamController"],
+        beego.ControllerComments{
+            Method: "GetAddExam",
+            Router: `/teacher/course/addexam`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ExamController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ExamController"],
+        beego.ControllerComments{
+            Method: "PostAddExam",
+            Router: `/teacher/course/addexam`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ExamController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ExamController"],
+        beego.ControllerComments{
+            Method: "GetTeacherExam",
+            Router: `/teacher/course/exam/:eid`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["Teaching-assistant-system/controllers:FileController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:FileController"],
         beego.ControllerComments{
             Method: "GetDownloadFile",

@@ -131,3 +131,25 @@ function deletequestion(qid){
         return false
     }
 }
+
+function judge100Percent(){
+    var c1 = document.forms["exam_form"][C1].value;
+    var c2 = document.forms["exam_form"][C2].value;
+    var c3 = document.forms["exam_form"][C3].value;
+    var c4 = document.forms["exam_form"][C4].value;
+    var c5 = document.forms["exam_form"][C5].value;
+    var c6 = document.forms["exam_form"][C6].value;
+    var c7 = document.forms["exam_form"][C7].value;
+    var c8 = document.forms["exam_form"][C8].value;
+    var c9 = document.forms["exam_form"][C9].value;
+    var c10 = document.forms["exam_form"][C10].value;
+    var c11 = document.forms["exam_form"][C11].value;
+    var c12 = document.forms["exam_form"][C12].value;
+
+    if(c1 + c2 + c3 + c4 + c5 + c6 + c7 + c8 + c9 + c10 + c11 + c12 != 100){
+        alert("请确认章节比例总和是否为100%")
+        return false;
+    }
+
+    return true;
+}

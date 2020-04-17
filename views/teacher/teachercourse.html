@@ -26,7 +26,7 @@
                 <ul>
                     <li><a id="class" class="myselect li" style="background-color: rgb(245, 220, 245);">主页</a></li>
                     <li><a id="clockin" onclick="setSignPassword()" class="myselect li" onmouseover="setBgColor('clockin', 'rgb(245, 220, 245)')" onmouseout="setBgColor('clockin', 'rgb(250, 245, 250)')">开启签到</a></li>
-                    <li><a id="exam" href="/intherow" class="myselect li" onmouseover="setBgColor('exam', 'rgb(245, 220, 245)')" onmouseout="setBgColor('exam', 'rgb(250, 245, 250)')">发布考试</a></li>
+                    <li><a id="exam" href="/teacher/course/addexam" class="myselect li" onmouseover="setBgColor('exam', 'rgb(245, 220, 245)')" onmouseout="setBgColor('exam', 'rgb(250, 245, 250)')">发布考试</a></li>
                     <li><a id="homework" href="/teacher/course/homework" class="myselect li" onmouseover="setBgColor('homework', 'rgb(245, 220, 245)')" onmouseout="setBgColor('homework', 'rgb(250, 245, 250)')">布置作业</a></li>
                 </ul>
             </div>
@@ -100,6 +100,17 @@
                         <tr>
                             <th class="tabletd">考试编号</th><th class="tabletd">考试时间</th>
                         </tr>
+                        {{range .exams}}
+                        <tr>
+                            <td>
+                                <a id="exam{{.Id}}" href="/teacher/course/exam/{{.Id}}" class="myselect td" onmouseover="setBgColor('exam{{.Id}}', 'rgb(245, 220, 245)')" onmouseout="setBgColor('exam{{.Id}}', 'rgb(250, 230, 250)')"></a>
+                            </td>
+                            <td class="tabletd">{{.StartTime}}</td>
+                            <script>
+                                document.getElementById("exam{{.Id}}").innerHTML = numFormat('{{.Id}}');
+                            </script>
+                        </tr>
+                        {{end}}
                     </table>
                 </div>
                 <br />

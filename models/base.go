@@ -26,6 +26,8 @@ func Init() {
 		new(SupportAnswer),
 		new(AnswerNotice),
 		new(Problem),
+		new(Exam),
+		new(StudentExam),
 	)
 
 	orm.RunSyncdb("default", false, true) //自动建表

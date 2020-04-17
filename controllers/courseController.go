@@ -41,6 +41,12 @@ func (this *CourseController) GetStudentCourse() {
 	}
 	this.Data["homeworks"] = homeworks
 
+	exams := course.QueryExam()
+	for i := range exams {
+		exams[i].QueryStat(&student)
+	}
+	this.Data["exams"] = exams
+
 	if fileInfo, err := course.QueryFiles(); err == nil {
 		this.Data["fileInfo"] = fileInfo
 	} else {
@@ -69,6 +75,7 @@ func (this *CourseController) GetTeacherCourse() {
 	this.Data["course"] = course
 	this.Data["students"] = course.QueryStudents()
 	this.Data["homeworks"] = course.QueryHomework()
+	this.Data["exams"] = course.QueryExam()
 
 	if fileInfo, err := course.QueryFiles(); err == nil {
 		this.Data["fileInfo"] = fileInfo

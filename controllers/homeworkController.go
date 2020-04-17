@@ -36,12 +36,9 @@ func (this *HomeworkController) PostAddHomework() {
 	}
 
 	teacher := this.GetSession("account").(models.Teacher)
+	course.Teacher = &teacher
 	homework := models.Homework{Content: content, Ddl: ddl, Course: &course}
 	if homework.AddHomework() {
-		students := course.QueryStudents()
-		for i := range students {
-			models.NoticeTBuild(&teacher, &course, students[i], 1)
-		}
 		flash.Error("布置作业成功")
 		flash.Store(&this.Controller)
 		this.Redirect("/teacher/course/homework", 302)

@@ -77,7 +77,7 @@ func (this *ProblemsController) PostProblemsByCapter() {
 func (this *ProblemsController) DeleteProblem() {
 	flash := beego.NewFlash()
 
-	pid, _ := strconv.Atoi(this.Ctx.Input.Param(":pcid"))
+	pid, _ := strconv.Atoi(this.Ctx.Input.Param(":pid"))
 	probelm := models.Problem{Id: pid}
 	if cid, err := probelm.Delete(); err == true {
 		flash.Error("删除题目成功")

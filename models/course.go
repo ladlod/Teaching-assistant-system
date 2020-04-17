@@ -34,6 +34,7 @@ func SearchCourse(cid int) *Course {
 	DeleteStudent 删除学生
 	QueryFiles 查询课件
 	QueryHomework 查询作业
+	QueryExam 查询考试
 	AddClockin 发起签到
 	JudgeClockin 判断是否有签到发起
 */
@@ -162,6 +163,17 @@ func SortHomework(homeworks []*Homework) {
 			}
 		}
 	}
+}
+
+// QueryExam 查询考试
+func (course *Course) QueryExam() []*Exam {
+	var exam []*Exam
+	_, err := O.QueryTable("exam").Filter("course_id", course.Id).OrderBy("-id").All(&exam)
+	if err == nil {
+		return exam
+	}
+
+	return nil
 }
 
 // AddClockin 发起签到

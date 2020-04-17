@@ -38,7 +38,7 @@ func NoticeTBuild(teacher *Teacher, course *Course, student *Student, typ int) b
 /* NoticeT 老师对课堂内学生的通知
 属性说明：
 	Id 顺序产生的编号
-	Type 通知类别是1代表考试通知或是1代表作业通知
+	Type 通知类别是1代表考试通知或是2代表作业通知
 	Content 通知内容
 	Teacher 发起通知的教师
 	Course  通知的对象课堂

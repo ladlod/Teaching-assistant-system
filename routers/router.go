@@ -37,4 +37,5 @@ func init() {
 	beego.Include(&controllers.ClockinController{})
 	beego.Include(&controllers.CommunityController{})
 	beego.Include(&controllers.ProblemsController{})
+	beego.Include(&controllers.ExamController{})
 }

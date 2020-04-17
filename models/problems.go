@@ -1,5 +1,10 @@
 package models
 
+import (
+	"os"
+	"strconv"
+)
+
 var Chapter []string = []string{
 	"1.绪论",
 	"2.一个简单的语法制导翻译器",
@@ -13,6 +18,69 @@ var Chapter []string = []string{
 	"10.指令级并行",
 	"11.并行性和局部性优化",
 	"12.过程间分析",
+}
+
+// BuildPaper 组卷
+func BuildPaper(exam *Exam, student *Student) bool {
+	var problemNum [12][3]int
+	var C [12]float64
+	C[0] = exam.C1 / 100
+	C[1] = exam.C2 / 100
+	C[2] = exam.C3 / 100
+	C[3] = exam.C4 / 100
+	C[4] = exam.C5 / 100
+	C[5] = exam.C6 / 100
+	C[6] = exam.C7 / 100
+	C[7] = exam.C8 / 100
+	C[8] = exam.C9 / 100
+	C[9] = exam.C10 / 100
+	C[10] = exam.C11 / 100
+	C[11] = exam.C12 / 100
+	flag := -1
+	for i := range C {
+		if C[i] != 0 && flag == -1 {
+			flag = i
+			problemNum[i][0] = exam.ChooseNum
+			problemNum[i][1] = exam.BlankNum
+			problemNum[i][2] = exam.AnswerNum
+		} else {
+			problemNum[i][0] = int(float64(exam.ChooseNum) * C[i])
+			problemNum[i][1] = int(float64(exam.BlankNum) * C[i])
+			problemNum[i][2] = int(float64(exam.AnswerNum) * C[i])
+		}
+	}
+	for i := flag + 1; i < 12; i++ {
+		problemNum[flag][0] -= problemNum[i][0]
+		problemNum[flag][1] -= problemNum[i][1]
+		problemNum[flag][2] -= problemNum[i][2]
+	}
+
+	var problems []Problem
+	for i := 0; i < 3; i++ {
+		for j := 0; j < 12; j++ {
+			var tmp []Problem
+			O.Raw("select * from problem where chapter = ? and type = ? order by rand() limit ?", j+1, i+1, problemNum[j][i]).QueryRows(&tmp)
+			for k := range tmp {
+				problems = append(problems, tmp[k])
+			}
+		}
+	}
+
+	if paper, err := os.Create("files/exam/" + strconv.Itoa(exam.Id) + "/" + strconv.Itoa(student.Id)); err == nil {
+		defer paper.Close()
+		for i := range problems {
+			paper.WriteString(strconv.Itoa(problems[i].Id) + "\n")
+		}
+		return true
+	}
+	return false
+}
+
+// GetProblemById 获得题目
+func GetProblemById(pid int) *Problem {
+	var problem Problem
+	O.QueryTable("problem").Filter("id", pid).One(&problem)
+	return &problem
 }
 
 // QueryProblems 查询某章节的题目
@@ -56,7 +124,7 @@ type Problem struct {
 
 func (problem *Problem) TableIndex() [][]string {
 	return [][]string{
-		[]string{"chapter"},
+		[]string{"chapter", "type"},
 	}
 }
 

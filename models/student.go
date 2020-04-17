@@ -1,6 +1,12 @@
 package models
 
-import "time"
+import (
+	"bufio"
+	"io"
+	"os"
+	"strconv"
+	"time"
+)
 
 /*Student 学生
 属性说明：
@@ -20,6 +26,8 @@ import "time"
 	ClockIn 签到
 	QueryMyQuestion 查询我发的帖子
 	QUeryFNotice 查询我的回帖通知
+	JoinExam 参加考试读取试题
+	SubmitPaper 交卷
 */
 type Student struct {
 	Id        int    `orm:"column(id);auto"`
@@ -141,4 +149,29 @@ func (student *Student) QueryAnswerNotice() []*AnswerNotice {
 	var notices []*AnswerNotice
 	O.QueryTable("answer_notice").Filter("Question__Student__Id", student.Id).OrderBy("-Id").All(&notices)
 	return notices
+}
+
+// JoinExam 参加考试读取试题
+func (student *Student) JoinExam(exam *Exam) []*Problem {
+	var problems []*Problem
+	paper, _ := os.Open("files/exam/" + strconv.Itoa(exam.Id) + "/" + strconv.Itoa(student.Id))
+	defer paper.Close()
+	r := bufio.NewReader(paper)
+	for i := 0; ; i++ {
+		ids, _, err := r.ReadLine()
+		if err == io.EOF {
+			break
+		}
+		var problem *Problem
+		problem.Id, _ = strconv.Atoi(string(ids))
+		O.Read(problem)
+		problems = append(problems, problem)
+	}
+
+	return problems
+}
+
+// SubmitPaper 交卷
+func (student *Student) SubmitPaper(answers []string) bool {
+	return false
 }

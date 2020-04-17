@@ -57,6 +57,7 @@ func (h *Homework) AddHomework() bool {
 			if _, err := O.Insert(s_h); err != nil {
 				return false
 			}
+			NoticeTBuild(h.Course.Teacher, h.Course, students[i], 1)
 		}
 		return true
 	}

@@ -76,6 +76,18 @@
                         <tr>
                             <th class="tabletd">考试编号</th><th class="tabletd">考试时间</th><th class="tabletd">考试状态</th>
                         </tr>
+                        {{range .exams}}
+                        <tr>
+                            <td>
+                                <a id="exam{{.Id}}" href="/student/course/exam/{{.Id}}" class="myselect td" onmouseover="setBgColor('exam{{.Id}}', 'rgb(245, 220, 245)')" onmouseout="setBgColor('exam{{.Id}}', 'rgb(250, 230, 250)')"></a>
+                            </td>
+                            <td class="tabletd">{{.StartTime}}</td>
+                            <td class="tablete">{{.Stat}}</td>
+                            <script>
+                                document.getElementById("exam{{.Id}}").innerHTML = numFormat('{{.Id}}');
+                            </script>
+                        </tr>
+                        {{end}}
                     </table>
                 </div>
                 <br />
