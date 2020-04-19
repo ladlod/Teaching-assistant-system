@@ -1,5 +1,12 @@
 package models
 
+import (
+	"bufio"
+	"io"
+	"os"
+	"strconv"
+)
+
 /*Teacher 老师
 属性说明：
 	Id 顺序产生的编号
@@ -17,6 +24,8 @@ package models
 	RefuseStudent 拒绝学生
 	QueryMyQuestion 查询我发的帖子
 	QueryAnswerNotice 查询我的回帖通知
+	ReviewPaper 阅卷
+	UpdateScore 给学生记录成绩
 */
 type Teacher struct {
 	Id       int    `orm:"column(id);auto"`
@@ -109,4 +118,45 @@ func (teacher *Teacher) QueryAnswerNotice() []*AnswerNotice {
 	var notices []*AnswerNotice
 	O.QueryTable("answer_notice").Filter("Question__Teacher__Id", teacher.Id).OrderBy("-Id").All(&notices)
 	return notices
+}
+
+// ReviewPaper 阅卷
+func (teacher *Teacher) ReviewPaper(eid int, sid int) []*Problem {
+	var problems []*Problem
+	paper, _ := os.Open("files/exam/" + strconv.Itoa(eid) + "/paper" + strconv.Itoa(sid))
+	defer paper.Close()
+	submitpaper, _ := os.Open("files/exam/" + strconv.Itoa(eid) + "/submit" + strconv.Itoa(sid))
+	defer submitpaper.Close()
+	r1 := bufio.NewReader(paper)
+	r2 := bufio.NewReader(submitpaper)
+	for {
+		ids, _, err := r1.ReadLine()
+		if err == io.EOF {
+			break
+		}
+		id, _ := strconv.Atoi(string(ids))
+		answer, _, _ := r2.ReadLine()
+		problem := &Problem{Id: id}
+		O.Read(problem)
+
+		problem.Answer_student = string(answer)
+		problems = append(problems, problem)
+	}
+
+	return problems
+}
+
+// UpdateScore 给学生记录成绩
+func (teacher *Teacher) UpdateScore(eid int, sid int, score float64) bool {
+	var se StudentExam
+	O.QueryTable("student_exam").Filter("exam_id", eid).Filter("student_id", sid).One(&se)
+	if se.Stat == "已评分" {
+		return false
+	}
+	se.Score += score
+	se.Stat = "已评分"
+	if _, err := O.Update(&se, "score", "stat"); err == nil {
+		return true
+	}
+	return false
 }

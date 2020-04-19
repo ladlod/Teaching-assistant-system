@@ -66,10 +66,13 @@ func BuildPaper(exam *Exam, student *Student) bool {
 		}
 	}
 
-	if paper, err := os.Create("files/exam/" + strconv.Itoa(exam.Id) + "/" + strconv.Itoa(student.Id)); err == nil {
+	if paper, err := os.Create("files/exam/" + strconv.Itoa(exam.Id) + "/paper" + strconv.Itoa(student.Id)); err == nil {
 		defer paper.Close()
 		for i := range problems {
-			paper.WriteString(strconv.Itoa(problems[i].Id) + "\n")
+			paper.WriteString(strconv.Itoa(problems[i].Id))
+			if i != len(problems)-1 {
+				paper.WriteString("\n")
+			}
 		}
 		return true
 	}
@@ -111,15 +114,16 @@ func AddProblem(probelm Problem, cid int) bool {
 	Delete 删除题目
 */
 type Problem struct {
-	Id       int `orm:"column(id);auto"`
-	Chapter  int
-	Type     int
-	A        string `orm:"null"`
-	B        string `orm:"null"`
-	C        string `orm:"null"`
-	D        string `orm:"null"`
-	Question string `orm:"size(1024)"`
-	Answer   string `orm:"size(1024)"`
+	Id             int `orm:"column(id);auto"`
+	Chapter        int
+	Type           int
+	A              string `orm:"null"`
+	B              string `orm:"null"`
+	C              string `orm:"null"`
+	D              string `orm:"null"`
+	Question       string `orm:"size(1024)"`
+	Answer         string `orm:"size(1024)"`
+	Answer_student string `orm:"-"`
 }
 
 func (problem *Problem) TableIndex() [][]string {

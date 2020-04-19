@@ -208,8 +208,17 @@ func init() {
     beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ExamController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ExamController"],
         beego.ControllerComments{
             Method: "StudentJoinExam",
-            Router: `/student/joinexam/:eid`,
+            Router: `/student/examing/:eid`,
             AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ExamController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ExamController"],
+        beego.ControllerComments{
+            Method: "StudentPostExam",
+            Router: `/student/examing/:eid`,
+            AllowHTTPMethods: []string{"post"},
             MethodParams: param.Make(),
             Filters: nil,
             Params: nil})
@@ -237,6 +246,24 @@ func init() {
             Method: "GetTeacherExam",
             Router: `/teacher/course/exam/:eid`,
             AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ExamController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ExamController"],
+        beego.ControllerComments{
+            Method: "GetReviewPaper",
+            Router: `/teacher/course/reviewpaper/:esid`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ExamController"] = append(beego.GlobalControllerRouter["Teaching-assistant-system/controllers:ExamController"],
+        beego.ControllerComments{
+            Method: "PostScore",
+            Router: `/teacher/course/reviewpaper/:esid`,
+            AllowHTTPMethods: []string{"post"},
             MethodParams: param.Make(),
             Filters: nil,
             Params: nil})

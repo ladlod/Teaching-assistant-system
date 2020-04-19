@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>编译原理考试</title>
+
+        <script src="/js/user.js"></script>
+        <script src="/js/outlook.js"></script>
+        
+        <link rel="shortcurt icon" href="/img/logo.ico">
+        <link rel="stylesheet" type="text/css" href="/css/main.css">
+    </head>
+    <body onload="return notice('{{.notice}}')">
+        <header class="header2">
+            <div>
+                <h1>{{.teacher.Name}}</h1>
+                <a style="font-size: small;" href="/signin">重新登录</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a style="font-size: small;" href="/teacher">我的主页</a>
+            </div>
+        </header>
+
+        <hr />
+
+        <section class="mysection">
+            <div style="padding: 0px 40px 0px 20px;">
+                <div>
+                    <h6>&nbsp;&nbsp;&nbsp;班级成员</h6>
+                </div>
+                <div class="pagepiece" style="width: 416px; height: 600px;">
+                    <table class="table student">
+                        <tr>
+                            <th class="tabletd">学生编号</th><th class="tabletd">学生姓名</th><th class="tabletd">考试状态</th><th class="tabletd">成绩</th>
+                        </tr>
+                        {{range .students}}
+                        <tr>
+                            <td class="tabletd">
+                                <a id="student{{.Student.Id}}" href="/teacher/course/reviewpaper/{{.Exam.Id}}&&{{.Student.Id}}" class="myselect td" onmouseover="setBgColor('student{{.Student.Id}}', 'rgb(245, 220, 245)')" onmouseout="setBgColor('student{{.Student.Id}}', 'rgb(250, 230, 250)')"></a>
+                            </td>
+                            <td class="tabletd">{{.Student.Name}}</td>
+                            <td class="tabletd">{{.Stat}}</td>
+                            <td class="tabletd">{{.Score}}</td>
+                            <script>
+                                document.getElementById("student{{.Student.Id}}").innerHTML = numFormat('{{.Student.Id}}');
+                            </script>
+                        </tr>
+                        {{end}}
+                    </table>
+                </div>
+            </div>
+            <div style="padding: 0px 40px 0px 20px;">
+                <div>
+                    <h6>&nbsp;&nbsp;&nbsp;阅卷区</h6>
+                </div>
+                <div class="pagepiece" style="width: 816px; height: 600px;">
+                    <form id="exam_form" action="" method="POST">
+                        {{range .problems}}
+                            {{if ne .Type 1}}
+                                <div class="problem" style="width: 780px;">
+                                    问题:{{.Question}}&nbsp;
+                                    {{if eq .Type 2}}({{$.exam.BlankScore}}分){{end}}
+                                    {{if eq .Type 3}}({{$.exam.AnswerScore}}分){{end}}
+                                    <br />
+                                    学生作答:{{.Answer_student}}
+                                    <br />
+                                    标准答案:{{.Answer}}
+                                    <br />
+                                    <label class="label">本题得分：</label>
+                                    <input type="text" name="{{.Id}}">分
+                                </div>
+                            {{end}}
+                        {{end}}
+                        &nbsp;&nbsp;&nbsp;<button type="submit" class="button is-success" value="submit">提交成绩</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <hr />
+        
+        <footer class="footer">  
+            <label>Copyright © <a href="https://ladlod.com" target="_blank">Ladlod</a> |2020.2</label>
+        </footer>
+    </body>
+</html>

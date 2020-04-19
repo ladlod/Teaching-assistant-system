@@ -154,16 +154,16 @@ func (student *Student) QueryAnswerNotice() []*AnswerNotice {
 // JoinExam 参加考试读取试题
 func (student *Student) JoinExam(exam *Exam) []*Problem {
 	var problems []*Problem
-	paper, _ := os.Open("files/exam/" + strconv.Itoa(exam.Id) + "/" + strconv.Itoa(student.Id))
+	paper, _ := os.Open("files/exam/" + strconv.Itoa(exam.Id) + "/paper" + strconv.Itoa(student.Id))
 	defer paper.Close()
 	r := bufio.NewReader(paper)
-	for i := 0; ; i++ {
+	for {
 		ids, _, err := r.ReadLine()
 		if err == io.EOF {
 			break
 		}
-		var problem *Problem
-		problem.Id, _ = strconv.Atoi(string(ids))
+		id, _ := strconv.Atoi(string(ids))
+		problem := &Problem{Id: id}
 		O.Read(problem)
 		problems = append(problems, problem)
 	}
@@ -172,6 +172,32 @@ func (student *Student) JoinExam(exam *Exam) []*Problem {
 }
 
 // SubmitPaper 交卷
-func (student *Student) SubmitPaper(answers []string) bool {
-	return false
+func (student *Student) SubmitPaper(answers []string, exam *Exam) {
+	paper, _ := os.Open("files/exam/" + strconv.Itoa(exam.Id) + "/paper" + strconv.Itoa(student.Id))
+	submitpaper, _ := os.Create("files/exam/" + strconv.Itoa(exam.Id) + "/submit" + strconv.Itoa(student.Id))
+	defer submitpaper.Close()
+	r := bufio.NewReader(paper)
+	var score float64 = 0
+	for i := range answers {
+		ids, _, err := r.ReadLine()
+		if err == io.EOF {
+			break
+		}
+		id, _ := strconv.Atoi(string(ids))
+		problem := &Problem{Id: id}
+		O.Read(problem)
+		if problem.Type == 1 && problem.Answer == answers[i] {
+			score += exam.ChooseScore
+		}
+		submitpaper.WriteString(answers[i])
+		if i != len(answers)-1 {
+			submitpaper.WriteString("\n")
+		}
+	}
+	var se StudentExam
+	O.QueryTable("student_exam").Filter("student_id", student.Id).Filter("exam_id", exam.Id).One(&se)
+	se.Score = score
+	se.Stat = "已交卷未评分"
+	O.Update(&se, "stat", "score")
+	defer paper.Close()
 }

@@ -33,6 +33,7 @@ func SearchExam(eid int) *Exam {
 	AddExam 发布考试
 	JudgeStartData 判断考试是否开始
 	JudgeOutData 判断考试是否结束
+	QueryAllStat 查询全部学生的考试状态
 	QueryStat 查询某个学生的完成状态
 */
 type Exam struct {
@@ -116,10 +117,13 @@ func (exam *Exam) QueryStat(student *Student) {
 	exam.Stat = se.Stat
 }
 
-// QueryAllScore 查询全部学生的成绩
-func (exam *Exam) QueryAllScore() []*StudentExam {
+// QueryAllStat 查询全部学生的考试状态
+func (exam *Exam) QueryAllStat() []*StudentExam {
 	var ses []*StudentExam
 	O.QueryTable("student_exam").Filter("exam_id", exam.Id).OrderBy("-score").All(&ses)
+	for i := range ses {
+		O.Read(ses[i].Student)
+	}
 	return ses
 }
 

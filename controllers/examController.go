@@ -101,7 +101,9 @@ func (this *ExamController) GetStudentExam() {
 		return
 	} else if exam.JudgeOutData() {
 		this.Data["course"] = this.GetSession("course").(models.Course)
-		this.Redirect("/intherow", 302)
+		student := this.GetSession("account").(models.Student)
+		this.Data["score"] = exam.QueryScore(&student)
+		this.TplName = "student/queryscore.html"
 		return
 	} else {
 		this.Data["course"] = this.GetSession("course").(models.Course)
@@ -111,12 +113,104 @@ func (this *ExamController) GetStudentExam() {
 	}
 }
 
-// @router /student/joinexam/:eid [get]
+// @router /student/examing/:eid [get]
 func (this *ExamController) StudentJoinExam() {
-	this.Redirect("/intherow", 302)
+	flash := beego.ReadFromRequest(&this.Controller)
+	if err, ok := flash.Data["error"]; ok {
+		this.Data["notice"] = err
+	}
+
+	eid, _ := strconv.Atoi(this.Ctx.Input.Param(":eid"))
+	exam := models.SearchExam(eid)
+	student := this.GetSession("account").(models.Student)
+	this.Data["student"] = student
+	this.Data["problems"] = student.JoinExam(exam)
+	this.TplName = "student/exam.html"
+}
+
+// @router /student/examing/:eid [post]
+func (this *ExamController) StudentPostExam() {
+	flash := beego.NewFlash()
+
+	eid, _ := strconv.Atoi(this.Ctx.Input.Param(":eid"))
+	exam := models.SearchExam(eid)
+	student := this.GetSession("account").(models.Student)
+	problems := student.JoinExam(exam)
+	var answers []string
+
+	for i := range problems {
+		tmp := this.GetString(strconv.Itoa(problems[i].Id))
+		answers = append(answers, tmp)
+	}
+
+	student.SubmitPaper(answers, exam)
+	flash.Error("交卷成功，请等待教师批阅")
+	flash.Store(&this.Controller)
+	this.Redirect("/student/course", 302)
+	return
 }
 
 // @router /teacher/course/exam/:eid [get]
 func (this *ExamController) GetTeacherExam() {
-	this.Redirect("/intherow", 302)
+	flash := beego.ReadFromRequest(&this.Controller)
+	if err, ok := flash.Data["error"]; ok {
+		this.Data["notice"] = err
+	}
+
+	this.Data["teacher"] = this.GetSession("account").(models.Teacher)
+	eid, _ := strconv.Atoi(this.Ctx.Input.Param(":eid"))
+	exam := models.SearchExam(eid)
+	this.Data["students"] = exam.QueryAllStat()
+	this.TplName = "teacher/exam.html"
+}
+
+// @router /teacher/course/reviewpaper/:esid [get]
+func (this *ExamController) GetReviewPaper() {
+	flash := beego.ReadFromRequest(&this.Controller)
+	if err, ok := flash.Data["error"]; ok {
+		this.Data["notice"] = err
+	}
+
+	teacher := this.GetSession("account").(models.Teacher)
+	this.Data["teacher"] = teacher
+	esid := this.Ctx.Input.Param(":esid")
+	ids := strings.Split(esid, "&&")
+	eid, _ := strconv.Atoi(ids[0])
+	sid, _ := strconv.Atoi(ids[1])
+	exam := models.SearchExam(eid)
+	this.Data["exam"] = exam
+	this.Data["students"] = exam.QueryAllStat()
+
+	this.Data["problems"] = teacher.ReviewPaper(eid, sid)
+
+	this.TplName = "teacher/exam.html"
+}
+
+// @router /teacher/course/reviewpaper/:esid [post]
+func (this *ExamController) PostScore() {
+	flash := beego.NewFlash()
+	teacher := this.GetSession("account").(models.Teacher)
+	esid := this.Ctx.Input.Param(":esid")
+	ids := strings.Split(esid, "&&")
+	eid, _ := strconv.Atoi(ids[0])
+	sid, _ := strconv.Atoi(ids[1])
+	problems := teacher.ReviewPaper(eid, sid)
+	var score float64 = 0
+	for i := range problems {
+		if tmps := this.GetString(strconv.Itoa(problems[i].Id)); tmps != "" {
+			tmp, _ := strconv.ParseFloat(tmps, 64)
+			score += tmp
+		}
+	}
+	if teacher.UpdateScore(eid, sid, score) {
+		flash.Error("阅卷完毕，请批阅下一份试卷")
+		flash.Store(&this.Controller)
+		this.Redirect("/teacher/course/reviewpaper/"+esid, 302)
+		return
+	} else {
+		flash.Error("阅卷失败，请重新批阅试卷")
+		flash.Store(&this.Controller)
+		this.Redirect("/teacher/course/reviewpaper/"+esid, 302)
+		return
+	}
 }
